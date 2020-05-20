@@ -17,7 +17,7 @@ handler = WebhookHandler('e365002afec95950d148063ee819297f')
 
 @app.route('/')
 def hello_world():
-    return 'Hello, World!'
+    return 'Hello, World! My name is Seraphine. I am happy now'
 
 @app.route('/test')
 def test_page():
