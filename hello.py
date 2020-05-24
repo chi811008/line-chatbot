@@ -59,17 +59,18 @@ def handle_message(event):
         pic = "https://s.yimg.com/ny/api/res/1.2/12UU2JphAsbxTTDca.7QFQ--~A/YXBwaWQ9aGlnaGxhbmRlcjtzbT0xO3c9MTA4MDtoPTcxNg--/https://media-mbst-pub-ue1.s3.amazonaws.com/creatr-uploaded-images/2019-11/7b5b5330-112b-11ea-a77f-7c019be7ecae"
         line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url= pic, preview_image_url= pic))
     elif event.message.text == "請輸入山的名稱":
-        import requests
-        from bs4 import BeautifulSoup
-        string = event.message.text
-        url = "https://hiking.biji.co/index.php?q=trail&part=全部&city=全部&zip=全部&time=全部&level=全部&type=全部&keyword="
-        search = url + string
-        re = requests.get(search)
-        soup = BeautifulSoup(re.text, "html.parser")
-        data = soup.find("div", {"class": "postMeta-feedSummery"}).find("a")["href"]
-        web = "https://hiking.biji.co" + data
-        print(web)
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=web))
+        def handle_message(event):
+            import requests
+            from bs4 import BeautifulSoup
+            string = event.message.text
+            url = "https://hiking.biji.co/index.php?q=trail&part=全部&city=全部&zip=全部&time=全部&level=全部&type=全部&keyword="
+            search = url + string
+            re = requests.get(search)
+            soup = BeautifulSoup(re.text, "html.parser")
+            data = soup.find("div", {"class": "postMeta-feedSummery"}).find("a")["href"]
+            web = "https://hiking.biji.co" + data
+            print(web)
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text=web))
         
         
         
