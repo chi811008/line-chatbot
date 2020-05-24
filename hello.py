@@ -1,3 +1,5 @@
+import json
+
 from flask import Flask, request, abort
 
 from linebot import (
@@ -7,26 +9,18 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    ImageSendMessage, MessageEvent, PostbackEvent,
+    MessageEvent, PostbackEvent,
     TextSendMessage, TemplateSendMessage,
     TextMessage, ButtonsTemplate,
     PostbackTemplateAction, MessageTemplateAction,
-    URITemplateAction, StickerSendMessage
+    URITemplateAction,
 )
 
 app = Flask(__name__)
 
-line_bot_api = LineBotApi('K9VIeDOz0f7pg/kQMrqggOjd5rOcLwMYOg2PlrBJuQDpX3p1Q/o4+cuK6VapoA5q+j0QLdxZwwLu8as9S3Hi4gblljWUIEWAFG7i/4YzoEPBovw6yb6h2bZrLdeyB++yb4WTtzqSOJmPSPszvo2KwAdB04t89/1O/w1cDnyilFU=')
-handler = WebhookHandler('e365002afec95950d148063ee819297f')
 
-@app.route('/')
-def hello_world():
-    return 'Hello, World! My name is Seraphine. I am happy now'
-
-@app.route('/test')
-def test_page():
-    return 'In test page!'
-
+line_bot_api = LineBotApi('YOUR_CHANNEL_ACCESS_TOKEN')
+handler = WebhookHandler('YOUR_CHANNEL_SECRET')
 
 
 @app.route("/callback", methods=['POST'])
@@ -36,6 +30,7 @@ def callback():
 
     # get request body as text
     body = request.get_data(as_text=True)
+
     app.logger.info("Request body: " + body)
 
     # handle webhook body
@@ -47,18 +42,30 @@ def callback():
     return 'OK'
 
 
+@handler.add(PostbackEvent)
+def handle_post_message(event):
+# can not get event text
+    print("event =", event)
+    line_bot_api.reply_message(
+                event.reply_token,
+                TextMessage(
+                    text=str(str(event.postback.data)),
+                )
+            )
+
+
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    if event.message.text == "文字":
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.text))
-    elif event.message.text == "Yes":
-        line_bot_api.reply_message(event.reply_token,StickerSendMessage(package_id=11539, sticker_id=52114123))
-    elif event.message.text == "OK":
-        line_bot_api.reply_message(event.reply_token,StickerSendMessage(package_id=11539, sticker_id=52114113))
-    elif event.message.text == "圖片":
-        pic = "https://s.yimg.com/ny/api/res/1.2/12UU2JphAsbxTTDca.7QFQ--~A/YXBwaWQ9aGlnaGxhbmRlcjtzbT0xO3c9MTA4MDtoPTcxNg--/https://media-mbst-pub-ue1.s3.amazonaws.com/creatr-uploaded-images/2019-11/7b5b5330-112b-11ea-a77f-7c019be7ecae"
-        line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url= pic, preview_image_url= pic))
-    elif event.message.text == "請輸入山的名稱":
+    print("event =", event)
+    if event.message.text == "查詢個人檔案":
+        user_id = event.source.user_id
+        profile = line_bot_api.get_profile(user_id, timeout=None)
+        line_bot_api.reply_message(
+                    event.reply_token,
+                    TextMessage(
+                        text=str(profile),
+                    )
+                )
 
     else:
         button_template_message =ButtonsTemplate(
@@ -67,6 +74,10 @@ def handle_message(event):
                                 text='Please select',
                                 image_size="cover",
                                 actions=[
+    #                                PostbackTemplateAction 點擊選項後，
+    #                                 除了文字會顯示在聊天室中，
+    #                                 還回傳data中的資料，可
+    #                                 此類透過 Postback event 處理。
                                     PostbackTemplateAction(
                                         label='查詢個人檔案顯示文字-Postback',
                                         text='查詢個人檔案',
@@ -82,7 +93,7 @@ def handle_message(event):
                                     ),
                                 ]
                             )
-                        
+                            
         line_bot_api.reply_message(
             event.reply_token,
             TemplateSendMessage(
@@ -93,7 +104,9 @@ def handle_message(event):
 
 
 
-
+@app.route('/')
+def homepage():
+    return 'Hello, World!'
 
 if __name__ == "__main__":
     app.run()
