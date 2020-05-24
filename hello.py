@@ -42,15 +42,13 @@ def callback():
 
     return 'OK'
 
+@handler.add(MessageEvent, message=TextMessage)
 def echo(event):
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=event.message.text)
     )
 
-@app.route('/')
-def homepage():
-    return 'Hello, World!'
 
 if __name__ == "__main__":
     app.run()
