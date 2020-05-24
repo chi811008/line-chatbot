@@ -48,6 +48,9 @@ def echo(event):
         TextSendMessage(text=event.message.text)
     )
 
+@app.route('/')
+def homepage():
+    return 'Hello, World!'
 
 if __name__ == "__main__":
     app.run()
