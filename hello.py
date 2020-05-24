@@ -67,7 +67,7 @@ def handle_message(event):
                     )
                 )
 
-    else:
+    elif event.message.text == "buttons":
         button_template_message =ButtonsTemplate(
                                 thumbnail_image_url="https://i.imgur.com/eTldj2E.png?1",
                                 title='Menu',
@@ -102,7 +102,8 @@ def handle_message(event):
             )
         )
 
-
+    else:
+        line_bot_api.reply_message(event.reply_token,StickerSendMessage(package_id=11539, sticker_id=52114113))
 
 @app.route('/')
 def homepage():
