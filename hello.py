@@ -6,7 +6,13 @@ from linebot import (
 from linebot.exceptions import (
     InvalidSignatureError
 )
-from linebot.models import *
+from linebot.models import (
+    MessageEvent, PostbackEvent,
+    TextSendMessage, TemplateSendMessage,
+    TextMessage, ButtonsTemplate,
+    PostbackTemplateAction, MessageTemplateAction,
+    URITemplateAction,
+)
 
 app = Flask(__name__)
 
@@ -43,9 +49,6 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=event.message.text))
     if event.message.text == "文字":
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.text))
     elif event.message.text == "貼圖":
@@ -53,7 +56,10 @@ def handle_message(event):
     elif event.message.text == "圖片":
         pic = "https://s.yimg.com/ny/api/res/1.2/12UU2JphAsbxTTDca.7QFQ--~A/YXBwaWQ9aGlnaGxhbmRlcjtzbT0xO3c9MTA4MDtoPTcxNg--/https://media-mbst-pub-ue1.s3.amazonaws.com/creatr-uploaded-images/2019-11/7b5b5330-112b-11ea-a77f-7c019be7ecae"
         line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url= pic, preview_image_url= pic))
-
+    else:
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=event.message.text))
 
 
 
