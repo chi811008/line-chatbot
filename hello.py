@@ -151,13 +151,11 @@ def handle_message(event):
                         )]
                     )
         try:
-        #     alt_text 因template只能夠在手機上顯示，因此在PC版會使用alt_Text替代
-            line_bot_api.push_message(to, TemplateSendMessage(alt_text="Carousel Template Example", template=carousel_template))
+            line_bot_api.reply_message(event.reply_token, TemplateSendMessage(alt_text="Carousel Template Example", template=carousel_template))
         except LineBotApiError as e:
             # error handle
             raise e
-        
-    
+
     else:
         line_bot_api.reply_message(event.reply_token,StickerSendMessage(package_id=11539, sticker_id=52114113))
 
