@@ -44,10 +44,9 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def echo(event):
-    text = event.message.text + event.message.id + event.source.user_id + evnet.timestamp + event.reply_token
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text)
+        TextSendMessage(text = event.message.id)
     )
 
 
