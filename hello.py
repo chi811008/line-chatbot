@@ -13,7 +13,8 @@ from linebot.models import (
     TextSendMessage, TemplateSendMessage,
     TextMessage, ButtonsTemplate,
     PostbackTemplateAction, MessageTemplateAction,
-    URITemplateAction, StickerSendMessage
+    URITemplateAction, StickerSendMessage,
+    CarouselTemplate, CarouselColumn,
 )
 
 app = Flask(__name__)
@@ -101,7 +102,62 @@ def handle_message(event):
                 template=button_template_message
             )
         )
-
+    elif event.message.text == "carousel":
+        image_url_1 = "https://i.imgur.com/eTldj2E.png?1"
+        image_url_2 = "https://i.imgur.com/mB9yDO0.png"
+        click_link_1 = "https://www.facebook.com/ntustcc"
+        click_link_2 = "https://www.facebook.com/ntustcc"
+        carousel_template = template=CarouselTemplate(
+                    columns=[
+                        CarouselColumn(
+                            thumbnail_image_url=image_url_1,
+                            title='template-1',
+                            text='text-1',
+                            actions=[
+                                PostbackTemplateAction(
+                                    label='postback-1',
+                                    text='postback text1',
+                                    data='result=1'
+                                ),
+                                MessageTemplateAction(
+                                    label='message-1',
+                                    text='message text1'
+                                ),
+                                URITemplateAction(
+                                    label='uri-1',
+                                    uri=click_link_1
+                                )
+                            ]
+                        ),
+                        CarouselColumn(
+                            thumbnail_image_url=image_url_2,
+                            title='template-2',
+                            text='text-2',
+                            actions=[
+                                PostbackTemplateAction(
+                                    label='postback-2',
+                                    text='postback text2',
+                                    data='result=2'
+                                ),
+                                MessageTemplateAction(
+                                    label='message-2',
+                                    text='message text2'
+                                ),
+                                URITemplateAction(
+                                    label='link-2',
+                                    uri=click_link_2
+                                )
+                            ]
+                        )]
+                    )
+        try:
+        #     alt_text 因template只能夠在手機上顯示，因此在PC版會使用alt_Text替代
+            line_bot_api.push_message(to, TemplateSendMessage(alt_text="Carousel Template Example", template=carousel_template))
+        except LineBotApiError as e:
+            # error handle
+            raise e
+        
+    
     else:
         line_bot_api.reply_message(event.reply_token,StickerSendMessage(package_id=11539, sticker_id=52114113))
 
