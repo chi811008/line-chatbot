@@ -59,24 +59,37 @@ def handle_message(event):
         pic = "https://s.yimg.com/ny/api/res/1.2/12UU2JphAsbxTTDca.7QFQ--~A/YXBwaWQ9aGlnaGxhbmRlcjtzbT0xO3c9MTA4MDtoPTcxNg--/https://media-mbst-pub-ue1.s3.amazonaws.com/creatr-uploaded-images/2019-11/7b5b5330-112b-11ea-a77f-7c019be7ecae"
         line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url= pic, preview_image_url= pic))
     elif event.message.text == "請輸入山的名稱":
-        def handle_message(event):
-            import requests
-            from bs4 import BeautifulSoup
-            string = event.message.text
-            url = "https://hiking.biji.co/index.php?q=trail&part=全部&city=全部&zip=全部&time=全部&level=全部&type=全部&keyword="
-            search = url + string
-            re = requests.get(search)
-            soup = BeautifulSoup(re.text, "html.parser")
-            data = soup.find("div", {"class": "postMeta-feedSummery"}).find("a")["href"]
-            web = "https://hiking.biji.co" + data
-            print(web)
-            line_bot_api.reply_message(event.reply_token,TextSendMessage(text=web))
-        
-        
-        
-        
+
     else:
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.text))
+        button_template_message =ButtonsTemplate(
+                                thumbnail_image_url="https://i.imgur.com/eTldj2E.png?1",
+                                title='Menu',
+                                text='Please select',
+                                image_size="cover",
+                                actions=[
+                                    PostbackTemplateAction(
+                                        label='查詢個人檔案顯示文字-Postback',
+                                        text='查詢個人檔案',
+                                        data='action=buy&itemid=1'
+                                    ),
+                                    PostbackTemplateAction(
+                                        label='不顯示文字-Postback',
+                                        text = None,
+                                        data='action=buy&itemid=1'
+                                    ),
+                                    MessageTemplateAction(
+                                        label='查詢個人檔案-Message', text='查詢個人檔案'
+                                    ),
+                                ]
+                            )
+                        
+        line_bot_api.reply_message(
+            event.reply_token,
+            TemplateSendMessage(
+                alt_text="Template Example",
+                template=button_template_message
+            )
+        )
 
 
 
