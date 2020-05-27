@@ -43,16 +43,42 @@ def callback():
     return 'OK'
 
 @handler.add(MessageEvent, message=TextMessage)
-def picture(event):
-    try:
-        pic = "https://s.yimg.com/ny/api/res/1.2/12UU2JphAsbxTTDca.7QFQ--~A/YXBwaWQ9aGlnaGxhbmRlcjtzbT0xO3c9MTA4MDtoPTcxNg--/https://media-mbst-pub-ue1.s3.amazonaws.com/creatr-uploaded-images/2019-11/7b5b5330-112b-11ea-a77f-7c019be7ecae"
-        line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url= pic, preview_image_url= pic))
-    except:
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text = event.message.text)
-        )
-        pass
+def pixabay_isch(event):
+
+    if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
+        try:
+            url = f"https://pixabay.com/images/search/{urllib.parse.urlencode({'q':event.message.text})[2:]}/"
+            headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36'}
+        
+            req = urllib.request.Request(url, headers = headers)
+            conn = urllib.request.urlopen(req)
+        
+            print('fetch page finish')
+        
+            pattern = 'img srcset="\S*\s\w*,'
+            img_list = []
+        
+            for match in re.finditer(pattern, str(conn.read())):
+                img_list.append(match.group()[12:-3])
+            
+            random_img_url = img_list[random.randint(0, len(img_list)+1)]
+            print('fetch img url finish')
+            print(random_img_url)
+        
+            line_bot_api.reply_message(
+                event.reply_token,
+                ImageSendMessage(
+                    original_content_url=random_img_url,
+                    preview_image_url=random_img_url
+                )
+            )
+    # 如果找不到圖，就學你說話
+        except:
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text=event.message.text)
+            )
+            pass
 
 
 if __name__ == "__main__":
