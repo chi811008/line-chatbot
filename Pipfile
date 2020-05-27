@@ -12,6 +12,8 @@ Django = "*"
 psycopg2-binary = "*"
 line-bot-sdk = "*"
 flask = "*"
+beautifulsoup4 = "*"
+requests = "*"
 
 [requires]
 python_version = "3.7"
