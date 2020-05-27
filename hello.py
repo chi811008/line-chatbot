@@ -43,11 +43,27 @@ def callback():
     return 'OK'
 
 @handler.add(MessageEvent, message=TextMessage)
-def echo(event):
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text = event.message.id)
-    )
+def picture(event):
+    try:
+        import requests
+        from bs4 import BeautifulSoup
+        string = event.message.text
+        url = "https://hiking.biji.co/index.php?q=trail&part=全部&city=全部&zip=全部&time=全部&level=全部&type=全部&keyword="
+        search = url + string
+        re = requests.get(search)
+        soup = BeautifulSoup(re.text, "html.parser")
+        data = soup.find("div", {"class": "postMeta-feedSummery"}).find("a")["href"]
+        web = "https://hiking.biji.co" + data
+        re_pic = requests.get(web)
+        pic_soup = BeautifulSoup(re_pic.text, "html.parser")
+        picture = pic_soup.find("div", {"class": "img-cover cover"}).find("img")["src"]
+        line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url= picture, preview_image_url= picture))
+    except:
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text = event.message.text)
+        )
+        pass
 
 
 if __name__ == "__main__":
