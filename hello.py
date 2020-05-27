@@ -56,7 +56,8 @@ def picture(event):
         web = "https://hiking.biji.co" + data
         re_pic = requests.get(web)
         pic_soup = BeautifulSoup(re_pic.text, "html.parser")
-        picture = pic_soup.find("div", {"class": "img-cover cover"}).find("img")["src"]
+        #picture = pic_soup.find("div", {"class": "img-cover cover"}).find("img")["src"]
+        picture = "https://cdntwrunning.biji.co/800_7885322f41fd94d458c5a5c9f4b4ba1b59ba5bc13777a4c144a25c7da3dd7dfd.jpg"
         line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url= picture, preview_image_url= picture))
     except:
         line_bot_api.reply_message(
