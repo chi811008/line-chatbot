@@ -45,19 +45,6 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def picture(event):
     try:
-        import requests
-        from bs4 import BeautifulSoup
-        string = event.message.text
-        url = "https://hiking.biji.co/index.php?q=trail&part=全部&city=全部&zip=全部&time=全部&level=全部&type=全部&keyword="
-        search = url + string
-        re = requests.get(search)
-        soup = BeautifulSoup(re.text, "html.parser")
-        data = soup.find("div", {"class": "postMeta-feedSummery"}).find("a")["href"]
-        web = "https://hiking.biji.co" + data
-        re_pic = requests.get(web)
-        pic_soup = BeautifulSoup(re_pic.text, "html.parser")
-        #picture = pic_soup.find("div", {"class": "img-cover cover"}).find("img")["src"]
-        picture = "https://cdntwrunning.biji.co/800_7885322f41fd94d458c5a5c9f4b4ba1b59ba5bc13777a4c144a25c7da3dd7dfd.jpg"
         pic = "https://s.yimg.com/ny/api/res/1.2/12UU2JphAsbxTTDca.7QFQ--~A/YXBwaWQ9aGlnaGxhbmRlcjtzbT0xO3c9MTA4MDtoPTcxNg--/https://media-mbst-pub-ue1.s3.amazonaws.com/creatr-uploaded-images/2019-11/7b5b5330-112b-11ea-a77f-7c019be7ecae"
         line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url= pic, preview_image_url= pic))
     except:
