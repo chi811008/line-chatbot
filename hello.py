@@ -57,86 +57,14 @@ def picture(event):
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     cursor = conn.cursor()
 
-    create_table_query = '''CREATE TABLE mountain(
-        mountain_id serial PRIMARY KEY,
-        mountain_name VARCHAR (50) UNIQUE NOT NULL,
-        area VARCHAR (50) NOT NULL,
-        difficulty VARCHAR (50) NOT NULL,
-        time VARCHAR (50) NOT NULL,
-        type VARCHAR (50) NOT NULL
-    );'''
-        
-    cursor.execute(create_table_query)
-    conn.commit()
-
-    import requests
-    from bs4 import BeautifulSoup
-
-    url = "https://hiking.biji.co/index.php?q=trail"
-
-    re = requests.get(url)
-    soup = BeautifulSoup(re.text, 'html.parser')
-
-    table = soup.find('div', {'id': 'trail_list'})
-    #print(table)
-    data = []
-    mountain = []
-    for trail in table.find_all('div', {'class': "pic-item"}):
-        #print(trail)
-        
-        name = trail.a['title']
-        location = trail.find('div', {'class': 'location'}).text
-        info = trail.find_all('li', {'class': "search-info-item"})
-        info_lst = [i.text for i in info]
-        mountain = []
-        mountain.append(name)
-        mountain.append(location)
-        mountain.append(info_lst[0])
-        mountain.append(info_lst[1])
-        mountain.append(info_lst[2])
-        mountain = tuple(mountain)
-        data.append(mountain)
-
-    print(data)
-
-    import os
-    import psycopg2
-
-    DATABASE_URL = os.popen('heroku config:get DATABASE_URL -a rocky-brushlands-15389').read()[:-1]
-
-    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-    cursor = conn.cursor()
-
-
-    table_columns = '(mountain_name, area, difficulty, time, type)'
-    postgres_insert_query = f"""INSERT INTO mountain {table_columns} VALUES (%s, %s, %s, %s, %s);"""
-
-    cursor.executemany(postgres_insert_query, data)
-    conn.commit()
-
-    count = cursor.rowcount
-
-    print(count, "Record inserted successfully into alpaca_training")
-
-    cursor.close()
-    conn.close()
-
-    import os
-    import psycopg2
-
-    DATABASE_URL = os.popen('heroku config:get DATABASE_URL -a rocky-brushlands-15389').read()[:-1]
-
-    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-    cursor = conn.cursor()
-
     postgres_select_query = f"""SELECT * FROM mountain"""
 
     cursor.execute(postgres_select_query)
 
-    text = cursor.fetchall()
+    text_re = cursor.fetchall()
     
-    line_bot_api.reply_message(event.reply_token,TextSendMessage(text = event.message.text))
-    print("line bot")
+    line_bot_api.reply_message(event.reply_token,TextSendMessage(text = text_re))
+    print("line_bot")
 
 
 
