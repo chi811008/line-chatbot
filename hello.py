@@ -47,9 +47,11 @@ def callback():
 def picture(event):
     print("mack sure the func activate")
     try:
-        print("mack sure the func activate into try")
+
         import requests
         from bs4 import BeautifulSoup
+	print("mack sure the func activate into try")
+
         string = event.message.text
         url = "https://hiking.biji.co/index.php?q=trail&part=全部&city=全部&zip=全部&time=全部&level=全部&type=全部&keyword="
         search = url + string
