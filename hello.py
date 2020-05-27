@@ -53,11 +53,16 @@ def picture(event):
         print("mack sure the func activate into try")
         url = "https://hiking.biji.co/index.php?q=trail&part=全部&city=全部&zip=全部&time=全部&level=全部&type=全部&keyword="
         search = url + string
+        print("search")
         re = requests.get(search)
+        print("re")
         soup = BeautifulSoup(re.text, "html.parser")
+        print("soup")
         data = soup.find("div", {"class": "postMeta-feedSummery"}).find("a")["href"]
+        print("data")
         web = "https://hiking.biji.co" + data
         re_pic = requests.get(web)
+        print("repic")
         pic_soup = BeautifulSoup(re_pic.text, "html.parser")
         picture = pic_soup.find("div", {"class": "img-cover cover"}).find("img")["src"]
         line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url= picture, preview_image_url= picture))
