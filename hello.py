@@ -136,15 +136,7 @@ def picture(event):
     text = cursor.fetchall()
     
     line_bot_api.reply_message(event.reply_token,TextSendMessage(text = event.message.text))
-        print("line bot")
-    except:
-        print("mack sure the func activite into except")
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text = event.message.text)
-        )
-        pass
-
+    print("line bot")
 
 
 
