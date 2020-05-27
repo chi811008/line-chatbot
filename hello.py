@@ -64,8 +64,11 @@ def picture(event):
         re_pic = requests.get(web)
         print("repic")
         pic_soup = BeautifulSoup(re_pic.text, "html.parser")
+        print("picsoup")
         picture = pic_soup.find("div", {"class": "img-cover cover"}).find("img")["src"]
+        print("picture")
         line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url= picture, preview_image_url= picture))
+        print("line bot")
     except:
         print("mack sure the func activite into except")
         line_bot_api.reply_message(
