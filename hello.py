@@ -58,7 +58,8 @@ def picture(event):
         pic_soup = BeautifulSoup(re_pic.text, "html.parser")
         #picture = pic_soup.find("div", {"class": "img-cover cover"}).find("img")["src"]
         picture = "https://cdntwrunning.biji.co/800_7885322f41fd94d458c5a5c9f4b4ba1b59ba5bc13777a4c144a25c7da3dd7dfd.jpg"
-        line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url= picture, preview_image_url= picture))
+        pic = "https://s.yimg.com/ny/api/res/1.2/12UU2JphAsbxTTDca.7QFQ--~A/YXBwaWQ9aGlnaGxhbmRlcjtzbT0xO3c9MTA4MDtoPTcxNg--/https://media-mbst-pub-ue1.s3.amazonaws.com/creatr-uploaded-images/2019-11/7b5b5330-112b-11ea-a77f-7c019be7ecae"
+        line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url= pic, preview_image_url= pic))
     except:
         line_bot_api.reply_message(
             event.reply_token,
