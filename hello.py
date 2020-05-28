@@ -51,18 +51,19 @@ def callback():
 def picture(event):
     import os
     import psycopg2
-
+    print("import")
     DATABASE_URL = os.popen('heroku config:get DATABASE_URL -a rocky-brushlands-15389').read()[:-1]
-
+    print("DATABASE")
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+    print("Conn")
     cursor = conn.cursor()
-
+    print("cursor")
     postgres_select_query = f"""SELECT * FROM mountain"""
 
     cursor.execute(postgres_select_query)
-
+    print("execute")
     text_re = cursor.fetchall()
-    
+    print("text_re")
     line_bot_api.reply_message(event.reply_token,TextSendMessage(text = text_re))
     print("line_bot")
 
