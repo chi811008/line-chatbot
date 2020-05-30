@@ -59,7 +59,6 @@ def search_info(event):
 
     postgres_select_query = f"""SELECT * FROM mountain"""
 
-
     dic_moun = {}
     cursor.execute(postgres_select_query)
     for item in cursor.fetchall():
@@ -70,9 +69,69 @@ def search_info(event):
         if search in name:
             moun_info = (", ".join(dic_moun[name][1: ]))
     
+    button_template_message = ButtonsTemplate(
+        thumbnail_image_url="https://i.imgur.com/eTldj2E.png?1",
+        title=search,
+        text='請選擇',
+        actions=[
+            PostbackTemplateAction(
+                label='山的資訊',
+                text='mountaion-information',
+                data='q-mountain-info'
+            )
+        ]
+    )
+
     line_bot_api.reply_message(
-    event.reply_token,
-    TextSendMessage(text=moun_info))
+        event.reply_token,
+        TemplateSendMessage(
+            alt_text="Template Example",
+            template=button_template_message
+        )
+    )
+            
+            
+    #      button_template_message =ButtonsTemplate(
+    #                              thumbnail_image_url="https://i.imgur.com/eTldj2E.png?1",
+    #                              title='Menu',
+    #                              text='Please select',
+    #                              image_size="cover",
+    #                              actions=[
+    #  #                                PostbackTemplateAction 點擊選項後，
+    #  #                                 除了文字會顯示在聊天室中，
+    #  #                                 還回傳data中的資料，可
+    #  #                                 此類透過 Postback event 處理。
+    #                                  PostbackTemplateAction(
+    #                                      label='查詢個人檔案顯示文字-Postback',
+    #                                      text='查詢個人檔案',
+    #                                      data='action=buy&itemid=1'
+    #                                  ),
+    #                                  PostbackTemplateAction(
+    #                                      label='不顯示文字-Postback',
+    #                                      text = None,
+    #                                      data='action=buy&itemid=1'
+    #                                  ),
+    #                                  MessageTemplateAction(
+    #                                      label='查詢個人檔案-Message', text='查詢個人檔案'
+    #                                  ),
+    #                              ]
+    #                          )
+                             
+     
+                             
+                             
+                             
+    #      line_bot_api.reply_message(
+    #          event.reply_token,
+    #          TemplateSendMessage(
+    #              alt_text="Template Example",
+    #              template=button_template_message
+    #          )
+    #      )
+    
+#    line_bot_api.reply_message(
+ #       event.reply_token,
+  #      TextSendMessage(text=moun_info))
 
 
 if __name__ == "__main__":
