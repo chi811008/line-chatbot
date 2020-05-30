@@ -98,13 +98,22 @@ def callback():
 def handle_post_message(event):
 # can not get event text
     print("event =", event)
-    line_bot_api.reply_message(
-                event.reply_token,
-                TextMessage(
-                    text=get_mountain(event.postback.data)
-                    # text=str(str(event.postback.data)),
+    cmd, seq = event.postback.data[:3], event.postback.data[3:]
+    if cmd == "inf":
+        line_bot_api.reply_message(
+                    event.reply_token,
+                    TextMessage(
+                        text=get_mountain(seq)
+                        # text=str(str(event.postback.data)),
+                    )
                 )
-            )
+    elif cmd == "pic":
+        line_bot_api.reply_message(
+                    event.reply_token,
+                    ImageSendMessage(
+                        original_content_url= seq, preview_image_url= seq)
+                        )
+    
 
 @handler.add(MessageEvent, message=TextMessage)
 def search_info(event):
@@ -121,15 +130,15 @@ def search_info(event):
                 PostbackTemplateAction(
                     label='山的資訊',
                     text=None,
-                    data=search
+                    data="inf" + search
                 ),
-                URITemplateAction(
+                MessageTemplateAction(
                     label='大圖',
-                    uri=picture_url
+                    text=None,
+                    data="pic" + picture_url
                 ),
             ]
         )
-
         line_bot_api.reply_message(
             event.reply_token,
             TemplateSendMessage(
