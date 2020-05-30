@@ -118,7 +118,7 @@ def search_info(event):
     search = event.message.text
     if search == "請輸入山的名稱":
         pass
-    else:
+    elif get_mountain_name(search):
         picture_url = get_mountain_picture(search)
         button_template_message = ButtonsTemplate(
             thumbnail_image_url=picture_url,
@@ -140,53 +140,18 @@ def search_info(event):
         line_bot_api.reply_message(
             event.reply_token,
             TemplateSendMessage(
-                alt_text="Template Example",
-                template=button_template_message
+                alt_text = "Template Example",
+                template = button_template_message
             )
         )
-            
-            
-    #      button_template_message =ButtonsTemplate(
-    #                              thumbnail_image_url="https://i.imgur.com/eTldj2E.png?1",
-    #                              title='Menu',
-    #                              text='Please select',
-    #                              image_size="cover",
-    #                              actions=[
-    #  #                                PostbackTemplateAction 點擊選項後，
-    #  #                                 除了文字會顯示在聊天室中，
-    #  #                                 還回傳data中的資料，可
-    #  #                                 此類透過 Postback event 處理。
-    #                                  PostbackTemplateAction(
-    #                                      label='查詢個人檔案顯示文字-Postback',
-    #                                      text='查詢個人檔案',
-    #                                      data='action=buy&itemid=1'
-    #                                  ),
-    #                                  PostbackTemplateAction(
-    #                                      label='不顯示文字-Postback',
-    #                                      text = None,
-    #                                      data='action=buy&itemid=1'
-    #                                  ),
-    #                                  MessageTemplateAction(
-    #                                      label='查詢個人檔案-Message', text='查詢個人檔案'
-    #                                  ),
-    #                              ]
-    #                          )
-                             
-     
-                             
-                             
-                             
-    #      line_bot_api.reply_message(
-    #          event.reply_token,
-    #          TemplateSendMessage(
-    #              alt_text="Template Example",
-    #              template=button_template_message
-    #          )
-    #      )
-    
-#    line_bot_api.reply_message(
- #       event.reply_token,
-  #      TextSendMessage(text=moun_info))
+    else:
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(
+                text = "抱歉，您搜尋的資料不存在，請重新輸入"
+                )
+            )
+
 
 
 if __name__ == "__main__":
