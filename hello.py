@@ -35,7 +35,12 @@ def get_mountain_name(mountain):
 
     postgres_select_query = f"""SELECT mountain_name FROM mountain WHERE mountain_name LIKE '%{mountain}%' LIMIT 1"""
     cursor.execute(postgres_select_query)
-    return cursor.fetchall()[0][0]
+
+    data_exist = cursor.fetchall()
+    if data_exist:
+        return (cursor.fetchall()[0][0])
+    else:
+        return False
 
 def get_mountain(mountain):
     cursor = get_database_connection()
