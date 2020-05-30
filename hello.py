@@ -145,10 +145,11 @@ def search_info(event):
             )
         )
     else:
+        text = "抱歉，您搜尋的資料不存在，請重新輸入"
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(
-                text = "抱歉，您搜尋的資料不存在，請重新輸入"
+                text = text
                 )
             )
 
