@@ -122,7 +122,11 @@ def search_info(event):
                     label='山的資訊',
                     text=None,
                     data=search
-                )
+                ),
+                URITemplateAction(
+                    label='大圖',
+                    uri=picture_url
+                ),
             ]
         )
 
