@@ -132,7 +132,7 @@ def search_info(event):
                     text=None,
                     data="inf" + search
                 ),
-                MessageTemplateAction(
+                PostbackTemplateAction(
                     label='大圖',
                     text=None,
                     data="pic" + picture_url
