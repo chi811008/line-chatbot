@@ -37,7 +37,7 @@ def get_mountain_name(mountain):
     dic_moun_name = {}
     cursor.execute(postgres_select_query)
     for item in cursor.fetchall():
-    dic_moun_name[item[1]] = item
+        dic_moun_name[item[1]] = item
 
     for name in dic_moun_name.keys():
         if mountain in name:
