@@ -46,6 +46,16 @@ def callback():
 
     return 'OK'
 
+@handler.add(PostbackEvent)
+def handle_post_message(event):
+# can not get event text
+    print("event =", event)
+    line_bot_api.reply_message(
+                event.reply_token,
+                TextMessage(
+                    text=str(str(event.postback.data)),
+                )
+            )
 
 @handler.add(MessageEvent, message=TextMessage)
 def search_info(event):
