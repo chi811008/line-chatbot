@@ -117,8 +117,10 @@ def handle_post_message(event):
 def search_info(event):
     search = event.message.text
     if search == "請輸入山的名稱":
+        print("搜尋")
         pass
     elif get_mountain_name(search):
+        print("get_mountain")
         picture_url = get_mountain_picture(search)
         button_template_message = ButtonsTemplate(
             thumbnail_image_url=picture_url,
@@ -145,6 +147,7 @@ def search_info(event):
             )
         )
     else:
+        print("exceptions")
         text = "抱歉，您搜尋的資料不存在，請重新輸入"
         line_bot_api.reply_message(
             event.reply_token,
