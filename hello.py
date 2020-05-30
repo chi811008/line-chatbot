@@ -48,27 +48,31 @@ def callback():
 
 
 @handler.add(MessageEvent, message=TextMessage)
-def picture(event):
+def search_info(event):
     import os
     import psycopg2
-    print("import")
-    DATABASE_URL = os.popen('heroku config:get DATABASE_URL -a rocky-brushlands-15389').read()[:-1]
-    print("DATABASE")
+
+    DATABASE_URL = os.popen('heroku config:get DATABASE_URL -a salty-forest-51876').read()[:-1]
+
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-    print("Conn")
     cursor = conn.cursor()
-    print("cursor")
+
     postgres_select_query = f"""SELECT * FROM mountain"""
 
+
+    dic_moun = {}
     cursor.execute(postgres_select_query)
-    print("execute")
-    text_re = cursor.fetchall()
-    print("text_re")
-    line_bot_api.reply_message(event.reply_token,TextSendMessage(text = text_re))
-    print("line_bot")
+    for item in cursor.fetchall():
+        dic_moun[item[1]] = item
 
-
-
+    search = event.message.text
+    for name in dic_moun.keys():
+        if search in name:
+            moun_info = (", ".join(dic_moun[name][1: ]))
+    
+    line_bot_api.reply_message(
+    event.reply_token,
+    TextSendMessage(text=moun_info))
 
 
 if __name__ == "__main__":
