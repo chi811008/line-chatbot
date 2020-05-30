@@ -47,7 +47,7 @@ def get_mountain(mountain):
 def get_mountain_picture(string):
     import requests
     from bs4 import BeautifulSoup
-    string = event.message.text
+    # string = event.message.text
     print("mack sure the func activate into try")
     url = "https://hiking.biji.co/index.php?q=trail&part=全部&city=全部&zip=全部&time=全部&level=全部&type=全部&keyword="
     search = url + string
