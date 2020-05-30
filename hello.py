@@ -156,7 +156,7 @@ def search_info(event):
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(
-                text = search
+                text = text
                 )
             )
 
