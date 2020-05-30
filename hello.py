@@ -32,30 +32,19 @@ def get_database_connection():
 
 def get_mountain_name(mountain):
     cursor = get_database_connection()
-    postgres_select_query = f"""SELECT * FROM mountain"""
 
-    dic_moun_name = {}
+    postgres_select_query = f"""SELECT mountain_name FROM mountain WHERE mountain_name LIKE '%{mountain}%' LIMIT 1"""
     cursor.execute(postgres_select_query)
-    for item in cursor.fetchall():
-        dic_moun_name[item[1]] = item
-
-    for name in dic_moun_name.keys():
-        if mountain in name:
-            return name
+    return cursor.fetchall()[0][0]
 
 def get_mountain(mountain):
     cursor = get_database_connection()
 
-    postgres_select_query = f"""SELECT * FROM mountain"""
-
-    dic_moun = {}
+    postgres_select_query = f"""SELECT * FROM mountain WHERE mountain_name LIKE '%{mountain}%' LIMIT 1"""
     cursor.execute(postgres_select_query)
-    for item in cursor.fetchall():
-        dic_moun[item[1]] = item
 
-    for name in dic_moun.keys():
-        if mountain in name:
-            moun_info = (", ".join(dic_moun[name][1: ]))
+    for _ in cursor.fetchall():
+        moun_info = ", ".join(_[1:])
     # Query
 
     return moun_info
