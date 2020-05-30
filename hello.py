@@ -44,6 +44,29 @@ def get_mountain(mountain):
     return moun_info
 
 
+def get_mountain_picture(string):
+    import requests
+    from bs4 import BeautifulSoup
+    string = event.message.text
+    print("mack sure the func activate into try")
+    url = "https://hiking.biji.co/index.php?q=trail&part=全部&city=全部&zip=全部&time=全部&level=全部&type=全部&keyword="
+    search = url + string
+    print("search")
+    re = requests.get(search)
+    print("re")
+    soup = BeautifulSoup(re.text, "html.parser")
+    print("soup")
+    data = soup.find("div", {"class": "postMeta-feedSummery"}).find("a")["href"]
+    print("data")
+    web = "https://hiking.biji.co" + data
+    re_pic = requests.get(web)
+    print("repic")
+    pic_soup = BeautifulSoup(re_pic.text, "html.parser")
+    print("picsoup")
+    picture = pic_soup.find("div", {"class": "img-cover cover"}).find("img")["src"]
+    return picture
+
+
 @app.route('/')
 def hello_world():
     return 'Hello, World! My name is Seraphine. I am happy now'
@@ -86,11 +109,12 @@ def handle_post_message(event):
 @handler.add(MessageEvent, message=TextMessage)
 def search_info(event):
     search = event.message.text
-
-
-    if search is not None:
+    if search == "請輸入山的名稱":
+        pass
+    else:
+        picture_url = get_mountain_picture(search)
         button_template_message = ButtonsTemplate(
-            thumbnail_image_url="https://i.imgur.com/eTldj2E.png?1",
+            thumbnail_image_url=picture_url,
             title=search,
             text='請選擇',
             actions=[
@@ -109,10 +133,6 @@ def search_info(event):
                 template=button_template_message
             )
         )
-    else:
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text='hello'))
             
             
     #      button_template_message =ButtonsTemplate(
