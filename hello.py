@@ -216,7 +216,7 @@ index = {
       },
       "styles": {
         "footer": {
-          "separator": True
+          "separator": true
         }
       }
     },
@@ -310,7 +310,7 @@ index = {
       },
       "styles": {
         "footer": {
-          "separator": True
+          "separator": true
         }
       }
     },
@@ -404,7 +404,7 @@ index = {
       },
       "styles": {
         "footer": {
-          "separator": True
+          "separator": true
         }
       }
     }
@@ -422,7 +422,7 @@ def search_info(event):
         line_bot_api.reply_message(
             event.reply_token,
             FlexSendMessage(
-                alt_text = 'index',
+                alt_text = "篩選",
                 contents = index
             )
         )
