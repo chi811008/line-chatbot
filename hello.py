@@ -11,13 +11,15 @@ from linebot.models import (
     TextSendMessage, TemplateSendMessage,
     TextMessage, ButtonsTemplate,
     PostbackTemplateAction, MessageTemplateAction,
-    URITemplateAction, StickerSendMessage
+    URITemplateAction, StickerSendMessage, FlexSendMessage
 )
 
 app = Flask(__name__)
 
-line_bot_api = LineBotApi('K9VIeDOz0f7pg/kQMrqggOjd5rOcLwMYOg2PlrBJuQDpX3p1Q/o4+cuK6VapoA5q+j0QLdxZwwLu8as9S3Hi4gblljWUIEWAFG7i/4YzoEPBovw6yb6h2bZrLdeyB++yb4WTtzqSOJmPSPszvo2KwAdB04t89/1O/w1cDnyilFU=')
+line_bot_api = LineBotApi(
+    'K9VIeDOz0f7pg/kQMrqggOjd5rOcLwMYOg2PlrBJuQDpX3p1Q/o4+cuK6VapoA5q+j0QLdxZwwLu8as9S3Hi4gblljWUIEWAFG7i/4YzoEPBovw6yb6h2bZrLdeyB++yb4WTtzqSOJmPSPszvo2KwAdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('e365002afec95950d148063ee819297f')
+
 
 def get_database_connection():
     # Query
@@ -30,6 +32,7 @@ def get_database_connection():
     cursor = conn.cursor()
     return cursor
 
+
 def get_mountain_name(mountain):
     cursor = get_database_connection()
 
@@ -40,6 +43,7 @@ def get_mountain_name(mountain):
         return data_exist[0][0]
     else:
         return False
+
 
 def get_mountain(mountain):
     cursor = get_database_connection()
@@ -61,11 +65,13 @@ def get_mountain_picture(string):
     search = url + string
     re = requests.get(search)
     soup = BeautifulSoup(re.text, "html.parser")
-    data = soup.find("div", {"class": "postMeta-feedSummery"}).find("a")["href"]
+    data = soup.find(
+        "div", {"class": "postMeta-feedSummery"}).find("a")["href"]
     web = "https://hiking.biji.co" + data
     re_pic = requests.get(web)
     pic_soup = BeautifulSoup(re_pic.text, "html.parser")
-    picture = pic_soup.find("div", {"class": "img-cover cover"}).find("img")["src"]
+    picture = pic_soup.find(
+        "div", {"class": "img-cover cover"}).find("img")["src"]
     return picture
 
 
@@ -73,10 +79,10 @@ def get_mountain_picture(string):
 def hello_world():
     return 'Hello, World! My name is Seraphine. I am happy now'
 
+
 @app.route('/test')
 def test_page():
     return 'In test page!'
-
 
 
 @app.route("/callback", methods=['POST'])
@@ -96,26 +102,314 @@ def callback():
 
     return 'OK'
 
+
 @handler.add(PostbackEvent)
 def handle_post_message(event):
-# can not get event text
+    # can not get event text
     print("event =", event)
     cmd, seq = event.postback.data[:3], event.postback.data[3:]
     if cmd == "inf":
         line_bot_api.reply_message(
-                    event.reply_token,
-                    TextMessage(
-                        text=get_mountain(seq)
-                        # text=str(str(event.postback.data)),
-                    )
-                )
+            event.reply_token,
+            TextMessage(
+                text=get_mountain(seq)
+                # text=str(str(event.postback.data)),
+            )
+        )
     elif cmd == "pic":
         line_bot_api.reply_message(
-                    event.reply_token,
-                    ImageSendMessage(
-                        original_content_url= seq, preview_image_url= seq)
-                        )
-    
+            event.reply_token,
+            ImageSendMessage(
+                original_content_url=seq, preview_image_url=seq)
+        )
+
+index = {
+    "type": "carousel",
+    "contents": [
+    {
+      "type": "bubble",
+      "hero": {
+        "type": "image",
+        "url": "https://ithelp.ithome.com.tw/images/ironman/11th/event/kv_event/kv-bg-addfly.png",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover",
+        "action": {
+          "type": "uri",
+          "uri": "http://linecorp.com/"
+        },
+        "backgroundColor": "#FFFFFF"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "區域",
+            "weight": "bold",
+            "size": "xl",
+            "margin": "md"
+          }
+        ],
+        "action": {
+          "type": "uri",
+          "label": "View detail",
+          "uri": "http://linecorp.com/",
+          "altUri": {
+            "desktop": "http://example.com/page/123"
+          }
+        }
+      },
+      "footer": {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "北部",
+              "data": "北部"
+            },
+            "height": "sm"
+          },
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "中部",
+              "data": "中部"
+            },
+            "height": "sm"
+          },
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "南部",
+              "data": "南部"
+            },
+            "height": "sm"
+          },
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "東部",
+              "data": "東部"
+            },
+            "height": "sm"
+          },
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "外島",
+              "data": "外島"
+            },
+            "height": "sm"
+          }
+        ],
+        "flex": 0
+      },
+      "styles": {
+        "footer": {
+          "separator": True
+        }
+      }
+    },
+    {
+      "type": "bubble",
+      "hero": {
+        "type": "image",
+        "url": "https://ithelp.ithome.com.tw/images/ironman/11th/event/kv_event/kv-bg-addfly.png",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover",
+        "action": {
+          "type": "uri",
+          "uri": "http://linecorp.com/"
+        },
+        "backgroundColor": "#FFFFFF"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "難度",
+            "weight": "bold",
+            "size": "xl",
+            "margin": "md"
+          }
+        ],
+        "action": {
+          "type": "uri",
+          "label": "View detail",
+          "uri": "http://linecorp.com/",
+          "altUri": {
+            "desktop": "http://example.com/page/123"
+          }
+        }
+      },
+      "footer": {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "低",
+              "data": "低"
+            },
+            "height": "sm"
+          },
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "低-中",
+              "data": "低-中"
+            },
+            "height": "sm"
+          },
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "中",
+              "data": "中"
+            },
+            "height": "sm"
+          },
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "中-高",
+              "data": "中-高"
+            },
+            "height": "md"
+          },
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "高",
+              "data": "高"
+            },
+            "height": "md"
+          }
+        ],
+        "flex": 0
+      },
+      "styles": {
+        "footer": {
+          "separator": True
+        }
+      }
+    },
+    {
+      "type": "bubble",
+      "hero": {
+        "type": "image",
+        "url": "https://ithelp.ithome.com.tw/images/ironman/11th/event/kv_event/kv-bg-addfly.png",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover",
+        "action": {
+          "type": "uri",
+          "uri": "http://linecorp.com/"
+        },
+        "backgroundColor": "#FFFFFF"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "時間",
+            "weight": "bold",
+            "size": "xl",
+            "margin": "md"
+          }
+        ],
+        "action": {
+          "type": "uri",
+          "label": "View detail",
+          "uri": "http://linecorp.com/",
+          "altUri": {
+            "desktop": "http://example.com/page/123"
+          }
+        }
+      },
+      "footer": {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "3小時內",
+              "data": "3小時內"
+            },
+            "height": "sm"
+          },
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "3-6小時",
+              "data": "3-6小時"
+            },
+            "height": "sm"
+          },
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "6小時-12小時",
+              "data": "6小時-12小時"
+            },
+            "height": "sm"
+          },
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "12小時-兩天",
+              "data": "12小時-兩天"
+            },
+            "height": "sm"
+          },
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "兩天以上",
+              "data": "兩天以上"
+            },
+            "height": "sm"
+          }
+        ],
+        "flex": 0
+      },
+      "styles": {
+        "footer": {
+          "separator": True
+        }
+      }
+    }
+  ]
+    }
 
 @handler.add(MessageEvent, message=TextMessage)
 def search_info(event):
@@ -123,13 +417,22 @@ def search_info(event):
     if search == "請輸入山的名稱":
         print("搜尋")
         pass
+    
+    elif search == "篩選":
+        line_bot_api.reply_message(
+            event.reply_token,
+            FlexSendMessage(
+                alt_text = 'index',
+                contents = index
+            )
+        )
     elif get_mountain_name(search):
         print("get_mountain")
         picture_url = get_mountain_picture(search)
         button_template_message = ButtonsTemplate(
             thumbnail_image_url=picture_url,
-            title = get_mountain_name(search),
-            text = '請選擇',
+            title=get_mountain_name(search),
+            text='請選擇',
             actions=[
                 PostbackTemplateAction(
                     label='山的資訊',
@@ -146,8 +449,8 @@ def search_info(event):
         line_bot_api.reply_message(
             event.reply_token,
             TemplateSendMessage(
-                alt_text = "Template Example",
-                template = button_template_message
+                alt_text="Template Example",
+                template=button_template_message
             )
         )
     else:
@@ -156,12 +459,10 @@ def search_info(event):
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(
-                text = text
-                )
+                text=text
             )
-
+        )
 
 
 if __name__ == "__main__":
     app.run()
-
