@@ -216,7 +216,7 @@ index = {
       },
       "styles": {
         "footer": {
-          "separator": true
+          "separator": True
         }
       }
     },
@@ -310,7 +310,7 @@ index = {
       },
       "styles": {
         "footer": {
-          "separator": true
+          "separator": True
         }
       }
     },
@@ -404,7 +404,7 @@ index = {
       },
       "styles": {
         "footer": {
-          "separator": true
+          "separator": True
         }
       }
     }
