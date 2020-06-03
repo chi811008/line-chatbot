@@ -135,293 +135,293 @@ def search_info(event):
     elif search == "篩選":
         bubble_string = """
         {
-            "type": "carousel",
+        "type": "carousel",
+        "contents": [
+        {
+        "type": "bubble",
+        "hero": {
+            "type": "image",
+            "url": "https://ithelp.ithome.com.tw/images/ironman/11th/event/kv_event/kv-bg-addfly.png",
+            "size": "full",
+            "aspectRatio": "20:13",
+            "aspectMode": "cover",
+            "action": {
+            "type": "uri",
+            "uri": "http://linecorp.com/"
+            },
+            "backgroundColor": "#FFFFFF"
+        },
+        "body": {
+            "type": "box",
+            "layout": "vertical",
             "contents": [
-                {
-                    "type": "bubble",
-                    "hero": {
-                        "type": "image",
-                        "url": "https://ithelp.ithome.com.tw/images/ironman/11th/event/kv_event/kv-bg-addfly.png",
-                        "size": "full",
-                        "aspectRatio": "20:13",
-                        "aspectMode": "cover",
-                        "action": {
-                            "type": "uri",
-                            "uri": "http://linecorp.com/"
-                            },
-                        "backgroundColor": "#FFFFFF"
-                           },
-                        "body": {
-                            "type": "box",
-                            "layout": "vertical",
-                            "contents": [
-                                {
-                                    "type": "text",
-                                    "text": "區域",
-                                    "weight": "bold",
-                                    "size": "xl",
-                                    "margin": "md"
-                                }
-                                ],
-                            "action": {
-                            "type": "uri",
-                            "label": "View detail",
-                            "uri": "http://linecorp.com/",
-                            "altUri": {
-                                "desktop": "http://example.com/page/123"
-                                }
-                            }
-                        },
-                        "footer": {
-                            "type": "box",
-                            "layout": "vertical",
-                            "spacing": "sm",
-                            "contents": [
-                                {
-                                    "type": "button",
-                                    "action": {
-                                    "type": "postback",
-                                    "label": "北部",
-                                    "data": "北部"
-                                    },
-                                    "height": "sm"
-                                },
-                                {
-                                    "type": "button",
-                                    "action": {
-                                    "type": "postback",
-                                    "label": "中部",
-                                    "data": "中部"
-                                    },
-                                    "height": "sm"
-                                },
-                                {
-                                    "type": "button",
-                                    "action": {
-                                    "type": "postback",
-                                    "label": "南部",
-                                    "data": "南部"
-                                    },
-                                    "height": "sm"
-                                },
-                                {
-                                    "type": "button",
-                                    "action": {
-                                    "type": "postback",
-                                    "label": "東部",
-                                    "data": "東部"
-                                    },
-                                    "height": "sm"
-                                },
-                                {
-                                    "type": "button",
-                                    "action": {
-                                    "type": "postback",
-                                    "label": "外島",
-                                    "data": "外島"
-                                    },
-                                    "height": "sm"
-                                }
-                            ],
-                            "flex": 0
-                        },
-                "styles": {
-                    "footer": {
-                    "separator": True
-                    }
-                }
+            {
+                "type": "text",
+                "text": "區域",
+                "weight": "bold",
+                "size": "xl",
+                "margin": "md"
+            }
+            ],
+            "action": {
+            "type": "uri",
+            "label": "View detail",
+            "uri": "http://linecorp.com/",
+            "altUri": {
+                "desktop": "http://example.com/page/123"
+            }
+            }
+        },
+        "footer": {
+            "type": "box",
+            "layout": "vertical",
+            "spacing": "sm",
+            "contents": [
+            {
+                "type": "button",
+                "action": {
+                "type": "postback",
+                "label": "北部",
+                "data": "北部"
                 },
-                {
-                "type": "bubble",
-                "hero": {
-                    "type": "image",
-                    "url": "https://ithelp.ithome.com.tw/images/ironman/11th/event/kv_event/kv-bg-addfly.png",
-                    "size": "full",
-                    "aspectRatio": "20:13",
-                    "aspectMode": "cover",
-                    "action": {
-                    "type": "uri",
-                    "uri": "http://linecorp.com/"
-                    },
-                    "backgroundColor": "#FFFFFF"
+                "height": "sm"
+            },
+            {
+                "type": "button",
+                "action": {
+                "type": "postback",
+                "label": "中部",
+                "data": "中部"
                 },
-                "body": {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [
-                    {
-                        "type": "text",
-                        "text": "難度",
-                        "weight": "bold",
-                        "size": "xl",
-                        "margin": "md"
-                    }
-                    ],
-                    "action": {
-                    "type": "uri",
-                    "label": "View detail",
-                    "uri": "http://linecorp.com/",
-                    "altUri": {
-                        "desktop": "http://example.com/page/123"
-                    }
-                    }
+                "height": "sm"
+            },
+            {
+                "type": "button",
+                "action": {
+                "type": "postback",
+                "label": "南部",
+                "data": "南部"
                 },
-                "footer": {
-                    "type": "box",
-                    "layout": "vertical",
-                    "spacing": "sm",
-                    "contents": [
-                    {
-                        "type": "button",
-                        "action": {
-                        "type": "postback",
-                        "label": "低",
-                        "data": "低"
-                        },
-                        "height": "sm"
-                    },
-                    {
-                        "type": "button",
-                        "action": {
-                        "type": "postback",
-                        "label": "低-中",
-                        "data": "低-中"
-                        },
-                        "height": "sm"
-                    },
-                    {
-                        "type": "button",
-                        "action": {
-                        "type": "postback",
-                        "label": "中",
-                        "data": "中"
-                        },
-                        "height": "sm"
-                    },
-                    {
-                        "type": "button",
-                        "action": {
-                        "type": "postback",
-                        "label": "中-高",
-                        "data": "中-高"
-                        },
-                        "height": "md"
-                    },
-                    {
-                        "type": "button",
-                        "action": {
-                        "type": "postback",
-                        "label": "高",
-                        "data": "高"
-                        },
-                        "height": "md"
-                    }
-                    ],
-                    "flex": 0
+                "height": "sm"
+            },
+            {
+                "type": "button",
+                "action": {
+                "type": "postback",
+                "label": "東部",
+                "data": "東部"
                 },
-                "styles": {
-                    "footer": {
-                    "separator": True
-                    }
-                }
+                "height": "sm"
+            },
+            {
+                "type": "button",
+                "action": {
+                "type": "postback",
+                "label": "外島",
+                "data": "外島"
                 },
-                {
-                "type": "bubble",
-                "hero": {
-                    "type": "image",
-                    "url": "https://ithelp.ithome.com.tw/images/ironman/11th/event/kv_event/kv-bg-addfly.png",
-                    "size": "full",
-                    "aspectRatio": "20:13",
-                    "aspectMode": "cover",
-                    "action": {
-                    "type": "uri",
-                    "uri": "http://linecorp.com/"
-                    },
-                    "backgroundColor": "#FFFFFF"
+                "height": "sm"
+            }
+            ],
+            "flex": 0
+        },
+        "styles": {
+            "footer": {
+            "separator": true
+            }
+        }
+        },
+        {
+        "type": "bubble",
+        "hero": {
+            "type": "image",
+            "url": "https://ithelp.ithome.com.tw/images/ironman/11th/event/kv_event/kv-bg-addfly.png",
+            "size": "full",
+            "aspectRatio": "20:13",
+            "aspectMode": "cover",
+            "action": {
+            "type": "uri",
+            "uri": "http://linecorp.com/"
+            },
+            "backgroundColor": "#FFFFFF"
+        },
+        "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+            {
+                "type": "text",
+                "text": "難度",
+                "weight": "bold",
+                "size": "xl",
+                "margin": "md"
+            }
+            ],
+            "action": {
+            "type": "uri",
+            "label": "View detail",
+            "uri": "http://linecorp.com/",
+            "altUri": {
+                "desktop": "http://example.com/page/123"
+            }
+            }
+        },
+        "footer": {
+            "type": "box",
+            "layout": "vertical",
+            "spacing": "sm",
+            "contents": [
+            {
+                "type": "button",
+                "action": {
+                "type": "postback",
+                "label": "低",
+                "data": "低"
                 },
-                "body": {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [
-                    {
-                        "type": "text",
-                        "text": "時間",
-                        "weight": "bold",
-                        "size": "xl",
-                        "margin": "md"
-                    }
-                    ],
-                    "action": {
-                    "type": "uri",
-                    "label": "View detail",
-                    "uri": "http://linecorp.com/",
-                    "altUri": {
-                        "desktop": "http://example.com/page/123"
-                    }
-                    }
+                "height": "sm"
+            },
+            {
+                "type": "button",
+                "action": {
+                "type": "postback",
+                "label": "低-中",
+                "data": "低-中"
                 },
-                "footer": {
-                    "type": "box",
-                    "layout": "vertical",
-                    "spacing": "sm",
-                    "contents": [
-                    {
-                        "type": "button",
-                        "action": {
-                        "type": "postback",
-                        "label": "3小時內",
-                        "data": "3小時內"
-                        },
-                        "height": "sm"
-                    },
-                    {
-                        "type": "button",
-                        "action": {
-                        "type": "postback",
-                        "label": "3-6小時",
-                        "data": "3-6小時"
-                        },
-                        "height": "sm"
-                    },
-                    {
-                        "type": "button",
-                        "action": {
-                        "type": "postback",
-                        "label": "6小時-12小時",
-                        "data": "6小時-12小時"
-                        },
-                        "height": "sm"
-                    },
-                    {
-                        "type": "button",
-                        "action": {
-                        "type": "postback",
-                        "label": "12小時-兩天",
-                        "data": "12小時-兩天"
-                        },
-                        "height": "sm"
-                    },
-                    {
-                        "type": "button",
-                        "action": {
-                        "type": "postback",
-                        "label": "兩天以上",
-                        "data": "兩天以上"
-                        },
-                        "height": "sm"
-                    }
-                    ],
-                    "flex": 0
+                "height": "sm"
+            },
+            {
+                "type": "button",
+                "action": {
+                "type": "postback",
+                "label": "中",
+                "data": "中"
                 },
-                "styles": {
-                    "footer": {
-                    "separator": True
-                    }
-                }
-                }
-            ]
-                }
-                """
+                "height": "sm"
+            },
+            {
+                "type": "button",
+                "action": {
+                "type": "postback",
+                "label": "中-高",
+                "data": "中-高"
+                },
+                "height": "md"
+            },
+            {
+                "type": "button",
+                "action": {
+                "type": "postback",
+                "label": "高",
+                "data": "高"
+                },
+                "height": "md"
+            }
+            ],
+            "flex": 0
+        },
+        "styles": {
+            "footer": {
+            "separator": true
+            }
+        }
+        },
+        {
+        "type": "bubble",
+        "hero": {
+            "type": "image",
+            "url": "https://ithelp.ithome.com.tw/images/ironman/11th/event/kv_event/kv-bg-addfly.png",
+            "size": "full",
+            "aspectRatio": "20:13",
+            "aspectMode": "cover",
+            "action": {
+            "type": "uri",
+            "uri": "http://linecorp.com/"
+            },
+            "backgroundColor": "#FFFFFF"
+        },
+        "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+            {
+                "type": "text",
+                "text": "時間",
+                "weight": "bold",
+                "size": "xl",
+                "margin": "md"
+            }
+            ],
+            "action": {
+            "type": "uri",
+            "label": "View detail",
+            "uri": "http://linecorp.com/",
+            "altUri": {
+                "desktop": "http://example.com/page/123"
+            }
+            }
+        },
+        "footer": {
+            "type": "box",
+            "layout": "vertical",
+            "spacing": "sm",
+            "contents": [
+            {
+                "type": "button",
+                "action": {
+                "type": "postback",
+                "label": "3小時內",
+                "data": "3小時內"
+                },
+                "height": "sm"
+            },
+            {
+                "type": "button",
+                "action": {
+                "type": "postback",
+                "label": "3-6小時",
+                "data": "3-6小時"
+                },
+                "height": "sm"
+            },
+            {
+                "type": "button",
+                "action": {
+                "type": "postback",
+                "label": "6小時-12小時",
+                "data": "6小時-12小時"
+                },
+                "height": "sm"
+            },
+            {
+                "type": "button",
+                "action": {
+                "type": "postback",
+                "label": "12小時-兩天",
+                "data": "12小時-兩天"
+                },
+                "height": "sm"
+            },
+            {
+                "type": "button",
+                "action": {
+                "type": "postback",
+                "label": "兩天以上",
+                "data": "兩天以上"
+                },
+                "height": "sm"
+            }
+            ],
+            "flex": 0
+        },
+        "styles": {
+            "footer": {
+            "separator": true
+            }
+        }
+        }
+    ]
+        }
+        """
         message = FlexSendMessage(
             alt_text="篩選", contents=json.loads(bubble_string))
         line_bot_api.reply_message(
