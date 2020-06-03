@@ -13,6 +13,7 @@ from linebot.models import (
     PostbackTemplateAction, MessageTemplateAction,
     URITemplateAction, StickerSendMessage, FlexSendMessage
 )
+import json
 
 app = Flask(__name__)
 
