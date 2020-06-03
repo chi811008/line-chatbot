@@ -123,9 +123,10 @@ def handle_post_message(event):
                 original_content_url=seq, preview_image_url=seq)
         )
 
+
 index = {
-    "type": "carousel",
-    "contents": [
+  "type": "carousel",
+  "contents": [
     {
       "type": "bubble",
       "hero": {
@@ -154,11 +155,8 @@ index = {
         ],
         "action": {
           "type": "uri",
-          "label": "View detail",
-          "uri": "http://linecorp.com/",
-          "altUri": {
-            "desktop": "http://example.com/page/123"
-          }
+          "label": "action",
+          "uri": "http://linecorp.com/"
         }
       },
       "footer": {
@@ -409,7 +407,8 @@ index = {
       }
     }
   ]
-    }
+}
+
 
 @handler.add(MessageEvent, message=TextMessage)
 def search_info(event):
@@ -417,13 +416,13 @@ def search_info(event):
     if search == "請輸入山的名稱":
         print("搜尋")
         pass
-    
+
     elif search == "篩選":
         line_bot_api.reply_message(
             event.reply_token,
             FlexSendMessage(
-                alt_text = "篩選",
-                contents = index
+                alt_text="篩選",
+                contents=index
             )
         )
     elif get_mountain_name(search):
