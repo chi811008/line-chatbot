@@ -167,9 +167,11 @@ index = {
           {
             "type": "button",
             "action": {
-              "type": "postback",
-              "label": "北部",
-              "data": "北部"
+                    PostbackTemplateAction(
+                        label='北部地區',
+                        text='搜尋北部地區',
+                        data="inf" + search
+                        )
             },
             "height": "sm"
           },
