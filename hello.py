@@ -512,13 +512,32 @@ def search_info(event):
                                 spacing='sm',
                                 contents=[
                                     TextComponent(
-                                        text='所需時間',
+                                        text="距離",
                                         color='#aaaaaa',
                                         size='sm',
                                         flex=1
                                     ),
                                     TextComponent(
                                         text=get_mountain(search)[4],
+                                        wrap=True,
+                                        color='#666666',
+                                        size='sm',
+                                        flex=5,
+                                    ),
+                                ],
+                            ),
+                            BoxComponent(
+                                layout='baseline',
+                                spacing='sm',
+                                contents=[
+                                    TextComponent(
+                                        text="時間",
+                                        color='#aaaaaa',
+                                        size='sm',
+                                        flex=1
+                                    ),
+                                    TextComponent(
+                                        text=get_mountain(search)[5],
                                         wrap=True,
                                         color='#666666',
                                         size='sm',
