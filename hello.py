@@ -63,11 +63,7 @@ def get_mountain(mountain):
     postgres_select_query = f"""SELECT * FROM mountain WHERE mountain_name LIKE '%{mountain}%' LIMIT 1"""
     cursor.execute(postgres_select_query)
 
-    for _ in cursor.fetchall():
-        moun_info = ", ".join(_[1:])
-    # Query
-
-    return moun_info
+    return cursor.fetchall()[0]
 
 
 def get_mountain_picture(string):
@@ -464,7 +460,7 @@ def search_info(event):
                         layout='baseline',
                         margin='md',
                         contents=[
-                            TextComponent(text="資訊", size='sm', color='#999999')
+                            TextComponent(text="資訊", size='sm', weight='bold')
                         ]
                     ),
                     # info
@@ -478,13 +474,13 @@ def search_info(event):
                                 spacing='sm',
                                 contents=[
                                     TextComponent(
-                                        text='Place',
+                                        text='區域',
                                         color='#aaaaaa',
                                         size='sm',
                                         flex=1
                                     ),
                                     TextComponent(
-                                        text='Shinjuku, Tokyo',
+                                        text=get_mountain(search)[2],
                                         wrap=True,
                                         color='#666666',
                                         size='sm',
@@ -497,13 +493,32 @@ def search_info(event):
                                 spacing='sm',
                                 contents=[
                                     TextComponent(
-                                        text='Time',
+                                        text='難度',
                                         color='#aaaaaa',
                                         size='sm',
                                         flex=1
                                     ),
                                     TextComponent(
-                                        text="10:00 - 23:00",
+                                        text=get_mountain(search)[3][3:],
+                                        wrap=True,
+                                        color='#666666',
+                                        size='sm',
+                                        flex=5,
+                                    ),
+                                ],
+                            ),
+                            BoxComponent(
+                                layout='baseline',
+                                spacing='sm',
+                                contents=[
+                                    TextComponent(
+                                        text='所需時間',
+                                        color='#aaaaaa',
+                                        size='sm',
+                                        flex=1
+                                    ),
+                                    TextComponent(
+                                        text=get_mountain(search)[4],
                                         wrap=True,
                                         color='#666666',
                                         size='sm',
