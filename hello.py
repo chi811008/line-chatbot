@@ -431,17 +431,32 @@ def search_info(event):
         bubble = BubbleContainer(
             direction='ltr',
             hero=ImageComponent(
-                url=picture_url,
+                url='https://example.com/cafe.jpg',
                 size='full',
                 aspect_ratio='20:13',
                 aspect_mode='cover',
+                action=URIAction(uri='http://example.com', label='label')
             ),
             body=BoxComponent(
                 layout='vertical',
                 contents=[
                     # title
-                    TextComponent(text=get_mountain_name(search), weight='bold', size='xl'),
+                    TextComponent(text='Brown Cafe', weight='bold', size='xl'),
                     # review
+                    BoxComponent(
+                        layout='baseline',
+                        margin='md',
+                        contents=[
+                            IconComponent(size='sm', url='https://example.com/gold_star.png'),
+                            IconComponent(size='sm', url='https://example.com/grey_star.png'),
+                            IconComponent(size='sm', url='https://example.com/gold_star.png'),
+                            IconComponent(size='sm', url='https://example.com/gold_star.png'),
+                            IconComponent(size='sm', url='https://example.com/grey_star.png'),
+                            TextComponent(text='4.0', size='sm', color='#999999', margin='md',
+                                          flex=0)
+                        ]
+                    ),
+                    # info
                     BoxComponent(
                         layout='vertical',
                         margin='lg',
@@ -487,8 +502,31 @@ def search_info(event):
                             ),
                         ],
                     )
+                ],
+            ),
+            footer=BoxComponent(
+                layout='vertical',
+                spacing='sm',
+                contents=[
+                    # callAction, separator, websiteAction
+                    SpacerComponent(size='sm'),
+                    # callAction
+                    ButtonComponent(
+                        style='link',
+                        height='sm',
+                        action=URIAction(label='CALL', uri='tel:000000'),
+                    ),
+                    # separator
+                    SeparatorComponent(),
+                    # websiteAction
+                    ButtonComponent(
+                        style='link',
+                        height='sm',
+                        action=URIAction(label='WEBSITE', uri="https://example.com")
+                    )
                 ]
-            )
+            ),
+        )
         message = FlexSendMessage(alt_text="山的資訊", contents=bubble)
         line_bot_api.reply_message(
             event.reply_token,
