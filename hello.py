@@ -428,97 +428,30 @@ def search_info(event):
     elif get_mountain_name(search):
         print("get_mountain")
         picture_url = get_mountain_picture(search)
-        bubble_string = """
-        {
-            "type": "bubble",
-            "size": "kilo",
-            "direction": "ltr",
-            "hero": {
-                "type": "image",
-                "position": "relative",
-                "url": "{picture_url}",
-                "margin": "none",
-                "align": "center",
-                "gravity": "center",
-                "size": "full",
-                "aspectMode": "cover",
-                "aspectRatio": "20:13"
-            },
-            "body": {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                {
-                    "type": "text",
-                    "text": "{{get_mountain_name(search)}}",
-                    "margin": "none",
-                    "weight": "bold",
-                    "style": "normal",
-                    "decoration": "none",
-                    "position": "relative",
-                    "align": "start",
-                    "gravity": "center"
-                },
-                {
-                    "type": "button",
-                    "action": {
-                    "type": "postback",
-                    "label": "山的資訊",
-                    "data": "{{\"inf\" + search}}"
-                    }
-                },
-                {
-                    "type": "button",
-                    "action": {
-                    "type": "postback",
-                    "label": "大圖",
-                    "data": "{{\"pic\" + picture_url}}"
-                    }
-                }
-                ],
-                "position": "relative",
-                "spacing": "sm",
-                "margin": "sm"
-            },
-            "styles": {
-                "header": {
-                "separator": false
-                }
-            }
-        }
-        """
-        message = FlexSendMessage(
-            alt_text="篩選", contents=json.loads(bubble_string))
+        button_template_message = ButtonsTemplate(
+            thumbnail_image_url=picture_url,
+            title=get_mountain_name(search),
+            text='請選擇',
+            actions=[
+                PostbackTemplateAction(
+                    label='山的資訊',
+                    text=None,
+                    data="inf" + search
+                ),
+                PostbackTemplateAction(
+                    label='大圖',
+                    text=None,
+                    data="pic" + picture_url
+                ),
+            ]
+        )
         line_bot_api.reply_message(
             event.reply_token,
-            message
+            TemplateSendMessage(
+                alt_text="Template Example",
+                template=button_template_message
+            )
         )
-
-
-        # button_template_message = ButtonsTemplate(
-        #     thumbnail_image_url=picture_url,
-        #     title=get_mountain_name(search),
-        #     text='請選擇',
-        #     actions=[
-        #         PostbackTemplateAction(
-        #             label='山的資訊',
-        #             text=None,
-        #             data="inf" + search
-        #         ),
-        #         PostbackTemplateAction(
-        #             label='大圖',
-        #             text=None,
-        #             data="pic" + picture_url
-        #         ),
-        #     ]
-        # )
-        # line_bot_api.reply_message(
-        #     event.reply_token,
-        #     TemplateSendMessage(
-        #         alt_text="Template Example",
-        #         template=button_template_message
-        #     )
-        # )
     else:
         print("exceptions")
         text = "抱歉，您搜尋的資料不存在，請重新輸入"
