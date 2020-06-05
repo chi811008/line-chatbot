@@ -446,9 +446,9 @@ def search_info(event):
                 aspect_ratio='20:13',
                 aspect_mode='cover',
                 action=PostbackTemplateAction(
-                        label='山的資訊',
+                        label='山的圖片',
                         text=None,
-                        data="inf" + search
+                        data="pic" + search
                     )
             ),
             body=BoxComponent(
