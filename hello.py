@@ -451,7 +451,7 @@ def search_info(event):
                 action=PostbackTemplateAction(
                         label='山的圖片',
                         text=None,
-                        data="pic" + search
+                        data="pic" + picture_url
                     )
             ),
             body=BoxComponent(
