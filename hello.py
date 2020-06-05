@@ -21,7 +21,8 @@ from linebot.models import (
     FlexSendMessage, BubbleContainer, ImageComponent, BoxComponent,
     TextComponent, SpacerComponent, IconComponent, ButtonComponent,
     SeparatorComponent, QuickReply, QuickReplyButton,
-    ImageSendMessage, PostbackTemplateAction)
+    ImageSendMessage, PostbackTemplateAction, MessageTemplateAction,
+    URITemplateAction)
 
 import json
 
@@ -120,6 +121,7 @@ def handle_post_message(event):
     print("event =", event)
     cmd, seq = event.postback.data[:3], event.postback.data[3:]
     if cmd == "inf":
+        print("informaton show")
         line_bot_api.reply_message(
             event.reply_token,
             TextMessage(
@@ -128,6 +130,7 @@ def handle_post_message(event):
             )
         )
     elif cmd == "pic":
+        print("picture show")
         line_bot_api.reply_message(
             event.reply_token,
             ImageSendMessage(
