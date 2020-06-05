@@ -428,30 +428,98 @@ def search_info(event):
     elif get_mountain_name(search):
         print("get_mountain")
         picture_url = get_mountain_picture(search)
-        button_template_message = ButtonsTemplate(
-            thumbnail_image_url=picture_url,
-            title=get_mountain_name(search),
-            text='請選擇',
-            actions=[
-                PostbackTemplateAction(
-                    label='山的資訊',
-                    text=None,
-                    data="inf" + search
-                ),
-                PostbackTemplateAction(
-                    label='大圖',
-                    text=None,
-                    data="pic" + picture_url
-                ),
-            ]
-        )
+        bubble = BubbleContainer(
+            direction='ltr',
+            hero=ImageComponent(
+                url=picture_url,
+                size='full',
+                aspect_ratio='20:13',
+                aspect_mode='cover',
+            ),
+            body=BoxComponent(
+                layout='vertical',
+                contents=[
+                    # title
+                    TextComponent(text=get_mountain_name(search), weight='bold', size='xl'),
+                    # review
+                    BoxComponent(
+                        layout='vertical',
+                        margin='lg',
+                        spacing='sm',
+                        contents=[
+                            BoxComponent(
+                                layout='baseline',
+                                spacing='sm',
+                                contents=[
+                                    TextComponent(
+                                        text='Place',
+                                        color='#aaaaaa',
+                                        size='sm',
+                                        flex=1
+                                    ),
+                                    TextComponent(
+                                        text='Shinjuku, Tokyo',
+                                        wrap=True,
+                                        color='#666666',
+                                        size='sm',
+                                        flex=5
+                                    )
+                                ],
+                            ),
+                            BoxComponent(
+                                layout='baseline',
+                                spacing='sm',
+                                contents=[
+                                    TextComponent(
+                                        text='Time',
+                                        color='#aaaaaa',
+                                        size='sm',
+                                        flex=1
+                                    ),
+                                    TextComponent(
+                                        text="10:00 - 23:00",
+                                        wrap=True,
+                                        color='#666666',
+                                        size='sm',
+                                        flex=5,
+                                    ),
+                                ],
+                            ),
+                        ],
+                    )
+                ]
+            )
+        message = FlexSendMessage(alt_text="山的資訊", contents=bubble)
         line_bot_api.reply_message(
             event.reply_token,
-            TemplateSendMessage(
-                alt_text="Template Example",
-                template=button_template_message
-            )
+            message
         )
+
+
+        # button_template_message = ButtonsTemplate(
+        #     thumbnail_image_url=picture_url,
+        #     title=get_mountain_name(search),
+        #     text='請選擇',
+        #     actions=[
+        #         PostbackTemplateAction(
+        #             label='山的資訊',
+        #             text=None,
+        #             data="inf" + search
+        #         ),
+        #         PostbackTemplateAction(
+        #             label='大圖',
+        #             text=None,
+        #             data="pic" + picture_url
+        #         ),
+        #     ]
+        # )
+        # line_bot_api.reply_message(
+        #     event.reply_token,
+        #     TemplateSendMessage(
+        #         alt_text="Template Example",
+        #         template=button_template_message
+        #     )
+        # )
     else:
         print("exceptions")
         text = "抱歉，您搜尋的資料不存在，請重新輸入"
