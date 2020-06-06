@@ -115,23 +115,33 @@ def callback():
 def handle_post_message(event):
     # can not get event text
     print("event =", event)
-    cmd, seq = event.postback.data[:3], event.postback.data[3:]
-    if cmd == "inf":
-        print("informaton show")
-        line_bot_api.reply_message(
+    if event.postback.data == "北部地區的山":
+      replytex = "北部地區的山有..."
+      line_bot_api.reply_message(
             event.reply_token,
             TextMessage(
-                text=get_mountain(seq)
+                text=replytex
                 # text=str(str(event.postback.data)),
             )
         )
-    elif cmd == "pic":
-        print("picture show")
-        line_bot_api.reply_message(
-            event.reply_token,
-            ImageSendMessage(
-                original_content_url=seq, preview_image_url=seq)
-        )
+    else:
+      cmd, seq = event.postback.data[:3], event.postback.data[3:]
+      if cmd == "inf":
+          print("informaton show")
+          line_bot_api.reply_message(
+              event.reply_token,
+              TextMessage(
+                  text=get_mountain(seq)
+                  # text=str(str(event.postback.data)),
+              )
+          )
+      elif cmd == "pic":
+          print("picture show")
+          line_bot_api.reply_message(
+              event.reply_token,
+              ImageSendMessage(
+                  original_content_url=seq, preview_image_url=seq)
+          )
 
 
 @handler.add(MessageEvent, message=TextMessage)
