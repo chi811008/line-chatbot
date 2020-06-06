@@ -186,9 +186,10 @@ def search_info(event):
           {
             "type": "button",
             "action": {
-              "type": "message",
-              "label": "action",
-              "text": "hello"
+              "type": "postback",
+              "label": "北部",
+              "data": "北部地區的山",
+              "displayText": "北部地區的山有很多"
             },
             "height": "sm"
           },
