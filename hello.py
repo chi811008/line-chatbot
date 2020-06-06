@@ -115,32 +115,24 @@ def callback():
 def handle_post_message(event):
     # can not get event text
     print("event =", event)
-    #cmd, seq = event.postback.data[:3], event.postback.data[3:]
-    if event.postback.data[:3] == "inf":
-      print("informaton show")
-      line_bot_api.reply_message(
-          event.reply_token,
-          TextMessage(
-              text=get_mountain(event.postback.data[3:])
-              # text=str(str(event.postback.data)),
-          )
-      )
-    elif event.postback.data[:3] == "pic":
-      print("picture show")
-      line_bot_api.reply_message(
-          event.reply_token,
-          ImageSendMessage(
-              original_content_url=event.postback.data[3:], preview_image_url=event.postback.data[3:])
-      )
-    elif event.postback.data == "北部":
-      replytex = "北部的山有很多"
-      line_bot_api.reply_message(
+    cmd, seq = event.postback.data[:3], event.postback.data[3:]
+    if cmd == "inf":
+        print("informaton show")
+        line_bot_api.reply_message(
             event.reply_token,
             TextMessage(
-                text=get_mountain(replytex)
+                text=get_mountain(seq)
                 # text=str(str(event.postback.data)),
             )
         )
+    elif cmd == "pic":
+        print("picture show")
+        line_bot_api.reply_message(
+            event.reply_token,
+            ImageSendMessage(
+                original_content_url=seq, preview_image_url=seq)
+        )
+
 
 @handler.add(MessageEvent, message=TextMessage)
 def search_info(event):
@@ -194,10 +186,9 @@ def search_info(event):
           {
             "type": "button",
             "action": {
-              "type": "postback",
-              "label": "北部",
-              "text": "搜尋北部"
-              "data": "北部"
+              "type": "message",
+              "label": "action",
+              "text": "hello"
             },
             "height": "sm"
           },
