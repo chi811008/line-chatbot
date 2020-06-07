@@ -66,21 +66,13 @@ def get_mountain(mountain):
     return cursor.fetchall()[0]
 
 
-def get_mountain_picture(string):
-    import requests
-    from bs4 import BeautifulSoup
-    url = "https://hiking.biji.co/index.php?q=trail&part=全部&city=全部&zip=全部&time=全部&level=全部&type=全部&keyword="
-    search = url + string
-    re = requests.get(search)
-    soup = BeautifulSoup(re.text, "html.parser")
-    data = soup.find(
-        "div", {"class": "postMeta-feedSummery"}).find("a")["href"]
-    web = "https://hiking.biji.co" + data
-    re_pic = requests.get(web)
-    pic_soup = BeautifulSoup(re_pic.text, "html.parser")
-    picture = pic_soup.find(
-        "div", {"class": "img-cover cover"}).find("img")["src"]
-    return picture
+def get_mountain_picture(mountain):
+    cursor = get_database_connection()
+
+    postgres_select_query = f"""SELECT pic FROM mountain WHERE mountain_name LIKE '%{mountain}%' LIMIT 1"""
+    cursor.execute(postgres_select_query)
+
+    return cursor.fetchall()[0][0]
 
 
 @app.route('/')
