@@ -74,6 +74,24 @@ def get_mountain_picture(mountain):
 
     return cursor.fetchall()[0][0]
 
+def select_area(input_area):
+  cursor = get_database_connection()
+
+  postgres_select_query = f"""SELECT mountain_name FROM mountain WHERE area = '{input_area}' LIMIT 5 """
+
+  cursor.execute(postgres_select_query)
+  ans = cursor.fetchall()
+  if ans:
+      string = ""
+      for _ in ans:
+          string = string + _[0] + ","
+  else:
+      print("很抱歉，沒有符合的資料")
+      
+  return string
+
+
+
 
 @app.route('/')
 def hello_world():
@@ -107,8 +125,8 @@ def callback():
 def handle_post_message(event):
     # can not get event text
     print("event =", event)
-    if event.postback.data == "北部地區的山":
-      replytex = "北部地區的山有..."
+    if event.postback.data == "北部" or "中部" or "南部" or "東部" or "外島" or "香港" or "西班牙":
+      replytex = select_area(event.postback.data)
       line_bot_api.reply_message(
             event.reply_token,
             TextMessage(
@@ -190,7 +208,7 @@ def search_info(event):
             "action": {
               "type": "postback",
               "label": "北部",
-              "data": "北部地區的山",
+              "data": "北部",
               "displayText": "北部地區的山有很多"
             },
             "height": "sm"
