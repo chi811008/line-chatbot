@@ -208,7 +208,7 @@ def search_info(event):
             "action": {
               "type": "postback",
               "label": "北部",
-              "data": "北部",
+              "data": "北部"
             },
             "height": "sm"
           },
