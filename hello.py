@@ -209,7 +209,6 @@ def search_info(event):
               "type": "postback",
               "label": "北部",
               "data": "北部",
-              "displayText": "北部地區的山有很多"
             },
             "height": "sm"
           },
