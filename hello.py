@@ -86,7 +86,7 @@ def select_area(input_area):
       for _ in ans:
           string = string + _[0] + ","
   else:
-      print("很抱歉，沒有符合的資料")
+      return "很抱歉，沒有符合的資料"
       
   return string
 
