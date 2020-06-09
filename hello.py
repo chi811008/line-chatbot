@@ -457,7 +457,8 @@ def search_info(event):
     elif get_mountain_name(search):
         print("get_mountain")
         picture_url = get_mountain_picture(search)
-        bubble = BubbleContainer(
+        bubble = [
+          BubbleContainer(
             direction='ltr',
             hero=ImageComponent(
                 url=picture_url,
@@ -592,6 +593,7 @@ def search_info(event):
             #     ]
             # ),
         )
+      ]
         message = FlexSendMessage(alt_text="山的資訊", contents=bubble)
         line_bot_api.reply_message(
             event.reply_token,
@@ -638,118 +640,6 @@ def search_info(event):
         template_message = TemplateSendMessage(
             alt_text='ImageCarousel alt text', template=image_carousel_template)
         line_bot_api.reply_message(event.reply_token, template_message)
-    
-    elif search == 'carousel':
-        var flexMessage = new FlexMessage("Carousel Template")
-          {
-              Contents = new CarouselContainer
-              {
-                  Contents = new List<BubbleContainer>
-                  {
-                      new BubbleContainer
-                      {
-                          Hero = new ImageComponent
-                          {
-                              Url = "https://upload.cc/i1/2020/01/07/xEyIW2.jpg",
-                              Size = ComponentSize.Full,
-                              AspectRatio = AspectRatio._151_1,
-                              AspectMode = AspectMode.Cover,
-                              BackgroundColor = "#FFFFFF"
-                          },
-                          Body = new BoxComponent
-                          {
-                              Layout = BoxLayout.Vertical,
-                              Contents = new List<IFlexComponent>
-                              {
-                                  new TextComponent
-                                  {
-                                      Text = "Title",
-                                      Weight = Weight.Bold,
-                                      Size = ComponentSize.Xl
-                                  },
-                                  new TextComponent
-                                  {
-                                      Text = "Content Text",
-                                      Size = ComponentSize.Md,
-                                      Color = "#9C9C9C"
-                                  }
-                              }
-                          },
-                          Footer = new BoxComponent
-                          {
-                              Layout = BoxLayout.Vertical,
-                              Contents = new List<IFlexComponent>
-                              {
-                                  new ButtonComponent
-                                  {
-                                      Action = new MessageTemplateAction("Button1", "Button1")
-                                  }
-                              }
-                          },
-                          Styles = new BubbleStyles
-                          {
-                              Footer = new BlockStyle
-                              {
-                                  Separator = true
-                              }
-                          }
-                      },
-                      new BubbleContainer
-                      {
-                          Hero = new ImageComponent
-                          {
-                              Url = "https://upload.cc/i1/2020/01/07/BKplZJ.jpg",
-                              Size = ComponentSize.Full,
-                              AspectRatio = AspectRatio._151_1,
-                              AspectMode = AspectMode.Cover,
-                              BackgroundColor = "#FFFFFF"
-                          },
-                          Body = new BoxComponent
-                          {
-                              Layout = BoxLayout.Vertical,
-                              Contents = new List<IFlexComponent>
-                              {
-                                  new TextComponent
-                                  {
-                                      Text = "Title",
-                                      Weight = Weight.Bold,
-                                      Size = ComponentSize.Xl
-                                  },
-                                  new TextComponent
-                                  {
-                                      Text = "Content Text",
-                                      Size = ComponentSize.Md,
-                                      Color = "#9C9C9C"
-                                  }
-                              }
-                          },
-                          Footer = new BoxComponent
-                          {
-                              Layout = BoxLayout.Vertical,
-                              Contents = new List<IFlexComponent>
-                              {
-                                  new ButtonComponent
-                                  {
-                                      Action = new MessageTemplateAction("Button2", "Button2")
-                                  }
-                              }
-                          },
-                          Styles = new BubbleStyles
-                          {
-                              Footer = new BlockStyle
-                              {
-                                  Separator = true
-                              }
-                          }
-                      }
-                  }
-              }
-          }
-        message = FlexSendMessage(alt_text="山的資訊", contents=var flexMessage)
-        line_bot_api.reply_message(
-            event.reply_token,
-            message
-        )
     
     else:
         print("exceptions")
