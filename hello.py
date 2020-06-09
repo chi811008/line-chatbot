@@ -457,8 +457,7 @@ def search_info(event):
     elif get_mountain_name(search):
         print("get_mountain")
         picture_url = get_mountain_picture(search)
-        bubble = [
-          BubbleContainer(
+        bubble = BubbleContainer(
             direction='ltr',
             hero=ImageComponent(
                 url=picture_url,
@@ -593,7 +592,6 @@ def search_info(event):
             #     ]
             # ),
         )
-      ]
         message = FlexSendMessage(alt_text="山的資訊", contents=bubble)
         line_bot_api.reply_message(
             event.reply_token,
