@@ -595,11 +595,11 @@ def search_info(event):
             # ),
         )
 
-        two_bubbles = [
+        
+        message = FlexSendMessage(alt_text="山的資訊", contents=[
           bubble,
           bubble
-        ]
-        message = FlexSendMessage(alt_text="山的資訊", contents=two_bubbles)
+        ])
         line_bot_api.reply_message(
             event.reply_token,
             message
