@@ -459,146 +459,146 @@ def search_info(event):
         print("get_mountain")
         picture_url = get_mountain_picture(search)
         
-        bubble = BubbleContainer(
-            direction='ltr',
-            hero=ImageComponent(
-                url=picture_url,
-                size='full',
-                aspect_ratio='20:13',
-                aspect_mode='cover',
-                action=PostbackTemplateAction(
-                        label='山的圖片',
-                        text=None,
-                        data="pic" + picture_url
-                    )
-            ),
-            body=BoxComponent(
-                layout='vertical',
-                contents=[
-                    # title
-                    TextComponent(text=get_mountain_name(search), weight='bold', size='xl'),
-                    # review
-                    BoxComponent(
-                        layout='baseline',
-                        margin='md',
-                        contents=[
-                            TextComponent(text="資訊", size='sm', weight='bold')
-                        ]
-                    ),
-                    # info
-                    BoxComponent(
-                        layout='vertical',
-                        margin='lg',
-                        spacing='sm',
-                        contents=[
-                            BoxComponent(
-                                layout='baseline',
-                                spacing='sm',
-                                contents=[
-                                    TextComponent(
-                                        text='區域',
-                                        color='#aaaaaa',
-                                        size='sm',
-                                        flex=1
-                                    ),
-                                    TextComponent(
-                                        text=get_mountain(search)[2],
-                                        wrap=True,
-                                        color='#666666',
-                                        size='sm',
-                                        flex=5
-                                    )
-                                ],
-                            ),
-                            BoxComponent(
-                                layout='baseline',
-                                spacing='sm',
-                                contents=[
-                                    TextComponent(
-                                        text='難度',
-                                        color='#aaaaaa',
-                                        size='sm',
-                                        flex=1
-                                    ),
-                                    TextComponent(
-                                        text=get_mountain(search)[3][3:],
-                                        wrap=True,
-                                        color='#666666',
-                                        size='sm',
-                                        flex=5,
-                                    ),
-                                ],
-                            ),
-                            BoxComponent(
-                                layout='baseline',
-                                spacing='sm',
-                                contents=[
-                                    TextComponent(
-                                        text="距離",
-                                        color='#aaaaaa',
-                                        size='sm',
-                                        flex=1
-                                    ),
-                                    TextComponent(
-                                        text=get_mountain(search)[4],
-                                        wrap=True,
-                                        color='#666666',
-                                        size='sm',
-                                        flex=5,
-                                    ),
-                                ],
-                            ),
-                            BoxComponent(
-                                layout='baseline',
-                                spacing='sm',
-                                contents=[
-                                    TextComponent(
-                                        text="時間",
-                                        color='#aaaaaa',
-                                        size='sm',
-                                        flex=1
-                                    ),
-                                    TextComponent(
-                                        text=get_mountain(search)[5],
-                                        wrap=True,
-                                        color='#666666',
-                                        size='sm',
-                                        flex=5,
-                                    ),
-                                ],
-                            ),
-                        ],
-                    )
-                ],
-            ),
-            # footer=BoxComponent(
-            #     layout='vertical',
-            #     spacing='sm',
-            #     contents=[
-            #         # callAction, separator, websiteAction
-            #         SpacerComponent(size='sm'),
-            #         # callAction
-            #         ButtonComponent(
-            #             style='link',
-            #             height='sm',
-            #             action=URIAction(label='CALL', uri='tel:000000'),
-            #         ),
-            #         # separator
-            #         SeparatorComponent(),
-            #         # websiteAction
-            #         ButtonComponent(
-            #             style='link',
-            #             height='sm',
-            #             action=URIAction(label='WEBSITE', uri="https://example.com")
-            #         )
-            #     ]
-            # ),
-        )
-        message = FlexSendMessage(alt_text="山的資訊", contents=bubble)
-        line_bot_api.reply_message(
-            event.reply_token,
-            message
-        )
+        # bubble = BubbleContainer(
+        #     direction='ltr',
+        #     hero=ImageComponent(
+        #         url=picture_url,
+        #         size='full',
+        #         aspect_ratio='20:13',
+        #         aspect_mode='cover',
+        #         action=PostbackTemplateAction(
+        #                 label='山的圖片',
+        #                 text=None,
+        #                 data="pic" + picture_url
+        #             )
+        #     ),
+        #     body=BoxComponent(
+        #         layout='vertical',
+        #         contents=[
+        #             # title
+        #             TextComponent(text=get_mountain_name(search), weight='bold', size='xl'),
+        #             # review
+        #             BoxComponent(
+        #                 layout='baseline',
+        #                 margin='md',
+        #                 contents=[
+        #                     TextComponent(text="資訊", size='sm', weight='bold')
+        #                 ]
+        #             ),
+        #             # info
+        #             BoxComponent(
+        #                 layout='vertical',
+        #                 margin='lg',
+        #                 spacing='sm',
+        #                 contents=[
+        #                     BoxComponent(
+        #                         layout='baseline',
+        #                         spacing='sm',
+        #                         contents=[
+        #                             TextComponent(
+        #                                 text='區域',
+        #                                 color='#aaaaaa',
+        #                                 size='sm',
+        #                                 flex=1
+        #                             ),
+        #                             TextComponent(
+        #                                 text=get_mountain(search)[2],
+        #                                 wrap=True,
+        #                                 color='#666666',
+        #                                 size='sm',
+        #                                 flex=5
+        #                             )
+        #                         ],
+        #                     ),
+        #                     BoxComponent(
+        #                         layout='baseline',
+        #                         spacing='sm',
+        #                         contents=[
+        #                             TextComponent(
+        #                                 text='難度',
+        #                                 color='#aaaaaa',
+        #                                 size='sm',
+        #                                 flex=1
+        #                             ),
+        #                             TextComponent(
+        #                                 text=get_mountain(search)[3][3:],
+        #                                 wrap=True,
+        #                                 color='#666666',
+        #                                 size='sm',
+        #                                 flex=5,
+        #                             ),
+        #                         ],
+        #                     ),
+        #                     BoxComponent(
+        #                         layout='baseline',
+        #                         spacing='sm',
+        #                         contents=[
+        #                             TextComponent(
+        #                                 text="距離",
+        #                                 color='#aaaaaa',
+        #                                 size='sm',
+        #                                 flex=1
+        #                             ),
+        #                             TextComponent(
+        #                                 text=get_mountain(search)[4],
+        #                                 wrap=True,
+        #                                 color='#666666',
+        #                                 size='sm',
+        #                                 flex=5,
+        #                             ),
+        #                         ],
+        #                     ),
+        #                     BoxComponent(
+        #                         layout='baseline',
+        #                         spacing='sm',
+        #                         contents=[
+        #                             TextComponent(
+        #                                 text="時間",
+        #                                 color='#aaaaaa',
+        #                                 size='sm',
+        #                                 flex=1
+        #                             ),
+        #                             TextComponent(
+        #                                 text=get_mountain(search)[5],
+        #                                 wrap=True,
+        #                                 color='#666666',
+        #                                 size='sm',
+        #                                 flex=5,
+        #                             ),
+        #                         ],
+        #                     ),
+        #                 ],
+        #             )
+        #         ],
+        #     ),
+        #     # footer=BoxComponent(
+        #     #     layout='vertical',
+        #     #     spacing='sm',
+        #     #     contents=[
+        #     #         # callAction, separator, websiteAction
+        #     #         SpacerComponent(size='sm'),
+        #     #         # callAction
+        #     #         ButtonComponent(
+        #     #             style='link',
+        #     #             height='sm',
+        #     #             action=URIAction(label='CALL', uri='tel:000000'),
+        #     #         ),
+        #     #         # separator
+        #     #         SeparatorComponent(),
+        #     #         # websiteAction
+        #     #         ButtonComponent(
+        #     #             style='link',
+        #     #             height='sm',
+        #     #             action=URIAction(label='WEBSITE', uri="https://example.com")
+        #     #         )
+        #     #     ]
+        #     # ),
+        # )
+  #      message = FlexSendMessage(alt_text="山的資訊", contents=bubble)
+  #      line_bot_api.reply_message(
+  #          event.reply_token,
+  #          message
+  #      )
 
 
         # button_template_message = ButtonsTemplate(
@@ -625,7 +625,7 @@ def search_info(event):
         #         template=button_template_message
         #     )
         # )
-    elif search == 'cafe':
+   # elif search == 'cafe':
       print("cafe cafe cafe")
       bubble_string = f"""
       {{
@@ -647,7 +647,7 @@ def search_info(event):
     "contents": [
       {{
         "type": "text",
-        "text": "山的名稱",
+        "text": {get_mountain_name(search)},
         "weight": "bold",
         "size": "xl"
       }},
@@ -724,7 +724,7 @@ def search_info(event):
 }}
 """
       message = FlexSendMessage(
-        alt_text="篩選", contents=json.loads(bubble_string)
+        alt_text="cafe", contents=json.loads(bubble_string)
         )
       line_bot_api.reply_message(
         event.reply_token,
