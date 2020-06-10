@@ -700,7 +700,7 @@ def search_info(event):
       {{
   "type": "carousel",
   "contents": [
-    {{{bubble1}}},
+    {{"{bubble1}"}},
     {{
       "type": "bubble",
       "size": "micro",
