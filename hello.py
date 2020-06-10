@@ -723,11 +723,13 @@ def search_info(event):
 }
 """
       message = FlexSendMessage(
-                  alt_text="cafe", contents=json.loads(bubble_string))
-              line_bot_api.reply_message(
-                  event.reply_token,
-                  message
-              )
+        alt_text="篩選", contents=json.loads(bubble_string)
+        )
+      line_bot_api.reply_message(
+        event.reply_token,
+        message
+        )
+
 
     elif search == '圖片輪播':
         image_carousel_template = ImageCarouselTemplate(columns=[
