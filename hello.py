@@ -627,36 +627,36 @@ def search_info(event):
         # )
     elif search == 'cafe':
       print("cafe cafe cafe")
-      bubble_string = """
-      {
+      bubble_string = f"""
+      {{
   "type": "bubble",
-  "hero": {
+  "hero": {{
     "type": "image",
     "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
     "size": "full",
     "aspectRatio": "20:13",
     "aspectMode": "cover",
-    "action": {
+    "action": {{
       "type": "uri",
       "uri": "http://linecorp.com/"
-    }
-  },
-  "body": {
+    }}
+  }},
+  "body": {{
     "type": "box",
     "layout": "vertical",
     "contents": [
-      {
+      {{
         "type": "text",
         "text": "山的名稱",
         "weight": "bold",
         "size": "xl"
-      },
-      {
+      }},
+      {{
         "type": "box",
         "layout": "baseline",
         "margin": "md",
         "contents": [
-          {
+          {{
             "type": "text",
             "text": "資訊",
             "size": "sm",
@@ -664,64 +664,64 @@ def search_info(event):
             "margin": "md",
             "flex": 0,
             "weight": "bold"
-          }
+          }}
         ]
-      },
-      {
+      }},
+      {{
         "type": "box",
         "layout": "vertical",
         "margin": "lg",
         "spacing": "sm",
         "contents": [
-          {
+          {{
             "type": "box",
             "layout": "baseline",
             "spacing": "sm",
             "contents": [
-              {
+              {{
                 "type": "text",
                 "text": "Place",
                 "color": "#aaaaaa",
                 "size": "sm",
                 "flex": 1
-              },
-              {
+              }},
+              {{
                 "type": "text",
                 "text": "Miraina Tower, 4-1-6 Shinjuku, Tokyo",
                 "wrap": true,
                 "color": "#666666",
                 "size": "sm",
                 "flex": 5
-              }
+              }}
             ]
-          },
-          {
+          }},
+          {{
             "type": "box",
             "layout": "baseline",
             "spacing": "sm",
             "contents": [
-              {
+              {{
                 "type": "text",
                 "text": "Time",
                 "color": "#aaaaaa",
                 "size": "sm",
                 "flex": 1
-              },
-              {
+              }},
+              {{
                 "type": "text",
                 "text": "10:00 - 23:00",
                 "wrap": true,
                 "color": "#666666",
                 "size": "sm",
                 "flex": 5
-              }
+              }}
             ]
-          }
+          }}
         ]
-      }
+      }}
     ]
-  }
-}
+  }}
+}}
 """
       message = FlexSendMessage(
         alt_text="篩選", contents=json.loads(bubble_string)
