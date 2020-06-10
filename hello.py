@@ -455,286 +455,380 @@ def search_info(event):
             message
         )
 
+    # elif get_mountain_name(search):
+    #     print("get_mountain")
+    #     picture_url = get_mountain_picture(search)
+        
+    #     bubble = BubbleContainer(
+    #         direction='ltr',
+    #         hero=ImageComponent(
+    #             url=picture_url,
+    #             size='full',
+    #             aspect_ratio='20:13',
+    #             aspect_mode='cover',
+    #             action=PostbackTemplateAction(
+    #                     label='山的圖片',
+    #                     text=None,
+    #                     data="pic" + picture_url
+    #                 )
+    #         ),
+    #         body=BoxComponent(
+    #             layout='vertical',
+    #             contents=[
+    #                 # title
+    #                 TextComponent(text=get_mountain_name(search), weight='bold', size='xl'),
+    #                 # review
+    #                 BoxComponent(
+    #                     layout='baseline',
+    #                     margin='md',
+    #                     contents=[
+    #                         TextComponent(text="資訊", size='sm', weight='bold')
+    #                     ]
+    #                 ),
+    #                 # info
+    #                 BoxComponent(
+    #                     layout='vertical',
+    #                     margin='lg',
+    #                     spacing='sm',
+    #                     contents=[
+    #                         BoxComponent(
+    #                             layout='baseline',
+    #                             spacing='sm',
+    #                             contents=[
+    #                                 TextComponent(
+    #                                     text='區域',
+    #                                     color='#aaaaaa',
+    #                                     size='sm',
+    #                                     flex=1
+    #                                 ),
+    #                                 TextComponent(
+    #                                     text=get_mountain(search)[2],
+    #                                     wrap=True,
+    #                                     color='#666666',
+    #                                     size='sm',
+    #                                     flex=5
+    #                                 )
+    #                             ],
+    #                         ),
+    #                         BoxComponent(
+    #                             layout='baseline',
+    #                             spacing='sm',
+    #                             contents=[
+    #                                 TextComponent(
+    #                                     text='難度',
+    #                                     color='#aaaaaa',
+    #                                     size='sm',
+    #                                     flex=1
+    #                                 ),
+    #                                 TextComponent(
+    #                                     text=get_mountain(search)[3][3:],
+    #                                     wrap=True,
+    #                                     color='#666666',
+    #                                     size='sm',
+    #                                     flex=5,
+    #                                 ),
+    #                             ],
+    #                         ),
+    #                         BoxComponent(
+    #                             layout='baseline',
+    #                             spacing='sm',
+    #                             contents=[
+    #                                 TextComponent(
+    #                                     text="距離",
+    #                                     color='#aaaaaa',
+    #                                     size='sm',
+    #                                     flex=1
+    #                                 ),
+    #                                 TextComponent(
+    #                                     text=get_mountain(search)[4],
+    #                                     wrap=True,
+    #                                     color='#666666',
+    #                                     size='sm',
+    #                                     flex=5,
+    #                                 ),
+    #                             ],
+    #                         ),
+    #                         BoxComponent(
+    #                             layout='baseline',
+    #                             spacing='sm',
+    #                             contents=[
+    #                                 TextComponent(
+    #                                     text="時間",
+    #                                     color='#aaaaaa',
+    #                                     size='sm',
+    #                                     flex=1
+    #                                 ),
+    #                                 TextComponent(
+    #                                     text=get_mountain(search)[5],
+    #                                     wrap=True,
+    #                                     color='#666666',
+    #                                     size='sm',
+    #                                     flex=5,
+    #                                 ),
+    #                             ],
+    #                         ),
+    #                     ],
+    #                 )
+    #             ],
+    #         ),
+    #         # footer=BoxComponent(
+    #         #     layout='vertical',
+    #         #     spacing='sm',
+    #         #     contents=[
+    #         #         # callAction, separator, websiteAction
+    #         #         SpacerComponent(size='sm'),
+    #         #         # callAction
+    #         #         ButtonComponent(
+    #         #             style='link',
+    #         #             height='sm',
+    #         #             action=URIAction(label='CALL', uri='tel:000000'),
+    #         #         ),
+    #         #         # separator
+    #         #         SeparatorComponent(),
+    #         #         # websiteAction
+    #         #         ButtonComponent(
+    #         #             style='link',
+    #         #             height='sm',
+    #         #             action=URIAction(label='WEBSITE', uri="https://example.com")
+    #         #         )
+    #         #     ]
+    #         # ),
+    #     )
+
+        
+    #     message = FlexSendMessage(alt_text="山的資訊", contents=[
+    #       bubble,
+    #       bubble
+    #     ])
+    #     line_bot_api.reply_message(
+    #         event.reply_token,
+    #         message
+    #     )
+
+
+    #     # button_template_message = ButtonsTemplate(
+    #     #     thumbnail_image_url=picture_url,
+    #     #     title=get_mountain_name(search),
+    #     #     text='請選擇',
+    #     #     actions=[
+    #     #         PostbackTemplateAction(
+    #     #             label='山的資訊',
+    #     #             text=None,
+    #     #             data="inf" + search
+    #     #         ),
+    #     #         PostbackTemplateAction(
+    #     #             label='大圖',
+    #     #             text=None,
+    #     #             data="pic" + picture_url
+    #     #         ),
+    #     #     ]
+    #     # )
+    #     # line_bot_api.reply_message(
+    #     #     event.reply_token,
+    #     #     TemplateSendMessage(
+    #     #         alt_text="Template Example",
+    #     #         template=button_template_message
+    #     #     )
+    #     # )
+
     elif get_mountain_name(search):
-        print("get_mountain")
-        picture_url = get_mountain_picture(search)
-        
-        bubble = BubbleContainer(
-            direction='ltr',
-            hero=ImageComponent(
-                url=picture_url,
-                size='full',
-                aspect_ratio='20:13',
-                aspect_mode='cover',
-                action=PostbackTemplateAction(
-                        label='山的圖片',
-                        text=None,
-                        data="pic" + picture_url
-                    )
-            ),
-            body=BoxComponent(
-                layout='vertical',
-                contents=[
-                    # title
-                    TextComponent(text=get_mountain_name(search), weight='bold', size='xl'),
-                    # review
-                    BoxComponent(
-                        layout='baseline',
-                        margin='md',
-                        contents=[
-                            TextComponent(text="資訊", size='sm', weight='bold')
-                        ]
-                    ),
-                    # info
-                    BoxComponent(
-                        layout='vertical',
-                        margin='lg',
-                        spacing='sm',
-                        contents=[
-                            BoxComponent(
-                                layout='baseline',
-                                spacing='sm',
-                                contents=[
-                                    TextComponent(
-                                        text='區域',
-                                        color='#aaaaaa',
-                                        size='sm',
-                                        flex=1
-                                    ),
-                                    TextComponent(
-                                        text=get_mountain(search)[2],
-                                        wrap=True,
-                                        color='#666666',
-                                        size='sm',
-                                        flex=5
-                                    )
-                                ],
-                            ),
-                            BoxComponent(
-                                layout='baseline',
-                                spacing='sm',
-                                contents=[
-                                    TextComponent(
-                                        text='難度',
-                                        color='#aaaaaa',
-                                        size='sm',
-                                        flex=1
-                                    ),
-                                    TextComponent(
-                                        text=get_mountain(search)[3][3:],
-                                        wrap=True,
-                                        color='#666666',
-                                        size='sm',
-                                        flex=5,
-                                    ),
-                                ],
-                            ),
-                            BoxComponent(
-                                layout='baseline',
-                                spacing='sm',
-                                contents=[
-                                    TextComponent(
-                                        text="距離",
-                                        color='#aaaaaa',
-                                        size='sm',
-                                        flex=1
-                                    ),
-                                    TextComponent(
-                                        text=get_mountain(search)[4],
-                                        wrap=True,
-                                        color='#666666',
-                                        size='sm',
-                                        flex=5,
-                                    ),
-                                ],
-                            ),
-                            BoxComponent(
-                                layout='baseline',
-                                spacing='sm',
-                                contents=[
-                                    TextComponent(
-                                        text="時間",
-                                        color='#aaaaaa',
-                                        size='sm',
-                                        flex=1
-                                    ),
-                                    TextComponent(
-                                        text=get_mountain(search)[5],
-                                        wrap=True,
-                                        color='#666666',
-                                        size='sm',
-                                        flex=5,
-                                    ),
-                                ],
-                            ),
-                        ],
-                    )
-                ],
-            ),
-            # footer=BoxComponent(
-            #     layout='vertical',
-            #     spacing='sm',
-            #     contents=[
-            #         # callAction, separator, websiteAction
-            #         SpacerComponent(size='sm'),
-            #         # callAction
-            #         ButtonComponent(
-            #             style='link',
-            #             height='sm',
-            #             action=URIAction(label='CALL', uri='tel:000000'),
-            #         ),
-            #         # separator
-            #         SeparatorComponent(),
-            #         # websiteAction
-            #         ButtonComponent(
-            #             style='link',
-            #             height='sm',
-            #             action=URIAction(label='WEBSITE', uri="https://example.com")
-            #         )
-            #     ]
-            # ),
+      print("cafe cafe cafe")
+      bubble_string = f"""
+      {{
+  "type": "carousel",
+  "contents": [
+    {{
+      "type": "bubble",
+      "size": "micro",
+      "hero": {{
+        "type": "image",
+        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip10.jpg",
+        "size": "full",
+        "aspectMode": "cover",
+        "aspectRatio": "320:213"
+      }},
+      "body": {{
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {{
+            "type": "text",
+            "text": "Brown Cafe",
+            "weight": "bold",
+            "size": "sm",
+            "wrap": true
+          }},
+          {{
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {{
+                "type": "text",
+                "text": "資訊",
+                "size": "xs",
+                "color": "#8c8c8c",
+                "margin": "md",
+                "flex": 0
+              }}
+            ]
+          }},
+          {{
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {{
+                "type": "box",
+                "layout": "baseline",
+                "spacing": "sm",
+                "contents": [
+                  {{
+                    "type": "text",
+                    "text": "東京旅行",
+                    "wrap": true,
+                    "color": "#8c8c8c",
+                    "size": "xs",
+                    "flex": 5
+                  }}
+                ]
+              }}
+            ]
+          }}
+        ],
+        "spacing": "sm",
+        "paddingAll": "13px"
+      }}
+    }},
+    {{
+      "type": "bubble",
+      "size": "micro",
+      "hero": {{
+        "type": "image",
+        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip11.jpg",
+        "size": "full",
+        "aspectMode": "cover",
+        "aspectRatio": "320:213"
+      }},
+      "body": {{
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {{
+            "type": "text",
+            "text": "Brow&Cony's Restaurant",
+            "weight": "bold",
+            "size": "sm",
+            "wrap": true
+          }},
+          {{
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {{
+                "type": "text",
+                "text": "4.0",
+                "size": "sm",
+                "color": "#8c8c8c",
+                "margin": "md",
+                "flex": 0
+              }}
+            ]
+          }},
+          {{
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {{
+                "type": "box",
+                "layout": "baseline",
+                "spacing": "sm",
+                "contents": [
+                  {{
+                    "type": "text",
+                    "text": "東京旅行",
+                    "wrap": true,
+                    "color": "#8c8c8c",
+                    "size": "xs",
+                    "flex": 5
+                  }}
+                ]
+              }}
+            ]
+          }}
+        ],
+        "spacing": "sm",
+        "paddingAll": "13px"
+      }}
+    }},
+    {{
+      "type": "bubble",
+      "size": "micro",
+      "hero": {{
+        "type": "image",
+        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip12.jpg",
+        "size": "full",
+        "aspectMode": "cover",
+        "aspectRatio": "320:213"
+      }},
+      "body": {{
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {{
+            "type": "text",
+            "text": "Tata",
+            "weight": "bold",
+            "size": "sm"
+          }},
+          {{
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {{
+                "type": "text",
+                "text": "4.0",
+                "size": "sm",
+                "color": "#8c8c8c",
+                "margin": "md",
+                "flex": 0
+              }}
+            ]
+          }},
+          {{
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {{
+                "type": "box",
+                "layout": "baseline",
+                "spacing": "sm",
+                "contents": [
+                  {{
+                    "type": "text",
+                    "text": "東京旅行",
+                    "wrap": true,
+                    "color": "#8c8c8c",
+                    "size": "xs",
+                    "flex": 5
+                  }}
+                ]
+              }}
+            ]
+          }}
+        ],
+        "spacing": "sm",
+        "paddingAll": "13px"
+      }}
+    }}
+  ]
+}}
+"""
+      message = FlexSendMessage(
+        alt_text="cafe", contents=json.loads(bubble_string)
         )
-
-        
-        message = FlexSendMessage(alt_text="山的資訊", contents=[
-          bubble,
-          bubble
-        ])
-        line_bot_api.reply_message(
-            event.reply_token,
-            message
+      line_bot_api.reply_message(
+        event.reply_token,
+        message
         )
-
-
-        # button_template_message = ButtonsTemplate(
-        #     thumbnail_image_url=picture_url,
-        #     title=get_mountain_name(search),
-        #     text='請選擇',
-        #     actions=[
-        #         PostbackTemplateAction(
-        #             label='山的資訊',
-        #             text=None,
-        #             data="inf" + search
-        #         ),
-        #         PostbackTemplateAction(
-        #             label='大圖',
-        #             text=None,
-        #             data="pic" + picture_url
-        #         ),
-        #     ]
-        # )
-        # line_bot_api.reply_message(
-        #     event.reply_token,
-        #     TemplateSendMessage(
-        #         alt_text="Template Example",
-        #         template=button_template_message
-        #     )
-        # )
-#     elif get_mountain_name(search):
-#       print("cafe cafe cafe")
-#       bubble_string = f"""
-#       {{
-#   "type": "bubble",
-#   "hero": {{
-#     "type": "image",
-#     "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
-#     "size": "full",
-#     "aspectRatio": "20:13",
-#     "aspectMode": "cover",
-#     "action": {{
-#       "type": "uri",
-#       "uri": "http://linecorp.com/"
-#     }}
-#   }},
-#   "body": {{
-#     "type": "box",
-#     "layout": "vertical",
-#     "contents": [
-#       {{
-#         "type": "text",
-#         "text": "{get_mountain_name(search)}",
-#         "weight": "bold",
-#         "size": "xl"
-#       }},
-#       {{
-#         "type": "box",
-#         "layout": "baseline",
-#         "margin": "md",
-#         "contents": [
-#           {{
-#             "type": "text",
-#             "text": "資訊",
-#             "size": "sm",
-#             "color": "#999999",
-#             "margin": "md",
-#             "flex": 0,
-#             "weight": "bold"
-#           }}
-#         ]
-#       }},
-#       {{
-#         "type": "box",
-#         "layout": "vertical",
-#         "margin": "lg",
-#         "spacing": "sm",
-#         "contents": [
-#           {{
-#             "type": "box",
-#             "layout": "baseline",
-#             "spacing": "sm",
-#             "contents": [
-#               {{
-#                 "type": "text",
-#                 "text": "Place",
-#                 "color": "#aaaaaa",
-#                 "size": "sm",
-#                 "flex": 1
-#               }},
-#               {{
-#                 "type": "text",
-#                 "text": "Miraina Tower, 4-1-6 Shinjuku, Tokyo",
-#                 "wrap": true,
-#                 "color": "#666666",
-#                 "size": "sm",
-#                 "flex": 5
-#               }}
-#             ]
-#           }},
-#           {{
-#             "type": "box",
-#             "layout": "baseline",
-#             "spacing": "sm",
-#             "contents": [
-#               {{
-#                 "type": "text",
-#                 "text": "Time",
-#                 "color": "#aaaaaa",
-#                 "size": "sm",
-#                 "flex": 1
-#               }},
-#               {{
-#                 "type": "text",
-#                 "text": "10:00 - 23:00",
-#                 "wrap": true,
-#                 "color": "#666666",
-#                 "size": "sm",
-#                 "flex": 5
-#               }}
-#             ]
-#           }}
-#         ]
-#       }}
-#     ]
-#   }}
-# }}
-# """
-#       message = FlexSendMessage(
-#         alt_text="cafe", contents=json.loads(bubble_string)
-#         )
-#       line_bot_api.reply_message(
-#         event.reply_token,
-#         message
-#         )
 
 
     elif search == '圖片輪播':
