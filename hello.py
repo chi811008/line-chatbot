@@ -697,7 +697,12 @@ def search_info(event):
 
     
       bubble_string = f"""
-      {{"{bubble1}",
+      {{
+  "type": "carousel",
+  "contents": [
+    {{
+      "{bubble1}"
+    }},
     {{
       "type": "bubble",
       "size": "micro",
