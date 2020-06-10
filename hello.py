@@ -633,7 +633,7 @@ def search_info(event):
 
     elif get_mountain_name(search):
       print("cafe cafe cafe")
-      bubble1 = {
+      bubble1 = """{
       "type": "bubble",
       "size": "micro",
       "hero": {
@@ -693,7 +693,7 @@ def search_info(event):
         "spacing": "sm",
         "paddingAll": "13px"
       }
-    }
+    }"""
 
     
       bubble_string = f"""
