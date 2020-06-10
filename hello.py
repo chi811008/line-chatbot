@@ -647,7 +647,7 @@ def search_info(event):
     "contents": [
       {{
         "type": "text",
-        "text": {get_mountain_name(search)},
+        "text": "山的名稱",
         "weight": "bold",
         "size": "xl"
       }},
@@ -724,7 +724,7 @@ def search_info(event):
 }}
 """
       message = FlexSendMessage(
-        alt_text="篩選", contents=json.loads(bubble_string)
+        alt_text="cafe", contents=json.loads(bubble_string)
         )
       line_bot_api.reply_message(
         event.reply_token,
