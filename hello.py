@@ -647,7 +647,7 @@ def search_info(event):
     "contents": [
       {{
         "type": "text",
-        "text": "山的名稱",
+        "text": "{get_mountain_name(search)}",
         "weight": "bold",
         "size": "xl"
       }},
