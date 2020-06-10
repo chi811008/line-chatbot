@@ -625,7 +625,8 @@ def search_info(event):
         #         template=button_template_message
         #     )
         # )
-    elif search == "cafe":
+    elif search == 'cafe':
+      print("cafe cafe cafe")
       bubble_string = """
       {
   "type": "bubble",
