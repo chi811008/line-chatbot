@@ -130,7 +130,6 @@ def handle_post_message(event):
 
       select_list = select_area(event.postback.data)
       for _ in select_list:
-        picture_url = get_mountain_picture(_)
         bubble1 = f"""{{
           "type": "bubble",
           "size": "micro",
