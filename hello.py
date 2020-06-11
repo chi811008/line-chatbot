@@ -126,7 +126,7 @@ def handle_post_message(event):
     # can not get event text
     print("event =", event)
     if event.postback.data == "北部" or "中部" or "南部" or "東部" or "外島" or "香港" or "西班牙":
-            print("cafe cafe cafe")
+      print("cafe cafe cafe")
       select_list = select_area(event.postback.data)
       for _ in select_list:
         bubble1 = f"""{{
