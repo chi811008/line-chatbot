@@ -81,14 +81,14 @@ def select_area(input_area):
 
   cursor.execute(postgres_select_query)
   ans = cursor.fetchall()
+  select = []
   if ans:
-      string = ""
-      for _ in ans:
-          string = string + _[0] + ","
+    for _ in ans:
+      select.append(_[0])
   else:
       return "很抱歉，沒有符合的資料"
       
-  return string
+  return select
 
 
 
@@ -126,14 +126,133 @@ def handle_post_message(event):
     # can not get event text
     print("event =", event)
     if event.postback.data == "北部" or "中部" or "南部" or "東部" or "外島" or "香港" or "西班牙":
-      replytex = select_area(event.postback.data)
-      line_bot_api.reply_message(
+      select_list = select_area(event.postback.data)
+      for _ in select_list:
+        picture_url = get_mountain_picture(_)
+        bubble = BubbleContainer(
+              direction='ltr',
+              hero=ImageComponent(
+                  url=picture_url,
+                  size='full',
+                  aspect_ratio='20:13',
+                  aspect_mode='cover',
+                  action=PostbackTemplateAction(
+                          label='山的圖片',
+                          text=None,
+                          data="pic" + picture_url
+                      )
+              ),
+              body=BoxComponent(
+                  layout='vertical',
+                  contents=[
+                      # title
+                      TextComponent(text=get_mountain_name(_), weight='bold', size='xl'),
+                      # review
+                      BoxComponent(
+                          layout='baseline',
+                          margin='md',
+                          contents=[
+                              TextComponent(text="資訊", size='sm', weight='bold')
+                          ]
+                      ),
+                      # info
+                      BoxComponent(
+                          layout='vertical',
+                          margin='lg',
+                          spacing='sm',
+                          contents=[
+                              BoxComponent(
+                                  layout='baseline',
+                                  spacing='sm',
+                                  contents=[
+                                      TextComponent(
+                                          text='區域',
+                                          color='#aaaaaa',
+                                          size='sm',
+                                          flex=1
+                                      ),
+                                      TextComponent(
+                                          text=get_mountain(_)[2],
+                                          wrap=True,
+                                          color='#666666',
+                                          size='sm',
+                                          flex=5
+                                      )
+                                  ],
+                              ),
+                              BoxComponent(
+                                  layout='baseline',
+                                  spacing='sm',
+                                  contents=[
+                                      TextComponent(
+                                          text='難度',
+                                          color='#aaaaaa',
+                                          size='sm',
+                                          flex=1
+                                      ),
+                                      TextComponent(
+                                          text=get_mountain(_)[3][3:],
+                                          wrap=True,
+                                          color='#666666',
+                                          size='sm',
+                                          flex=5,
+                                      ),
+                                  ],
+                              ),
+                              BoxComponent(
+                                  layout='baseline',
+                                  spacing='sm',
+                                  contents=[
+                                      TextComponent(
+                                          text="距離",
+                                          color='#aaaaaa',
+                                          size='sm',
+                                          flex=1
+                                      ),
+                                      TextComponent(
+                                          text=get_mountain(_)[4],
+                                          wrap=True,
+                                          color='#666666',
+                                          size='sm',
+                                          flex=5,
+                                      ),
+                                  ],
+                              ),
+                              BoxComponent(
+                                  layout='baseline',
+                                  spacing='sm',
+                                  contents=[
+                                      TextComponent(
+                                          text="時間",
+                                          color='#aaaaaa',
+                                          size='sm',
+                                          flex=1
+                                      ),
+                                      TextComponent(
+                                          text=get_mountain(_)[5],
+                                          wrap=True,
+                                          color='#666666',
+                                          size='sm',
+                                          flex=5,
+                                      ),
+                                  ],
+                              ),
+                          ],
+                      )
+                  ],
+              ),
+          )
+          two_bubbles = [
+            bubble, 
+            bubble
+          ]
+        
+        message = FlexSendMessage(alt_text="山的資訊", contents=CarouselContainer(contents=two_bubbles))
+        line_bot_api.reply_message(
             event.reply_token,
-            TextMessage(
-                text=replytex
-                # text=str(str(event.postback.data)),
-            )
+            message
         )
+
     else:
       cmd, seq = event.postback.data[:3], event.postback.data[3:]
       if cmd == "inf":
