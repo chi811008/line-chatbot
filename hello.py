@@ -123,101 +123,100 @@ def callback():
 
 @handler.add(PostbackEvent)
 def handle_post_message(event):
-    # can not get event text
-    print("event =", event)
-    if event.postback.data == "北部" or "中部" or "南部" or "東部" or "外島" or "香港" or "西班牙":
-      print("cafe cafe cafe")
-      select_list = select_area(event.postback.data)
-      for _ in select_list:
-        bubble1 = f"""{{
-          "type": "bubble",
-          "size": "micro",
-          "hero": {{
-            "type": "image",
-            "url": "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip10.jpg",
-            "size": "full",
-            "aspectMode": "cover",
-            "aspectRatio": "320:213"
-          }},
-          "body": {{
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {{
-                "type": "text",
-                "text": "Brown Cafe",
-                "weight": "bold",
-                "size": "sm",
-                "wrap": true
-              }},
-              {{
-                "type": "box",
-                "layout": "baseline",
-                "contents": [
-                  {{
-                    "type": "text",
-                    "text": "資訊",
-                    "size": "xs",
-                    "color": "#8c8c8c",
-                    "margin": "md",
-                    "flex": 0
-                  }}
-                ]
-              }},
-              {{
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                  {{
-                    "type": "box",
-                    "layout": "baseline",
-                    "spacing": "sm",
-                    "contents": [
-                      {{
-                        "type": "text",
-                        "text": "東京旅行",
-                        "wrap": true,
-                        "color": "#8c8c8c",
-                        "size": "xs",
-                        "flex": 5
-                      }}
-                    ]
-                  }}
-                ]
-              }}
-            ],
-            "spacing": "sm",
-            "paddingAll": "13px"
-          }}
-        }}"""
-
+      # can not get event text
+  print("event =", event)
+  if event.postback.data == "北部" or "中部" or "南部" or "東部" or "外島" or "香港" or "西班牙":
+    print("cafe cafe cafe")
+    select_list = select_area(event.postback.data)
+    for _ in select_list:
+      bubble1 = f"""{{
+        "type": "bubble",
+        "size": "micro",
+        "hero": {{
+          "type": "image",
+          "url": "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip10.jpg",
+          "size": "full",
+          "aspectMode": "cover",
+          "aspectRatio": "320:213"
+        }},
+        "body": {{
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {{
+              "type": "text",
+              "text": "Brown Cafe",
+              "weight": "bold",
+              "size": "sm",
+              "wrap": true
+            }},
+            {{
+              "type": "box",
+              "layout": "baseline",
+              "contents": [
+                {{
+                  "type": "text",
+                  "text": "資訊",
+                  "size": "xs",
+                  "color": "#8c8c8c",
+                  "margin": "md",
+                  "flex": 0
+                }}
+              ]
+            }},
+            {{
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {{
+                  "type": "box",
+                  "layout": "baseline",
+                  "spacing": "sm",
+                  "contents": [
+                    {{
+                      "type": "text",
+                      "text": "東京旅行",
+                      "wrap": true,
+                      "color": "#8c8c8c",
+                      "size": "xs",
+                      "flex": 5
+                    }}
+                  ]
+                }}
+              ]
+            }}
+          ],
+          "spacing": "sm",
+          "paddingAll": "13px"
+        }}
+      }}"""
         
-      bubble_string = f"""
-      {{
-        "type": "carousel",
-        "contents": [
-          {bubble1},
-          {bubble1},
-          {bubble1}
-        ]
-      }}
-      """
-      message = FlexSendMessage(
-        alt_text="cafe", contents=json.loads(bubble_string)
+    bubble_string = f"""
+    {{
+      "type": "carousel",
+      "contents": [
+        {bubble1},
+        {bubble1},
+        {bubble1}
+      ]
+    }}
+    """
+    message = FlexSendMessage(
+      alt_text="cafe", contents=json.loads(bubble_string)
+      )
+    line_bot_api.reply_message(
+      event.reply_token,
+      message
+      )
+  else:
+    cmd, seq = event.postback.data[:3], event.postback.data[3:]
+    if cmd == "pic":
+        print("picture show")
+        line_bot_api.reply_message(
+            event.reply_token,
+            ImageSendMessage(
+                original_content_url=seq, preview_image_url=seq)
         )
-      line_bot_api.reply_message(
-        event.reply_token,
-        message
-        )
-    else:
-      cmd, seq = event.postback.data[:3], event.postback.data[3:]
-      if cmd == "pic":
-          print("picture show")
-          line_bot_api.reply_message(
-              event.reply_token,
-              ImageSendMessage(
-                  original_content_url=seq, preview_image_url=seq)
-          )
 
 
 @handler.add(MessageEvent, message=TextMessage)
