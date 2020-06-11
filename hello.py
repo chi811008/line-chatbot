@@ -18,7 +18,7 @@ from linebot.models import (
     ImageMessage, VideoMessage, AudioMessage, FileMessage,
     UnfollowEvent, FollowEvent, JoinEvent, LeaveEvent, BeaconEvent,
     MemberJoinedEvent, MemberLeftEvent,
-    FlexSendMessage, BubbleContainer, ImageComponent, BoxComponent,
+    FlexSendMessage, BubbleContainer, CarouselContainer, ImageComponent, BoxComponent,
     TextComponent, SpacerComponent, IconComponent, ButtonComponent,
     SeparatorComponent, QuickReply, QuickReplyButton,
     ImageSendMessage, PostbackTemplateAction, MessageTemplateAction,
@@ -594,9 +594,13 @@ def search_info(event):
             #     ]
             # ),
         )
-
+        two_bubbles = [
+          bubble, 
+          bubble
+        ]
+        CarouselContainer(contents=two_bubbles)
         
-        message = FlexSendMessage(alt_text="山的資訊", contents=bubble)
+        message = FlexSendMessage(alt_text="山的資訊", contents=CarouselContainer(contents=two_bubbles))
         line_bot_api.reply_message(
             event.reply_token,
             message
