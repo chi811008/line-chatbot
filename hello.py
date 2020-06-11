@@ -241,17 +241,16 @@ def handle_post_message(event):
                       )
                   ],
               ),
-          )
-          two_bubbles = [
-            bubble, 
-            bubble
-          ]
-        
-        message = FlexSendMessage(alt_text="山的資訊", contents=CarouselContainer(contents=two_bubbles))
-        line_bot_api.reply_message(
-            event.reply_token,
-            message
-        )
+          ) 
+      two_bubbles = [
+        bubble,
+        bubble
+      ]
+      message = FlexSendMessage(alt_text="山的資訊", contents=CarouselContainer(contents=two_bubbles))
+      line_bot_api.reply_message(
+          event.reply_token,
+          message
+      )
 
     else:
       cmd, seq = event.postback.data[:3], event.postback.data[3:]
