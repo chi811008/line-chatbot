@@ -214,16 +214,7 @@ def handle_post_message(event):
 
     else:
       cmd, seq = event.postback.data[:3], event.postback.data[3:]
-      if cmd == "inf":
-          print("informaton show")
-          line_bot_api.reply_message(
-              event.reply_token,
-              TextMessage(
-                  text=get_mountain(seq)
-                  # text=str(str(event.postback.data)),
-              )
-          )
-      elif cmd == "pic":
+      if cmd == "pic":
           print("picture show")
           line_bot_api.reply_message(
               event.reply_token,
