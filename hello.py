@@ -130,66 +130,51 @@ def handle_post_message(event):
     select_list = select_area(event.postback.data)
     for _ in select_list:
       bubble1 = f"""{{
-        "type": "bubble",
-        "size": "micro",
-        "hero": {{
-          "type": "image",
-          "url": "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip10.jpg",
-          "size": "full",
-          "aspectMode": "cover",
-          "aspectRatio": "320:213"
-        }},
-        "body": {{
-          "type": "box",
-          "layout": "vertical",
-          "contents": [
-            {{
-              "type": "text",
-              "text": "Brown Cafe",
-              "weight": "bold",
-              "size": "sm",
-              "wrap": true
+        "type": "carousel",
+        "contents": [
+          {{
+            "type": "bubble",
+            "size": "micro",
+            "hero": {{
+              "type": "image",
+              "url": "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip10.jpg",
+              "size": "full",
+              "aspectMode": "cover",
+              "aspectRatio": "320:213"
             }},
-            {{
-              "type": "box",
-              "layout": "baseline",
-              "contents": [
-                {{
-                  "type": "text",
-                  "text": "資訊",
-                  "size": "xs",
-                  "color": "#8c8c8c",
-                  "margin": "md",
-                  "flex": 0
-                }}
-              ]
-            }},
-            {{
+            "body": {{
               "type": "box",
               "layout": "vertical",
               "contents": [
                 {{
-                  "type": "box",
-                  "layout": "baseline",
-                  "spacing": "sm",
-                  "contents": [
-                    {{
-                      "type": "text",
-                      "text": "東京旅行",
-                      "wrap": true,
-                      "color": "#8c8c8c",
-                      "size": "xs",
-                      "flex": 5
-                    }}
-                  ]
+                  "type": "text",
+                  "text": "Brown Cafe",
+                  "weight": "bold",
+                  "size": "md",
+                  "wrap": true
+                }},
+                {{
+                  "type": "button",
+                  "action": {{
+                    "type": "postback",
+                    "label": "更多資訊",
+                    "data": "山的名稱",
+                    "displayText": "請給我更多山的資訊"
+                  }},
+                  "margin": "xs",
+                  "height": "sm",
+                  "style": "link",
+                  "gravity": "center"
                 }}
-              ]
+              ],
+              "spacing": "xs",
+              "paddingAll": "13px",
+              "position": "relative"
             }}
-          ],
-          "spacing": "sm",
-          "paddingAll": "13px"
-        }}
-      }}"""
+          }}
+        ]
+      }}
+      """
         
     bubble_string = f"""
     {{
