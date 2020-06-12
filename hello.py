@@ -272,6 +272,7 @@ def handle_post_message(event):
   elif receive in area_list:
     print("cafe cafe cafe")
     select_list = select_area(receive)
+    all_bubbles = []
     for _ in select_list:
       bubble1 = f"""{{
         "type": "bubble",
@@ -308,15 +309,12 @@ def handle_post_message(event):
             "paddingAll": "13px"
           }}
         }}"""
-        
+      all_bubbles.append(bubble1)
+
     bubble_string = f"""
     {{
       "type": "carousel",
-      "contents": [
-        {bubble1},
-        {bubble1},
-        {bubble1}
-      ]
+      "contents": {all_bubbles}
     }}
     """
     message = FlexSendMessage(
