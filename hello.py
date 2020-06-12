@@ -175,7 +175,6 @@ def handle_post_message(event):
         ]
       }}
       """
-        
     bubble_string = f"""
     {{
       "type": "carousel",
