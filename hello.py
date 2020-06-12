@@ -152,20 +152,6 @@ def handle_post_message(event):
             }},
             {{
               "type": "box",
-              "layout": "baseline",
-              "contents": [
-                {{
-                  "type": "text",
-                  "text": "資訊",
-                  "size": "xs",
-                  "color": "#8c8c8c",
-                  "margin": "md",
-                  "flex": 0
-                }}
-              ]
-            }},
-            {{
-              "type": "box",
               "layout": "vertical",
               "contents": [
                 {{
