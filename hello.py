@@ -146,7 +146,7 @@ def handle_post_message(event):
             layout='vertical',
             contents=[
                 # title
-                TextComponent(text=get_mountain_name(search), weight='bold', size='xl'),
+                TextComponent(text=get_mountain_name(receive), weight='bold', size='xl'),
                 # review
                 BoxComponent(
                     layout='baseline',
@@ -172,7 +172,7 @@ def handle_post_message(event):
                                     flex=1
                                 ),
                                 TextComponent(
-                                    text=get_mountain(search)[2],
+                                    text=get_mountain(receive)[2],
                                     wrap=True,
                                     color='#666666',
                                     size='sm',
@@ -191,7 +191,7 @@ def handle_post_message(event):
                                     flex=1
                                 ),
                                 TextComponent(
-                                    text=get_mountain(search)[3][3:],
+                                    text=get_mountain(receive)[3][3:],
                                     wrap=True,
                                     color='#666666',
                                     size='sm',
@@ -210,7 +210,7 @@ def handle_post_message(event):
                                     flex=1
                                 ),
                                 TextComponent(
-                                    text=get_mountain(search)[4],
+                                    text=get_mountain(receive)[4],
                                     wrap=True,
                                     color='#666666',
                                     size='sm',
@@ -229,7 +229,7 @@ def handle_post_message(event):
                                     flex=1
                                 ),
                                 TextComponent(
-                                    text=get_mountain(search)[5],
+                                    text=get_mountain(receive)[5],
                                     wrap=True,
                                     color='#666666',
                                     size='sm',
