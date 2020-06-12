@@ -151,31 +151,19 @@ def handle_post_message(event):
               "wrap": true
             }},
             {{
-              "type": "box",
-              "layout": "vertical",
-              "contents": [
-                {{
-                  "type": "box",
-                  "layout": "baseline",
-                  "spacing": "sm",
-                  "contents": [
-                    {{
-                      "type": "text",
-                      "text": "東京旅行",
-                      "wrap": true,
-                      "color": "#8c8c8c",
-                      "size": "xs",
-                      "flex": 5
-                    }}
-                  ]
-                }}
-              ]
+              "type": "button",
+              "action": {{
+              "type": "postback",
+              "label": "更多資訊",
+              "data": "山的名稱",
+              "displayText": "即將顯示更多資訊"
+              }}
             }}
-          ],
-          "spacing": "sm",
-          "paddingAll": "13px"
-        }}
-      }}"""
+            ],
+            "spacing": "sm",
+            "paddingAll": "13px"
+          }}
+        }}"""
         
     bubble_string = f"""
     {{
