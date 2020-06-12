@@ -315,10 +315,7 @@ def handle_post_message(event):
     bubble_string = f"""
     {{
       "type": "carousel",
-      "contents": [
-        {bubble1},
-        {bubble1}
-      ]
+      "contents": {all_bubbles}
     }}
     """
     message = FlexSendMessage(
