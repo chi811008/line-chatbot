@@ -125,9 +125,153 @@ def callback():
 def handle_post_message(event):
   print("event =", event)
   area_list = ["北部", "中部", "南部", "東部", "外島", "香港", "西班牙"]
-  if event.postback.data in area_list:
+  receive = event.postback.data
+  if get_mountain_name(receive):
+    print("get_mountain")
+    picture_url = get_mountain_picture(receive)
+    bubble = BubbleContainer(
+        direction='ltr',
+        hero=ImageComponent(
+            url=picture_url,
+            size='full',
+            aspect_ratio='20:13',
+            aspect_mode='cover',
+            action=PostbackTemplateAction(
+                    label='山的圖片',
+                    text=None,
+                    data="pic" + picture_url
+                )
+        ),
+        body=BoxComponent(
+            layout='vertical',
+            contents=[
+                # title
+                TextComponent(text=get_mountain_name(search), weight='bold', size='xl'),
+                # review
+                BoxComponent(
+                    layout='baseline',
+                    margin='md',
+                    contents=[
+                        TextComponent(text="資訊", size='sm', weight='bold')
+                    ]
+                ),
+                # info
+                BoxComponent(
+                    layout='vertical',
+                    margin='lg',
+                    spacing='sm',
+                    contents=[
+                        BoxComponent(
+                            layout='baseline',
+                            spacing='sm',
+                            contents=[
+                                TextComponent(
+                                    text='區域',
+                                    color='#aaaaaa',
+                                    size='sm',
+                                    flex=1
+                                ),
+                                TextComponent(
+                                    text=get_mountain(search)[2],
+                                    wrap=True,
+                                    color='#666666',
+                                    size='sm',
+                                    flex=5
+                                )
+                            ],
+                        ),
+                        BoxComponent(
+                            layout='baseline',
+                            spacing='sm',
+                            contents=[
+                                TextComponent(
+                                    text='難度',
+                                    color='#aaaaaa',
+                                    size='sm',
+                                    flex=1
+                                ),
+                                TextComponent(
+                                    text=get_mountain(search)[3][3:],
+                                    wrap=True,
+                                    color='#666666',
+                                    size='sm',
+                                    flex=5,
+                                ),
+                            ],
+                        ),
+                        BoxComponent(
+                            layout='baseline',
+                            spacing='sm',
+                            contents=[
+                                TextComponent(
+                                    text="距離",
+                                    color='#aaaaaa',
+                                    size='sm',
+                                    flex=1
+                                ),
+                                TextComponent(
+                                    text=get_mountain(search)[4],
+                                    wrap=True,
+                                    color='#666666',
+                                    size='sm',
+                                    flex=5,
+                                ),
+                            ],
+                        ),
+                        BoxComponent(
+                            layout='baseline',
+                            spacing='sm',
+                            contents=[
+                                TextComponent(
+                                    text="時間",
+                                    color='#aaaaaa',
+                                    size='sm',
+                                    flex=1
+                                ),
+                                TextComponent(
+                                    text=get_mountain(search)[5],
+                                    wrap=True,
+                                    color='#666666',
+                                    size='sm',
+                                    flex=5,
+                                ),
+                            ],
+                        ),
+                    ],
+                )
+            ],
+        ),
+        # footer=BoxComponent(
+        #     layout='vertical',
+        #     spacing='sm',
+        #     contents=[
+        #         # callAction, separator, websiteAction
+        #         SpacerComponent(size='sm'),
+        #         # callAction
+        #         ButtonComponent(
+        #             style='link',
+        #             height='sm',
+        #             action=URIAction(label='CALL', uri='tel:000000'),
+        #         ),
+        #         # separator
+        #         SeparatorComponent(),
+        #         # websiteAction
+        #         ButtonComponent(
+        #             style='link',
+        #             height='sm',
+        #             action=URIAction(label='WEBSITE', uri="https://example.com")
+        #         )
+        #     ]
+        # ),
+    )
+    message = FlexSendMessage(alt_text="山的資訊", contents=bubble)
+    line_bot_api.reply_message(
+        event.reply_token,
+        message
+    )
+  elif receive in area_list:
     print("cafe cafe cafe")
-    select_list = select_area(event.postback.data)
+    select_list = select_area(receive)
     for _ in select_list:
       bubble1 = f"""{{
         "type": "bubble",
@@ -155,8 +299,8 @@ def handle_post_message(event):
               "action": {{
               "type": "postback",
               "label": "更多資訊",
-              "data": "山的名稱",
-              "displayText": "即將顯示更多資訊"
+              "data": "{get_mountain_name(_)}",
+              "displayText": "{get_mountain_name(_)}"
               }}
             }}
             ],
