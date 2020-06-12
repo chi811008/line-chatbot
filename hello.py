@@ -310,7 +310,7 @@ def handle_post_message(event):
           }}
         }}"""
       all_bubbles.append(bubble1)
-
+    print(all_bubbles)
     bubble_string = f"""
     {{
       "type": "carousel",
@@ -318,7 +318,7 @@ def handle_post_message(event):
     }}
     """
     message = FlexSendMessage(
-      alt_text="cafe", contents=json.loads(bubble_string)
+      alt_text="地區篩選", contents=json.loads(bubble_string)
       )
     line_bot_api.reply_message(
       event.reply_token,
