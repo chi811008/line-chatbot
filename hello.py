@@ -293,7 +293,7 @@ def handle_post_message(event):
               "text": "{get_mountain_name(_)}",
               "weight": "bold",
               "size": "sm",
-              "wrap": true
+              "wrap": True
             },
             {
               "type": "button",
@@ -310,20 +310,19 @@ def handle_post_message(event):
           }
         }
 
-      all_bubbles.append(json.loads(bubble1))
     print(all_bubbles)
 
-    bubble_string = f"""
-    {{
+    bubble_string = 
+    {
       "type": "carousel",
       "contents": [
-        "{bubble1}",
-        "{bubble1}"
+        bubble1,
+        bubble1
       ]
-    }}
-    """
+    }
+
     message = FlexSendMessage(
-      alt_text="地區篩選", contents=json.loads(bubble_string)
+      alt_text="地區篩選", contents=bubble_string
       )
     line_bot_api.reply_message(
       event.reply_token,
