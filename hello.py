@@ -311,10 +311,12 @@ def handle_post_message(event):
         }
       }
       bubble["hero"]["url"] = get_mountain_picture(_)
-      bubble["body"]["contents"][0]["text"] = get_mountain_name(_)
-      bubble["body"]["contents"][1]["action"]["data"] = get_mountain_name(_)
-      bubble["body"]["contents"][1]["action"]["displayText"] = get_mountain_name(_)
+      get_name = get_mountain_name(_)
+      bubble["body"]["contents"][0]["text"] = get_name
+      bubble["body"]["contents"][1]["action"]["data"] = get_name
+      bubble["body"]["contents"][1]["action"]["displayText"] = get_name
       all_bubbles.append(bubble)
+      print(get_name)
     bubble_string = {
       "type": "carousel",
         "contents": all_bubbles
