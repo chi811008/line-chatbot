@@ -309,16 +309,13 @@ def handle_post_message(event):
             "paddingAll": "13px"
           }}
         }}"""
-      all_bubbles.append(bubble1)
+      all_bubbles.append(json.loads(bubble1))
     print(all_bubbles)
 
     bubble_string = f"""
     {{
       "type": "carousel",
-      "contents": [
-        {bubble1},
-        {bubble1}
-        ]
+      "contents": {all_bubbles}
     }}
     """
     message = FlexSendMessage(
