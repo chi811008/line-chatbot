@@ -563,7 +563,7 @@ def search_info(event):
             "action": {
               "type": "postback",
               "label": "低",
-              "data": "低"
+              "data": "0"
             },
             "height": "sm"
           },
@@ -572,7 +572,7 @@ def search_info(event):
             "action": {
               "type": "postback",
               "label": "低-中",
-              "data": "低-中"
+              "data": "1"
             },
             "height": "sm"
           },
@@ -581,7 +581,7 @@ def search_info(event):
             "action": {
               "type": "postback",
               "label": "中",
-              "data": "中"
+              "data": "2"
             },
             "height": "sm"
           },
@@ -590,7 +590,7 @@ def search_info(event):
             "action": {
               "type": "postback",
               "label": "中-高",
-              "data": "中-高"
+              "data": "3"
             },
             "height": "md"
           },
@@ -599,7 +599,7 @@ def search_info(event):
             "action": {
               "type": "postback",
               "label": "高",
-              "data": "高"
+              "data": "4"
             },
             "height": "md"
           }
