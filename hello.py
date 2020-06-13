@@ -293,7 +293,7 @@ def handle_post_message(event):
               "text": "Brown Cafe",
               "weight": "bold",
               "size": "lg",
-              "wrap": true,
+              "wrap": True,
               "contents": []
             },
             {
