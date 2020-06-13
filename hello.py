@@ -312,8 +312,8 @@ def handle_post_message(event):
       }
       bubble["hero"]["url"] = get_mountain_picture(_)
       bubble["body"]["contents"][0]["text"] = get_mountain_name(_)
-      bubble["body"]["contents"][1]["data"] = get_mountain_name(_)
-      bubble["body"]["contents"][1]["displayText"] = get_mountain_name(_)
+      bubble["body"]["contents"][1]["action"]["data"] = get_mountain_name(_)
+      bubble["body"]["contents"][1]["action"]["displayText"] = get_mountain_name(_)
       all_bubbles.append(bubble)
     bubble_string = {
       "type": "carousel",
