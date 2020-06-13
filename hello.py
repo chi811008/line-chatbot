@@ -345,8 +345,8 @@ def handle_post_message(event):
       event.reply_token,
       message
       )
-  elif receive in difficulty_list:
-    select_list = select_difficulty(receive)
+  elif receive[:3] == "dif":
+    select_list = select_difficulty(receive[3])
     all_bubbles = []
     for _ in select_list:
       bubble = {
@@ -563,7 +563,7 @@ def search_info(event):
             "action": {
               "type": "postback",
               "label": "低",
-              "data": "0"
+              "data": "dif0"
             },
             "height": "sm"
           },
@@ -572,7 +572,7 @@ def search_info(event):
             "action": {
               "type": "postback",
               "label": "低-中",
-              "data": "1"
+              "data": "dif1"
             },
             "height": "sm"
           },
@@ -581,7 +581,7 @@ def search_info(event):
             "action": {
               "type": "postback",
               "label": "中",
-              "data": "2"
+              "data": "dif2"
             },
             "height": "sm"
           },
@@ -590,7 +590,7 @@ def search_info(event):
             "action": {
               "type": "postback",
               "label": "中-高",
-              "data": "3"
+              "data": "dif3"
             },
             "height": "md"
           },
@@ -599,7 +599,7 @@ def search_info(event):
             "action": {
               "type": "postback",
               "label": "高",
-              "data": "4"
+              "data": "dif4"
             },
             "height": "md"
           }
