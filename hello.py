@@ -317,8 +317,8 @@ def handle_post_message(event):
     {{
       "type": "carousel",
       "contents": [
-        {bubble1},
-        {bubble1}
+        "{bubble1}",
+        "{bubble1}"
       ]
     }}
     """
