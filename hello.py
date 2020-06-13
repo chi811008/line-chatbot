@@ -90,6 +90,22 @@ def select_area(input_area):
       
   return select
 
+def select_difficulty(input_difficulty):
+  cursor = get_database_connection()
+
+  postgres_select_query = f"""SELECT mountain_name FROM mountain WHERE difficulty_int = '{input_difficulty}' LIMIT 10 """
+
+  cursor.execute(postgres_select_query)
+  ans = cursor.fetchall()
+  select = []
+  if ans:
+    for _ in ans:
+      select.append(_[0])
+  else:
+      return "很抱歉，沒有符合的資料"
+      
+  return select
+
 
 
 
@@ -125,6 +141,7 @@ def callback():
 def handle_post_message(event):
   print("event =", event)
   area_list = ["北部", "中部", "南部", "東部", "外島", "香港", "西班牙"]
+  difficulty_list = ["0", "1", "2", "3", "4"]
   receive = event.postback.data
   if get_mountain_name(receive):
     print("get_mountain")
@@ -270,7 +287,7 @@ def handle_post_message(event):
         message
     )
   elif receive in area_list:
-    print("cafe cafe cafe")
+    print("area_north_east_west_south")
     select_list = select_area(receive)
     all_bubbles = []
     for _ in select_list:
@@ -323,6 +340,64 @@ def handle_post_message(event):
     }
     message = FlexSendMessage(
       alt_text="地區篩選", contents=bubble_string
+      )
+    line_bot_api.reply_message(
+      event.reply_token,
+      message
+      )
+  elif receive in difficulty_list:
+    select_list = select_difficulty(receive)
+    all_bubbles = []
+    for _ in select_list:
+      bubble = {
+        "type": "bubble",
+        "size": "micro",
+        "hero": {
+          "type": "image",
+          "url": "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip10.jpg",
+          "size": "full",
+          "aspectMode": "cover",
+          "aspectRatio": "320:213"
+        },
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "text",
+              "text": "Brown Cafe",
+              "weight": "bold",
+              "size": "lg",
+              "wrap": True,
+              "contents": []
+            },
+            {
+              "type": "button",
+              "action": {
+                "type": "postback",
+                "label": "更多資訊",
+                "data": "山的名稱",
+                "displayText": "即將顯示更多資訊"
+              }
+            }
+          ],
+          "spacing": "sm",
+          "paddingAll": "13px"
+        }
+      }
+      bubble["hero"]["url"] = get_mountain_picture(_)
+      get_name = get_mountain_name(_)
+      bubble["body"]["contents"][0]["text"] = get_name
+      bubble["body"]["contents"][1]["action"]["data"] = get_name
+      bubble["body"]["contents"][1]["action"]["displayText"] = get_name
+      all_bubbles.append(bubble)
+      print(get_name)
+    bubble_string = {
+      "type": "carousel",
+        "contents": all_bubbles
+    }
+    message = FlexSendMessage(
+      alt_text="難度篩選", contents=bubble_string
       )
     line_bot_api.reply_message(
       event.reply_token,
