@@ -273,48 +273,52 @@ def handle_post_message(event):
     print("cafe cafe cafe")
     select_list = select_area(receive)
     all_bubbles = []
+    for _ in select_list:
+      bubble = {
+        "type": "bubble",
+        "size": "micro",
+        "hero": {
+          "type": "image",
+          "url": "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip10.jpg",
+          "size": "full",
+          "aspectMode": "cover",
+          "aspectRatio": "320:213"
+        },
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "text",
+              "text": "Brown Cafe",
+              "weight": "bold",
+              "size": "lg",
+              "wrap": true,
+              "contents": []
+            },
+            {
+              "type": "button",
+              "action": {
+                "type": "postback",
+                "label": "更多資訊",
+                "data": "山的名稱",
+                "displayText": "即將顯示更多資訊"
+              }
+            }
+          ],
+          "spacing": "sm",
+          "paddingAll": "13px"
+        }
+      }
+      bubble["hero"]["url"] = get_mountain_picture(_)
+      bubble["body"]["contents"][0]["text"] = get_mountain_name(_)
+      all_bubbles.append(bubble)
     bubble_string = {
       "type": "carousel",
-      "contents": [
-        {
-          "type": "bubble",
-          "size": "micro",
-          "hero": {
-            "type": "image",
-            "url": "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip10.jpg",
-            "size": "full",
-            "aspectMode": "cover",
-            "aspectRatio": "320:213"
-          },
-          "body": {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "text",
-                "text": "Brown Cafe",
-                "weight": "bold",
-                "size": "lg",
-                "wrap": True,
-                "contents": []
-              },
-              {
-                "type": "button",
-                "action": {
-                  "type": "postback",
-                  "label": "更多資訊",
-                  "data": "山的名稱",
-                  "displayText": "即將顯示更多資訊"
-                }
-              }
-            ],
-            "spacing": "sm",
-            "paddingAll": "13px"
-          }
-        }
-      ]
+        "contents": [
+          bubble
+        ]
     }
-
     message = FlexSendMessage(
       alt_text="地區篩選", contents=bubble_string
       )
