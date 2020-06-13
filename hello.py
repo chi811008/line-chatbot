@@ -274,49 +274,52 @@ def handle_post_message(event):
     select_list = select_area(receive)
     all_bubbles = []
     for _ in select_list:
-      bubble1 = f"""{{
+      bubble1 = {
         "type": "bubble",
         "size": "micro",
-        "hero": {{
+        "hero": {
           "type": "image",
           "url": "{get_mountain_picture(_)}",
           "size": "full",
           "aspectMode": "cover",
           "aspectRatio": "320:213"
-        }},
-        "body": {{
+        },
+        "body": {
           "type": "box",
           "layout": "vertical",
           "contents": [
-            {{
+            {
               "type": "text",
               "text": "{get_mountain_name(_)}",
               "weight": "bold",
               "size": "sm",
               "wrap": true
-            }},
-            {{
+            },
+            {
               "type": "button",
-              "action": {{
+              "action": {
               "type": "postback",
               "label": "更多資訊",
               "data": "{get_mountain_name(_)}",
               "displayText": "{get_mountain_name(_)}"
-              }}
-            }}
+              }
+            }
             ],
             "spacing": "sm",
             "paddingAll": "13px"
-          }}
-        }}"""
+          }
+        }
+
       all_bubbles.append(json.loads(bubble1))
     print(all_bubbles)
-    all_bubbles = all_bubbles.replace('\'','\"')
-    
+
     bubble_string = f"""
     {{
       "type": "carousel",
-      "contents": {all_bubbles}
+      "contents": [
+        {bubble1},
+        {bubble1}
+      ]
     }}
     """
     message = FlexSendMessage(
