@@ -311,7 +311,8 @@ def handle_post_message(event):
         }}"""
       all_bubbles.append(json.loads(bubble1))
     print(all_bubbles)
-
+    all_bubbles = all_bubbles.replace('\'','\"')
+    
     bubble_string = f"""
     {{
       "type": "carousel",
