@@ -106,6 +106,30 @@ def select_difficulty(input_difficulty):
       
   return select
 
+def select_time(input_time):
+  cursor = get_database_connection()
+
+  if input_time == "0":
+    postgres_select_query = f"""SELECT mountain_name FROM mountain WHERE time_int < 180 LIMIT 10 """
+  elif input_time == "1":
+    postgres_select_query = f"""SELECT mountain_name FROM mountain WHERE time_int < 360 and time_int >= 180 LIMIT 10 """
+  elif input_time == "2":
+    postgres_select_query = f"""SELECT mountain_name FROM mountain WHERE time_int < 720 and time_int >= 360 LIMIT 10 """
+  elif input_time == "3":
+    postgres_select_query = f"""SELECT mountain_name FROM mountain WHERE time_int < 2880 and time_int >= 720 LIMIT 10 """
+  elif input_time == "4":
+    postgres_select_query = f"""SELECT mountain_name FROM mountain WHERE time_int >= 2880 LIMIT 10 """
+
+  cursor.execute(postgres_select_query)
+  ans = cursor.fetchall()
+  select = []
+  if ans:
+    for _ in ans:
+      select.append(_[0])
+  else:
+      return "很抱歉，沒有符合的資料"
+      
+  return select
 
 
 
@@ -403,6 +427,66 @@ def handle_post_message(event):
       event.reply_token,
       message
       )
+
+  elif receive[:3] == "tim":
+    select_list = select_time(receive[3])
+    all_bubbles = []
+    for _ in select_list:
+      bubble = {
+        "type": "bubble",
+        "size": "micro",
+        "hero": {
+          "type": "image",
+          "url": "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip10.jpg",
+          "size": "full",
+          "aspectMode": "cover",
+          "aspectRatio": "320:213"
+        },
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "text",
+              "text": "Brown Cafe",
+              "weight": "bold",
+              "size": "lg",
+              "wrap": True,
+              "contents": []
+            },
+            {
+              "type": "button",
+              "action": {
+                "type": "postback",
+                "label": "更多資訊",
+                "data": "山的名稱",
+                "displayText": "即將顯示更多資訊"
+              }
+            }
+          ],
+          "spacing": "sm",
+          "paddingAll": "13px"
+        }
+      }
+      bubble["hero"]["url"] = get_mountain_picture(_)
+      get_name = get_mountain_name(_)
+      bubble["body"]["contents"][0]["text"] = get_name
+      bubble["body"]["contents"][1]["action"]["data"] = get_name
+      bubble["body"]["contents"][1]["action"]["displayText"] = get_name
+      all_bubbles.append(bubble)
+      print(get_name)
+    bubble_string = {
+      "type": "carousel",
+        "contents": all_bubbles
+    }
+    message = FlexSendMessage(
+      alt_text="難度篩選", contents=bubble_string
+      )
+    line_bot_api.reply_message(
+      event.reply_token,
+      message
+      )
+
   else:
     print("enter_pic")
     cmd, seq = event.postback.data[:3], event.postback.data[3:]
@@ -657,7 +741,7 @@ def search_info(event):
             "action": {
               "type": "postback",
               "label": "3小時內",
-              "data": "3小時內"
+              "data": "tim0"
             },
             "height": "sm"
           },
@@ -666,7 +750,7 @@ def search_info(event):
             "action": {
               "type": "postback",
               "label": "3-6小時",
-              "data": "3-6小時"
+              "data": "tim1"
             },
             "height": "sm"
           },
@@ -675,7 +759,7 @@ def search_info(event):
             "action": {
               "type": "postback",
               "label": "6小時-12小時",
-              "data": "6小時-12小時"
+              "data": "tim2"
             },
             "height": "sm"
           },
@@ -684,7 +768,7 @@ def search_info(event):
             "action": {
               "type": "postback",
               "label": "12小時-兩天",
-              "data": "12小時-兩天"
+              "data": "tim3"
             },
             "height": "sm"
           },
@@ -693,7 +777,7 @@ def search_info(event):
             "action": {
               "type": "postback",
               "label": "兩天以上",
-              "data": "兩天以上"
+              "data": "tim4"
             },
             "height": "sm"
           }
