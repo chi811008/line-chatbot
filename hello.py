@@ -315,9 +315,7 @@ def handle_post_message(event):
       all_bubbles.append(bubble)
     bubble_string = {
       "type": "carousel",
-        "contents": [
-          bubble
-        ]
+        "contents": all_bubbles
     }
     message = FlexSendMessage(
       alt_text="地區篩選", contents=bubble_string
