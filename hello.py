@@ -165,7 +165,6 @@ def callback():
 def handle_post_message(event):
   print("event =", event)
   area_list = ["北部", "中部", "南部", "東部", "外島", "香港", "西班牙"]
-  difficulty_list = ["0", "1", "2", "3", "4"]
   receive = event.postback.data
   if get_mountain_name(receive):
     print("get_mountain")
@@ -486,7 +485,13 @@ def handle_post_message(event):
       event.reply_token,
       message
       )
-
+  elif receive == "很抱歉，沒有符合的資料":
+    line_bot_api.reply_message(
+      event.reply_token,
+      TextSendMessage(
+        text=receive
+      )
+    )
   else:
     print("enter_pic")
     cmd, seq = event.postback.data[:3], event.postback.data[3:]
