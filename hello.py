@@ -77,7 +77,7 @@ def get_mountain_picture(mountain):
 def select_area(input_area):
   cursor = get_database_connection()
 
-  postgres_select_query = f"""SELECT mountain_name FROM mountain WHERE area = '{input_area}' """
+  postgres_select_query = f"""SELECT mountain_name FROM mountain WHERE area = '{input_area}' LIMIT 10 """
 
   cursor.execute(postgres_select_query)
   ans = cursor.fetchall()
@@ -93,7 +93,7 @@ def select_area(input_area):
 def select_difficulty(input_difficulty):
   cursor = get_database_connection()
 
-  postgres_select_query = f"""SELECT mountain_name FROM mountain WHERE difficulty_int = '{input_difficulty}' """
+  postgres_select_query = f"""SELECT mountain_name FROM mountain WHERE difficulty_int = '{input_difficulty}' LIMIT 10 """
 
   cursor.execute(postgres_select_query)
   ans = cursor.fetchall()
@@ -110,15 +110,15 @@ def select_time(input_time):
   cursor = get_database_connection()
 
   if input_time == "0":
-    postgres_select_query = f"""SELECT mountain_name FROM mountain WHERE time_int < 180 """
+    postgres_select_query = f"""SELECT mountain_name FROM mountain WHERE time_int < 180 LIMIT 10 """
   elif input_time == "1":
-    postgres_select_query = f"""SELECT mountain_name FROM mountain WHERE time_int < 360 and time_int >= 180 """
+    postgres_select_query = f"""SELECT mountain_name FROM mountain WHERE time_int < 360 and time_int >= 180 LIMIT 10 """
   elif input_time == "2":
-    postgres_select_query = f"""SELECT mountain_name FROM mountain WHERE time_int < 720 and time_int >= 360 """
+    postgres_select_query = f"""SELECT mountain_name FROM mountain WHERE time_int < 720 and time_int >= 360 LIMIT 10 """
   elif input_time == "3":
-    postgres_select_query = f"""SELECT mountain_name FROM mountain WHERE time_int < 2880 and time_int >= 720 """
+    postgres_select_query = f"""SELECT mountain_name FROM mountain WHERE time_int < 2880 and time_int >= 720 LIMIT 10 """
   elif input_time == "4":
-    postgres_select_query = f"""SELECT mountain_name FROM mountain WHERE time_int >= 2880 """
+    postgres_select_query = f"""SELECT mountain_name FROM mountain WHERE time_int >= 2880 LIMIT 10 """
 
   cursor.execute(postgres_select_query)
   ans = cursor.fetchall()
