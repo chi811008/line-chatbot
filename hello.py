@@ -85,10 +85,10 @@ def select_area(input_area):
   if ans:
     for _ in ans:
       select.append(_[0])
+    return select
   else:
       return "很抱歉，沒有符合的資料"
       
-  return select
 
 def select_difficulty(input_difficulty):
   cursor = get_database_connection()
@@ -101,10 +101,10 @@ def select_difficulty(input_difficulty):
   if ans:
     for _ in ans:
       select.append(_[0])
+    return select
   else:
       return "很抱歉，沒有符合的資料"
       
-  return select
 
 def select_time(input_time):
   cursor = get_database_connection()
@@ -126,10 +126,10 @@ def select_time(input_time):
   if ans:
     for _ in ans:
       select.append(_[0])
+    return select
   else:
       return "很抱歉，沒有符合的資料"
       
-  return select
 
 
 
