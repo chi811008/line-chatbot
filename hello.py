@@ -800,6 +800,10 @@ def search_info(event):
         bubble["hero"]["action"]["data"] = "pic" + picture_url
         bubble["body"]["contents"][0]["text"] = get_mountain_name(search)
         bubble["body"]["contents"][2]["contents"][0]["contents"][1]["text"] = get_mountain(search)[2]
+        bubble["body"]["contents"][2]["contents"][1]["contents"][1]["text"] = get_mountain(search)[3][3:]
+        bubble["body"]["contents"][2]["contents"][2]["contents"][1]["text"] = get_mountain(search)[4]
+        bubble["body"]["contents"][2]["contents"][3]["contents"][1]["text"] = get_mountain(search)[5]
+
 
         # bubble = BubbleContainer(
         #     direction='ltr',
