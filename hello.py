@@ -643,8 +643,8 @@ def search_info(event):
           }
         ]
       }
-      area_pic_url = "https://images.unsplash.com/photo-1565073182887-6bcefbe225b1?ixlib=rb-1.2.1&w=1000&q=80"
-      difficulity_pic_url = "https://cdn.pixabay.com/photo/2017/02/01/22/02/mountain-landscape-2031539_960_720.jpg"
+      area_pic_url = "https://imagizer.imageshack.com/img922/3953/FFDfl6.jpg"
+      difficulity_pic_url = "https://imagizer.imageshack.com/img924/6579/iRTZcj.jpg"
       time_pic_url = "https://imagizer.imageshack.com/img923/7386/5tG2SO.jpg"
       bubble_string["contents"][0]["hero"]["url"] = area_pic_url
       bubble_string["contents"][1]["hero"]["url"] = difficulity_pic_url
@@ -796,7 +796,7 @@ def search_info(event):
             ]
           }
         }
-        
+        bubble["hero"]["url"] = picture_url
         # bubble = BubbleContainer(
         #     direction='ltr',
         #     hero=ImageComponent(
