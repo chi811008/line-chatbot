@@ -661,119 +661,254 @@ def search_info(event):
     elif get_mountain_name(search):
         print("get_mountain")
         picture_url = get_mountain_picture(search)
+        bubble = {
+          "type": "bubble",
+          "hero": {
+            "type": "image",
+            "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
+            "size": "full",
+            "aspectRatio": "20:13",
+            "aspectMode": "cover",
+            "action": {
+              "type": "postback",
+              "label": "action",
+              "data": "pic"
+            }
+          },
+          "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "山的名稱",
+                "weight": "bold",
+                "size": "xl"
+              },
+              {
+                "type": "box",
+                "layout": "baseline",
+                "margin": "md",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "資訊",
+                    "size": "sm",
+                    "margin": "md",
+                    "flex": 0,
+                    "weight": "bold"
+                  }
+                ]
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "margin": "lg",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "box",
+                    "layout": "baseline",
+                    "spacing": "sm",
+                    "contents": [
+                      {
+                        "type": "text",
+                        "text": "區域",
+                        "color": "#aaaaaa",
+                        "size": "sm",
+                        "flex": 1
+                      },
+                      {
+                        "type": "text",
+                        "text": "所在地",
+                        "wrap": True,
+                        "color": "#666666",
+                        "size": "sm",
+                        "flex": 5
+                      }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "layout": "baseline",
+                    "spacing": "sm",
+                    "contents": [
+                      {
+                        "type": "text",
+                        "text": "難度",
+                        "color": "#aaaaaa",
+                        "size": "sm",
+                        "flex": 1
+                      },
+                      {
+                        "type": "text",
+                        "text": "難度等級",
+                        "wrap": True,
+                        "color": "#666666",
+                        "size": "sm",
+                        "flex": 5
+                      }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "layout": "baseline",
+                    "contents": [
+                      {
+                        "type": "text",
+                        "text": "距離",
+                        "flex": 1,
+                        "size": "sm",
+                        "color": "#aaaaaa"
+                      },
+                      {
+                        "type": "text",
+                        "text": "公里數",
+                        "wrap": True,
+                        "flex": 5,
+                        "size": "sm",
+                        "color": "#666666"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "layout": "baseline",
+                    "contents": [
+                      {
+                        "type": "text",
+                        "text": "時間",
+                        "size": "sm",
+                        "color": "#aaaaaa"
+                      },
+                      {
+                        "type": "text",
+                        "text": "分鐘小時",
+                        "wrap": True,
+                        "flex": 5,
+                        "color": "#666666",
+                        "size": "sm"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
         
-        bubble = BubbleContainer(
-            direction='ltr',
-            hero=ImageComponent(
-                url=picture_url,
-                size='full',
-                aspect_ratio='20:13',
-                aspect_mode='cover',
-                action=PostbackTemplateAction(
-                        label='山的圖片',
-                        text=None,
-                        data="pic" + picture_url
-                    )
-            ),
-            body=BoxComponent(
-                layout='vertical',
-                contents=[
-                    # title
-                    TextComponent(text=get_mountain_name(search), weight='bold', size='xl'),
-                    # review
-                    BoxComponent(
-                        layout='baseline',
-                        margin='md',
-                        contents=[
-                            TextComponent(text="資訊", size='sm', weight='bold')
-                        ]
-                    ),
-                    # info
-                    BoxComponent(
-                        layout='vertical',
-                        margin='lg',
-                        spacing='sm',
-                        contents=[
-                            BoxComponent(
-                                layout='baseline',
-                                spacing='sm',
-                                contents=[
-                                    TextComponent(
-                                        text='區域',
-                                        color='#aaaaaa',
-                                        size='sm',
-                                        flex=1
-                                    ),
-                                    TextComponent(
-                                        text=get_mountain(search)[2],
-                                        wrap=True,
-                                        color='#666666',
-                                        size='sm',
-                                        flex=5
-                                    )
-                                ],
-                            ),
-                            BoxComponent(
-                                layout='baseline',
-                                spacing='sm',
-                                contents=[
-                                    TextComponent(
-                                        text='難度',
-                                        color='#aaaaaa',
-                                        size='sm',
-                                        flex=1
-                                    ),
-                                    TextComponent(
-                                        text=get_mountain(search)[3][3:],
-                                        wrap=True,
-                                        color='#666666',
-                                        size='sm',
-                                        flex=5,
-                                    ),
-                                ],
-                            ),
-                            BoxComponent(
-                                layout='baseline',
-                                spacing='sm',
-                                contents=[
-                                    TextComponent(
-                                        text="距離",
-                                        color='#aaaaaa',
-                                        size='sm',
-                                        flex=1
-                                    ),
-                                    TextComponent(
-                                        text=get_mountain(search)[4],
-                                        wrap=True,
-                                        color='#666666',
-                                        size='sm',
-                                        flex=5,
-                                    ),
-                                ],
-                            ),
-                            BoxComponent(
-                                layout='baseline',
-                                spacing='sm',
-                                contents=[
-                                    TextComponent(
-                                        text="時間",
-                                        color='#aaaaaa',
-                                        size='sm',
-                                        flex=1
-                                    ),
-                                    TextComponent(
-                                        text=get_mountain(search)[5],
-                                        wrap=True,
-                                        color='#666666',
-                                        size='sm',
-                                        flex=5,
-                                    ),
-                                ],
-                            ),
-                        ],
-                    )
-                ],
-            ),
+        # bubble = BubbleContainer(
+        #     direction='ltr',
+        #     hero=ImageComponent(
+        #         url=picture_url,
+        #         size='full',
+        #         aspect_ratio='20:13',
+        #         aspect_mode='cover',
+        #         action=PostbackTemplateAction(
+        #                 label='山的圖片',
+        #                 text=None,
+        #                 data="pic" + picture_url
+        #             )
+        #     ),
+        #     body=BoxComponent(
+        #         layout='vertical',
+        #         contents=[
+        #             # title
+        #             TextComponent(text=get_mountain_name(search), weight='bold', size='xl'),
+        #             # review
+        #             BoxComponent(
+        #                 layout='baseline',
+        #                 margin='md',
+        #                 contents=[
+        #                     TextComponent(text="資訊", size='sm', weight='bold')
+        #                 ]
+        #             ),
+        #             # info
+        #             BoxComponent(
+        #                 layout='vertical',
+        #                 margin='lg',
+        #                 spacing='sm',
+        #                 contents=[
+        #                     BoxComponent(
+        #                         layout='baseline',
+        #                         spacing='sm',
+        #                         contents=[
+        #                             TextComponent(
+        #                                 text='區域',
+        #                                 color='#aaaaaa',
+        #                                 size='sm',
+        #                                 flex=1
+        #                             ),
+        #                             TextComponent(
+        #                                 text=get_mountain(search)[2],
+        #                                 wrap=True,
+        #                                 color='#666666',
+        #                                 size='sm',
+        #                                 flex=5
+        #                             )
+        #                         ],
+        #                     ),
+        #                     BoxComponent(
+        #                         layout='baseline',
+        #                         spacing='sm',
+        #                         contents=[
+        #                             TextComponent(
+        #                                 text='難度',
+        #                                 color='#aaaaaa',
+        #                                 size='sm',
+        #                                 flex=1
+        #                             ),
+        #                             TextComponent(
+        #                                 text=get_mountain(search)[3][3:],
+        #                                 wrap=True,
+        #                                 color='#666666',
+        #                                 size='sm',
+        #                                 flex=5,
+        #                             ),
+        #                         ],
+        #                     ),
+        #                     BoxComponent(
+        #                         layout='baseline',
+        #                         spacing='sm',
+        #                         contents=[
+        #                             TextComponent(
+        #                                 text="距離",
+        #                                 color='#aaaaaa',
+        #                                 size='sm',
+        #                                 flex=1
+        #                             ),
+        #                             TextComponent(
+        #                                 text=get_mountain(search)[4],
+        #                                 wrap=True,
+        #                                 color='#666666',
+        #                                 size='sm',
+        #                                 flex=5,
+        #                             ),
+        #                         ],
+        #                     ),
+        #                     BoxComponent(
+        #                         layout='baseline',
+        #                         spacing='sm',
+        #                         contents=[
+        #                             TextComponent(
+        #                                 text="時間",
+        #                                 color='#aaaaaa',
+        #                                 size='sm',
+        #                                 flex=1
+        #                             ),
+        #                             TextComponent(
+        #                                 text=get_mountain(search)[5],
+        #                                 wrap=True,
+        #                                 color='#666666',
+        #                                 size='sm',
+        #                                 flex=5,
+        #                             ),
+        #                         ],
+        #                     ),
+        #                 ],
+        #             )
+        #         ],
+        #     ),
             # footer=BoxComponent(
             #     layout='vertical',
             #     spacing='sm',
