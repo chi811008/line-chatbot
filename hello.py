@@ -160,7 +160,7 @@ def callback():
 
     return 'OK'
 
-
+page = 0
 @handler.add(PostbackEvent)
 def handle_post_message(event):
   print("event =", event)
@@ -321,10 +321,10 @@ def handle_post_message(event):
     )
   else:
     cmd, seq = receive[:3], receive[3:]
-    page = 0
     if cmd == "are":
       print("area_north_east_west_south")
       select_list = select_area(seq[:2], page)
+      page += 10
     elif cmd == "dif":
       select_list = select_difficulty(seq)
     elif cmd == "tim":
