@@ -335,7 +335,7 @@ def handle_post_message(event):
           "size": "micro",
           "hero": {
             "type": "image",
-            "url": "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip10.jpg",
+            "url": "url",
             "size": "full",
             "aspectMode": "cover",
             "aspectRatio": "320:213"
@@ -356,8 +356,8 @@ def handle_post_message(event):
                 "action": {
                   "type": "postback",
                   "label": "更多資訊",
-                  "data": "山的名稱",
-                  "displayText": "即將顯示更多資訊"
+                  "data": "var",
+                  "displayText": "var"
                 }
               }
             ],
