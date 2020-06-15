@@ -723,7 +723,7 @@ def search_info(event):
               "type": "bubble",
               "hero": {
                 "type": "image",
-                "url": "https://ithelp.ithome.com.tw/images/ironman/11th/event/kv_event/kv-bg-addfly.png",
+                "url": "https://imagizer.imageshack.com/img923/7386/5tG2SO.jpg",
                 "size": "full",
                 "aspectRatio": "20:13",
                 "aspectMode": "cover",
