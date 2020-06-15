@@ -321,7 +321,7 @@ def handle_post_message(event):
     )
   else:
     cmd, seq = receive[:3], receive[3:]
-    page = 10
+    page = 0
     if cmd == "are":
       print("area_north_east_west_south")
       select_list = select_area(seq[:2], page)
@@ -390,6 +390,32 @@ def handle_post_message(event):
         bubble["body"]["contents"][1]["action"]["displayText"] = get_name
         all_bubbles.append(bubble)
         print(get_name)
+      next_page_bubble = {
+        "type": "bubble",
+        "size": "micro",
+        "hero": {
+          "type": "image",
+          "url": "https://imagizer.imageshack.com/img923/8576/INnfT8.jpg",
+          "size": "full",
+          "aspectRatio": "20:13",
+          "aspectMode": "cover"
+        },
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "button",
+              "action": {
+                "type": "postback",
+                "label": "下10筆結果",
+                "data": "10"
+              }
+            }
+          ]
+        }
+      }
+      all_bubbles.append(next_page_bubble)
       bubble_string = {
         "type": "carousel",
           "contents": all_bubbles
