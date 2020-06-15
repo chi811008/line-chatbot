@@ -563,12 +563,7 @@ def search_info(event):
                     "size": "xl",
                     "margin": "md"
                   }
-                ],
-                "action": {
-                  "type": "uri",
-                  "label": "action",
-                  "uri": "http://linecorp.com/"
-                }
+                ]
               },
               "footer": {
                 "type": "box",
@@ -650,15 +645,7 @@ def search_info(event):
                     "size": "xl",
                     "margin": "md"
                   }
-                ],
-                "action": {
-                  "type": "uri",
-                  "label": "View detail",
-                  "uri": "http://linecorp.com/",
-                  "altUri": {
-                    "desktop": "http://example.com/page/123"
-                  }
-                }
+                ]
               },
               "footer": {
                 "type": "box",
@@ -740,15 +727,7 @@ def search_info(event):
                     "size": "xl",
                     "margin": "md"
                   }
-                ],
-                "action": {
-                  "type": "uri",
-                  "label": "View detail",
-                  "uri": "http://linecorp.com/",
-                  "altUri": {
-                    "desktop": "http://example.com/page/123"
-                  }
-                }
+                ]
               },
               "footer": {
                 "type": "box",
