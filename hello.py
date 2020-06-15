@@ -665,7 +665,7 @@ def search_info(event):
           "type": "bubble",
           "hero": {
             "type": "image",
-            "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
+            "url": "url",
             "size": "full",
             "aspectRatio": "20:13",
             "aspectMode": "cover",
@@ -797,6 +797,8 @@ def search_info(event):
           }
         }
         bubble["hero"]["url"] = picture_url
+        bubble["hero"]["action"]["data"] = "pic" + picture_url
+        bubble["body"]["contents"][0]["text"] = get_mountain_name(search)
         # bubble = BubbleContainer(
         #     direction='ltr',
         #     hero=ImageComponent(
