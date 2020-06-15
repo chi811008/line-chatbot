@@ -538,7 +538,7 @@ def search_info(event):
         pass
 
     elif search == "篩選":
-        bubble_string = """
+        bubble_string =
         {
           "type": "carousel",
           "contents": [
@@ -620,7 +620,7 @@ def search_info(event):
               },
               "styles": {
                 "footer": {
-                  "separator": true
+                  "separator": True
                 }
               }
             },
@@ -702,7 +702,7 @@ def search_info(event):
               },
               "styles": {
                 "footer": {
-                  "separator": true
+                  "separator": True
                 }
               }
             },
@@ -784,19 +784,19 @@ def search_info(event):
               },
               "styles": {
                 "footer": {
-                  "separator": true
+                  "separator": True
                 }
               }
             }
           ]
         }
-        """
         message = FlexSendMessage(
-            alt_text="篩選", contents=json.loads(bubble_string))
+            alt_text="篩選", contents=bubble_string)
         line_bot_api.reply_message(
             event.reply_token,
             message
         )
+
 
     elif get_mountain_name(search):
         print("get_mountain")
