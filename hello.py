@@ -163,7 +163,6 @@ def callback():
 page = 0
 @handler.add(PostbackEvent)
 def handle_post_message(event):
-  global page
   print("event =", event)
   receive = event.postback.data
   if get_mountain_name(receive):
@@ -324,7 +323,7 @@ def handle_post_message(event):
     cmd, seq = receive[:3], receive[3:]
     if cmd == "are":
       print("area_north_east_west_south")
-      select_list = select_area(seq[:2], page)
+      select_list = select_area(seq[:2], global page)
       page += 10
     elif cmd == "dif":
       select_list = select_difficulty(seq)
