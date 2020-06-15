@@ -74,10 +74,10 @@ def get_mountain_picture(mountain):
 
     return cursor.fetchall()[0][0]
 
-def select_area(input_area):
+def select_area(input_area, page):
   cursor = get_database_connection()
 
-  postgres_select_query = f"""SELECT mountain_name FROM mountain WHERE area = '{input_area}' LIMIT 10 """
+  postgres_select_query = f"""SELECT mountain_name FROM mountain WHERE area = '{input_area}' LIMIT 10 OFFSET {page}"""
 
   cursor.execute(postgres_select_query)
   ans = cursor.fetchall()
@@ -321,9 +321,10 @@ def handle_post_message(event):
     )
   else:
     cmd, seq = receive[:3], receive[3:]
+    page = 10
     if cmd == "are":
       print("area_north_east_west_south")
-      select_list = select_area(seq)
+      select_list = select_area(seq[:2], page)
     elif cmd == "dif":
       select_list = select_difficulty(seq)
     elif cmd == "tim":
