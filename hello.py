@@ -312,7 +312,7 @@ def handle_post_message(event):
     cmd, seq = receive[:3], receive[3:]
     if cmd == "are":
       print("area_north_east_west_south")
-      select_list = select_area(rseq)
+      select_list = select_area(seq)
     elif cmd == "dic":
       select_list = select_difficulty(seq)
     elif cmd == "tim":
