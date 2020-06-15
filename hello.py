@@ -318,63 +318,71 @@ def handle_post_message(event):
     elif cmd == "tim":
       select_list = select_time(seq)
 
-    if select_list
-    all_bubbles = []
-    for _ in select_list:
-      bubble = {
-        "type": "bubble",
-        "size": "micro",
-        "hero": {
-          "type": "image",
-          "url": "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip10.jpg",
-          "size": "full",
-          "aspectMode": "cover",
-          "aspectRatio": "320:213"
-        },
-        "body": {
-          "type": "box",
-          "layout": "vertical",
-          "contents": [
-            {
-              "type": "text",
-              "text": "Brown Cafe",
-              "weight": "bold",
-              "size": "lg",
-              "wrap": True,
-              "contents": []
-            },
-            {
-              "type": "button",
-              "action": {
-                "type": "postback",
-                "label": "更多資訊",
-                "data": "山的名稱",
-                "displayText": "即將顯示更多資訊"
+    if select_list:
+      all_bubbles = []
+      for _ in select_list:
+        bubble = {
+          "type": "bubble",
+          "size": "micro",
+          "hero": {
+            "type": "image",
+            "url": "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip10.jpg",
+            "size": "full",
+            "aspectMode": "cover",
+            "aspectRatio": "320:213"
+          },
+          "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Brown Cafe",
+                "weight": "bold",
+                "size": "lg",
+                "wrap": True,
+                "contents": []
+              },
+              {
+                "type": "button",
+                "action": {
+                  "type": "postback",
+                  "label": "更多資訊",
+                  "data": "山的名稱",
+                  "displayText": "即將顯示更多資訊"
+                }
               }
-            }
-          ],
-          "spacing": "sm",
-          "paddingAll": "13px"
+            ],
+            "spacing": "sm",
+            "paddingAll": "13px"
+          }
         }
+        bubble["hero"]["url"] = get_mountain_picture(_)
+        get_name = get_mountain_name(_)
+        bubble["body"]["contents"][0]["text"] = get_name
+        bubble["body"]["contents"][1]["action"]["data"] = get_name
+        bubble["body"]["contents"][1]["action"]["displayText"] = get_name
+        all_bubbles.append(bubble)
+        print(get_name)
+      bubble_string = {
+        "type": "carousel",
+          "contents": all_bubbles
       }
-      bubble["hero"]["url"] = get_mountain_picture(_)
-      get_name = get_mountain_name(_)
-      bubble["body"]["contents"][0]["text"] = get_name
-      bubble["body"]["contents"][1]["action"]["data"] = get_name
-      bubble["body"]["contents"][1]["action"]["displayText"] = get_name
-      all_bubbles.append(bubble)
-      print(get_name)
-    bubble_string = {
-      "type": "carousel",
-        "contents": all_bubbles
-    }
-    message = FlexSendMessage(
-      alt_text="地區篩選", contents=bubble_string
+      message = FlexSendMessage(
+        alt_text="地區篩選", contents=bubble_string
+        )
+      line_bot_api.reply_message(
+        event.reply_token,
+        message
+        )
+    else:
+      line_bot_api.reply_message(
+          event.reply_token,
+          TextSendMessage(
+              text=seq
+          )
       )
-    line_bot_api.reply_message(
-      event.reply_token,
-      message
-      )
+
   # elif receive[:3] == "dif":
   #   select_list = select_difficulty(receive[3])
   #   all_bubbles = []
