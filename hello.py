@@ -534,269 +534,268 @@ def handle_post_message(event):
 def search_info(event):
     search = event.message.text
     if search == "請輸入山的名稱":
-        print("搜尋")
-        pass
+      print("搜尋")
+      pass
 
     elif search == "篩選":
-        bubble_string =
-        {
-          "type": "carousel",
-          "contents": [
-            {
-              "type": "bubble",
-              "hero": {
-                "type": "image",
-                "url": "https://ithelp.ithome.com.tw/images/ironman/11th/event/kv_event/kv-bg-addfly.png",
-                "size": "full",
-                "aspectRatio": "20:13",
-                "aspectMode": "cover",
-                "backgroundColor": "#FFFFFF"
-              },
-              "body": {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": "區域",
-                    "weight": "bold",
-                    "size": "xl",
-                    "margin": "md"
-                  }
-                ]
-              },
-              "footer": {
-                "type": "box",
-                "layout": "vertical",
-                "spacing": "sm",
-                "contents": [
-                  {
-                    "type": "button",
-                    "action": {
-                      "type": "postback",
-                      "label": "北部",
-                      "data": "are北部"
-                    },
-                    "height": "sm"
-                  },
-                  {
-                    "type": "button",
-                    "action": {
-                      "type": "postback",
-                      "label": "中部",
-                      "data": "are中部"
-                    },
-                    "height": "sm"
-                  },
-                  {
-                    "type": "button",
-                    "action": {
-                      "type": "postback",
-                      "label": "南部",
-                      "data": "are南部"
-                    },
-                    "height": "sm"
-                  },
-                  {
-                    "type": "button",
-                    "action": {
-                      "type": "postback",
-                      "label": "東部",
-                      "data": "are東部"
-                    },
-                    "height": "sm"
-                  },
-                  {
-                    "type": "button",
-                    "action": {
-                      "type": "postback",
-                      "label": "外島",
-                      "data": "are外島"
-                    },
-                    "height": "sm"
-                  }
-                ],
-                "flex": 0
-              },
-              "styles": {
-                "footer": {
-                  "separator": True
-                }
-              }
+      bubble_string = {
+        "type": "carousel",
+        "contents": [
+          {
+            "type": "bubble",
+            "hero": {
+              "type": "image",
+              "url": "https://ithelp.ithome.com.tw/images/ironman/11th/event/kv_event/kv-bg-addfly.png",
+              "size": "full",
+              "aspectRatio": "20:13",
+              "aspectMode": "cover",
+              "backgroundColor": "#FFFFFF"
             },
-            {
-              "type": "bubble",
-              "hero": {
-                "type": "image",
-                "url": "https://ithelp.ithome.com.tw/images/ironman/11th/event/kv_event/kv-bg-addfly.png",
-                "size": "full",
-                "aspectRatio": "20:13",
-                "aspectMode": "cover",
-                "backgroundColor": "#FFFFFF"
-              },
-              "body": {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": "難度",
-                    "weight": "bold",
-                    "size": "xl",
-                    "margin": "md"
-                  }
-                ]
-              },
-              "footer": {
-                "type": "box",
-                "layout": "vertical",
-                "spacing": "sm",
-                "contents": [
-                  {
-                    "type": "button",
-                    "action": {
-                      "type": "postback",
-                      "label": "低",
-                      "data": "dif0"
-                    },
-                    "height": "sm"
-                  },
-                  {
-                    "type": "button",
-                    "action": {
-                      "type": "postback",
-                      "label": "低-中",
-                      "data": "dif1"
-                    },
-                    "height": "sm"
-                  },
-                  {
-                    "type": "button",
-                    "action": {
-                      "type": "postback",
-                      "label": "中",
-                      "data": "dif2"
-                    },
-                    "height": "sm"
-                  },
-                  {
-                    "type": "button",
-                    "action": {
-                      "type": "postback",
-                      "label": "中-高",
-                      "data": "dif3"
-                    },
-                    "height": "md"
-                  },
-                  {
-                    "type": "button",
-                    "action": {
-                      "type": "postback",
-                      "label": "高",
-                      "data": "dif4"
-                    },
-                    "height": "md"
-                  }
-                ],
-                "flex": 0
-              },
-              "styles": {
-                "footer": {
-                  "separator": True
+            "body": {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "區域",
+                  "weight": "bold",
+                  "size": "xl",
+                  "margin": "md"
                 }
-              }
+              ]
             },
-            {
-              "type": "bubble",
-              "hero": {
-                "type": "image",
-                "url": "https://imagizer.imageshack.com/img923/7386/5tG2SO.jpg",
-                "size": "full",
-                "aspectRatio": "20:13",
-                "aspectMode": "cover",
-                "backgroundColor": "#FFFFFF"
-              },
-              "body": {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": "時間",
-                    "weight": "bold",
-                    "size": "xl",
-                    "margin": "md"
-                  }
-                ]
-              },
-              "footer": {
-                "type": "box",
-                "layout": "vertical",
-                "spacing": "sm",
-                "contents": [
-                  {
-                    "type": "button",
-                    "action": {
-                      "type": "postback",
-                      "label": "3小時內",
-                      "data": "tim0"
-                    },
-                    "height": "sm"
+            "footer": {
+              "type": "box",
+              "layout": "vertical",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "postback",
+                    "label": "北部",
+                    "data": "are北部"
                   },
-                  {
-                    "type": "button",
-                    "action": {
-                      "type": "postback",
-                      "label": "3-6小時",
-                      "data": "tim1"
-                    },
-                    "height": "sm"
+                  "height": "sm"
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "postback",
+                    "label": "中部",
+                    "data": "are中部"
                   },
-                  {
-                    "type": "button",
-                    "action": {
-                      "type": "postback",
-                      "label": "6小時-12小時",
-                      "data": "tim2"
-                    },
-                    "height": "sm"
+                  "height": "sm"
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "postback",
+                    "label": "南部",
+                    "data": "are南部"
                   },
-                  {
-                    "type": "button",
-                    "action": {
-                      "type": "postback",
-                      "label": "12小時-兩天",
-                      "data": "tim3"
-                    },
-                    "height": "sm"
+                  "height": "sm"
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "postback",
+                    "label": "東部",
+                    "data": "are東部"
                   },
-                  {
-                    "type": "button",
-                    "action": {
-                      "type": "postback",
-                      "label": "兩天以上",
-                      "data": "tim4"
-                    },
-                    "height": "sm"
-                  }
-                ],
-                "flex": 0
-              },
-              "styles": {
-                "footer": {
-                  "separator": True
+                  "height": "sm"
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "postback",
+                    "label": "外島",
+                    "data": "are外島"
+                  },
+                  "height": "sm"
                 }
+              ],
+              "flex": 0
+            },
+            "styles": {
+              "footer": {
+                "separator": True
               }
             }
-          ]
-        }
-        message = FlexSendMessage(
-            alt_text="篩選", contents=bubble_string)
-        line_bot_api.reply_message(
-            event.reply_token,
-            message
-        )
-
+          },
+          {
+            "type": "bubble",
+            "hero": {
+              "type": "image",
+              "url": "https://ithelp.ithome.com.tw/images/ironman/11th/event/kv_event/kv-bg-addfly.png",
+              "size": "full",
+              "aspectRatio": "20:13",
+              "aspectMode": "cover",
+              "backgroundColor": "#FFFFFF"
+            },
+            "body": {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "難度",
+                  "weight": "bold",
+                  "size": "xl",
+                  "margin": "md"
+                }
+              ]
+            },
+            "footer": {
+              "type": "box",
+              "layout": "vertical",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "postback",
+                    "label": "低",
+                    "data": "dif0"
+                  },
+                  "height": "sm"
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "postback",
+                    "label": "低-中",
+                    "data": "dif1"
+                  },
+                  "height": "sm"
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "postback",
+                    "label": "中",
+                    "data": "dif2"
+                  },
+                  "height": "sm"
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "postback",
+                    "label": "中-高",
+                    "data": "dif3"
+                  },
+                  "height": "md"
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "postback",
+                    "label": "高",
+                    "data": "dif4"
+                  },
+                  "height": "md"
+                }
+              ],
+              "flex": 0
+            },
+            "styles": {
+              "footer": {
+                "separator": True
+              }
+            }
+          },
+          {
+            "type": "bubble",
+            "hero": {
+              "type": "image",
+              "url": "https://imagizer.imageshack.com/img923/7386/5tG2SO.jpg",
+              "size": "full",
+              "aspectRatio": "20:13",
+              "aspectMode": "cover",
+              "backgroundColor": "#FFFFFF"
+            },
+            "body": {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "時間",
+                  "weight": "bold",
+                  "size": "xl",
+                  "margin": "md"
+                }
+              ]
+            },
+            "footer": {
+              "type": "box",
+              "layout": "vertical",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "postback",
+                    "label": "3小時內",
+                    "data": "tim0"
+                  },
+                  "height": "sm"
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "postback",
+                    "label": "3-6小時",
+                    "data": "tim1"
+                  },
+                  "height": "sm"
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "postback",
+                    "label": "6小時-12小時",
+                    "data": "tim2"
+                  },
+                  "height": "sm"
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "postback",
+                    "label": "12小時-兩天",
+                    "data": "tim3"
+                  },
+                  "height": "sm"
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "postback",
+                    "label": "兩天以上",
+                    "data": "tim4"
+                  },
+                  "height": "sm"
+                }
+              ],
+              "flex": 0
+            },
+            "styles": {
+              "footer": {
+                "separator": True
+              }
+            }
+          }
+        ]
+      }
+      message = FlexSendMessage(
+          alt_text="篩選", contents=bubble_string
+          )
+      line_bot_api.reply_message(
+          event.reply_token,
+          message
+      )
 
     elif get_mountain_name(search):
         print("get_mountain")
