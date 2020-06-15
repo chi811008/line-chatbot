@@ -753,42 +753,44 @@ def search_info(event):
                   {
                     "type": "box",
                     "layout": "baseline",
+                    "spacing": "sm",
                     "contents": [
                       {
                         "type": "text",
                         "text": "距離",
-                        "flex": 1,
+                        "color": "#aaaaaa",
                         "size": "sm",
-                        "color": "#aaaaaa"
+                        "flex": 1
                       },
                       {
                         "type": "text",
                         "text": "公里數",
                         "wrap": True,
-                        "flex": 5,
+                        "color": "#666666",
                         "size": "sm",
-                        "color": "#666666"
+                        "flex": 5
                       }
                     ]
                   },
                   {
                     "type": "box",
                     "layout": "baseline",
+                    "spacing": "sm",
                     "contents": [
                       {
                         "type": "text",
                         "text": "時間",
-                        "flex": 1,
+                        "color": "#aaaaaa",
                         "size": "sm",
-                        "color": "#aaaaaa"
+                        "flex": 1
                       },
                       {
                         "type": "text",
-                        "text": "分鐘小時",
+                        "text": "分鐘小時"",
                         "wrap": True,
-                        "flex": 5,
                         "color": "#666666",
-                        "size": "sm"
+                        "size": "sm",
+                        "flex": 5
                       }
                     ]
                   }
