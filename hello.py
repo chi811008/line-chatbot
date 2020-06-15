@@ -321,8 +321,9 @@ def handle_post_message(event):
       line_bot_api.reply_message(
         event.reply_token,
         ImageSendMessage(
-            original_content_url= seq, preview_image_url= seq)
-            )
+          original_content_url= seq, preview_image_url= seq
+        )
+      )
     if select_list == "很抱歉，沒有符合的資料":
       print("no_information")
       line_bot_api.reply_message(
