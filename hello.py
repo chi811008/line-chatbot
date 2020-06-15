@@ -309,9 +309,9 @@ def handle_post_message(event):
         event.reply_token,
         message
     )
-  elif receive in area_list:
+  elif receive[:3] == "are":
     print("area_north_east_west_south")
-    select_list = select_area(receive)
+    select_list = select_area(receive[3:])
     all_bubbles = []
     for _ in select_list:
       bubble = {
@@ -566,7 +566,7 @@ def search_info(event):
             "action": {
               "type": "postback",
               "label": "北部",
-              "data": "北部"
+              "data": "are北部"
             },
             "height": "sm"
           },
@@ -575,7 +575,7 @@ def search_info(event):
             "action": {
               "type": "postback",
               "label": "中部",
-              "data": "中部"
+              "data": "are中部"
             },
             "height": "sm"
           },
@@ -584,7 +584,7 @@ def search_info(event):
             "action": {
               "type": "postback",
               "label": "南部",
-              "data": "南部"
+              "data": "are南部"
             },
             "height": "sm"
           },
@@ -593,7 +593,7 @@ def search_info(event):
             "action": {
               "type": "postback",
               "label": "東部",
-              "data": "東部"
+              "data": "are東部"
             },
             "height": "sm"
           },
@@ -602,7 +602,7 @@ def search_info(event):
             "action": {
               "type": "postback",
               "label": "外島",
-              "data": "外島"
+              "data": "are外島"
             },
             "height": "sm"
           }
