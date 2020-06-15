@@ -317,7 +317,6 @@ def handle_post_message(event):
       select_list = select_difficulty(seq)
     elif cmd == "tim":
       select_list = select_time(seq)
-
     if select_list == "很抱歉，沒有符合的資料":
       print("no_information")
       line_bot_api.reply_message(
@@ -786,7 +785,7 @@ def search_info(event):
                       },
                       {
                         "type": "text",
-                        "text": "分鐘小時"",
+                        "text": "分鐘小時",
                         "wrap": True,
                         "color": "#666666",
                         "size": "sm",
