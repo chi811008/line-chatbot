@@ -643,6 +643,9 @@ def search_info(event):
           }
         ]
       }
+      time_pic = "https://imagizer.imageshack.com/img923/7386/5tG2SO.jpg"
+      bubble_string["contents"][0]["hero"]["url"] = time_pic
+
       message = FlexSendMessage(
           alt_text="篩選", contents=bubble_string
           )
