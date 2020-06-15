@@ -312,65 +312,137 @@ def handle_post_message(event):
     cmd, seq = receive[:3], receive[3:]
     if cmd == "are":
       print("area_north_east_west_south")
-      select_list = select_area(receive[3:])
-      all_bubbles = []
-      for _ in select_list:
-        bubble = {
-          "type": "bubble",
-          "size": "micro",
-          "hero": {
-            "type": "image",
-            "url": "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip10.jpg",
-            "size": "full",
-            "aspectMode": "cover",
-            "aspectRatio": "320:213"
-          },
-          "body": {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "text",
-                "text": "Brown Cafe",
-                "weight": "bold",
-                "size": "lg",
-                "wrap": True,
-                "contents": []
-              },
-              {
-                "type": "button",
-                "action": {
-                  "type": "postback",
-                  "label": "更多資訊",
-                  "data": "山的名稱",
-                  "displayText": "即將顯示更多資訊"
-                }
+      select_list = select_area(rseq)
+    elif cmd == "dic":
+      select_list = select_difficulty(seq)
+    elif cmd == "tim":
+      select_list = select_time(seq)
+
+    all_bubbles = []
+    for _ in select_list:
+      bubble = {
+        "type": "bubble",
+        "size": "micro",
+        "hero": {
+          "type": "image",
+          "url": "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip10.jpg",
+          "size": "full",
+          "aspectMode": "cover",
+          "aspectRatio": "320:213"
+        },
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "text",
+              "text": "Brown Cafe",
+              "weight": "bold",
+              "size": "lg",
+              "wrap": True,
+              "contents": []
+            },
+            {
+              "type": "button",
+              "action": {
+                "type": "postback",
+                "label": "更多資訊",
+                "data": "山的名稱",
+                "displayText": "即將顯示更多資訊"
               }
-            ],
-            "spacing": "sm",
-            "paddingAll": "13px"
-          }
+            }
+          ],
+          "spacing": "sm",
+          "paddingAll": "13px"
         }
-        bubble["hero"]["url"] = get_mountain_picture(_)
-        get_name = get_mountain_name(_)
-        bubble["body"]["contents"][0]["text"] = get_name
-        bubble["body"]["contents"][1]["action"]["data"] = get_name
-        bubble["body"]["contents"][1]["action"]["displayText"] = get_name
-        all_bubbles.append(bubble)
-        print(get_name)
-      bubble_string = {
-        "type": "carousel",
-          "contents": all_bubbles
       }
-      message = FlexSendMessage(
-        alt_text="地區篩選", contents=bubble_string
-        )
+      bubble["hero"]["url"] = get_mountain_picture(_)
+      get_name = get_mountain_name(_)
+      bubble["body"]["contents"][0]["text"] = get_name
+      bubble["body"]["contents"][1]["action"]["data"] = get_name
+      bubble["body"]["contents"][1]["action"]["displayText"] = get_name
+      all_bubbles.append(bubble)
+      print(get_name)
+    bubble_string = {
+      "type": "carousel",
+        "contents": all_bubbles
+    }
+    message = FlexSendMessage(
+      alt_text="地區篩選", contents=bubble_string
+      )
+    line_bot_api.reply_message(
+      event.reply_token,
+      message
+      )
+  elif receive[:3] == "dif":
+    select_list = select_difficulty(receive[3])
+    all_bubbles = []
+    for _ in select_list:
+      bubble = {
+        "type": "bubble",
+        "size": "micro",
+        "hero": {
+          "type": "image",
+          "url": "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip10.jpg",
+          "size": "full",
+          "aspectMode": "cover",
+          "aspectRatio": "320:213"
+        },
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "text",
+              "text": "Brown Cafe",
+              "weight": "bold",
+              "size": "lg",
+              "wrap": True,
+              "contents": []
+            },
+            {
+              "type": "button",
+              "action": {
+                "type": "postback",
+                "label": "更多資訊",
+                "data": "山的名稱",
+                "displayText": "即將顯示更多資訊"
+              }
+            }
+          ],
+          "spacing": "sm",
+          "paddingAll": "13px"
+        }
+      }
+      bubble["hero"]["url"] = get_mountain_picture(_)
+      get_name = get_mountain_name(_)
+      bubble["body"]["contents"][0]["text"] = get_name
+      bubble["body"]["contents"][1]["action"]["data"] = get_name
+      bubble["body"]["contents"][1]["action"]["displayText"] = get_name
+      all_bubbles.append(bubble)
+      print(get_name)
+    bubble_string = {
+      "type": "carousel",
+        "contents": all_bubbles
+    }
+    message = FlexSendMessage(
+      alt_text="難度篩選", contents=bubble_string
+      )
+    line_bot_api.reply_message(
+      event.reply_token,
+      message
+      )
+
+  elif receive[:3] == "tim":
+    select_list = select_time(receive[3])
+    if select_list == "很抱歉，沒有符合的資料":
       line_bot_api.reply_message(
         event.reply_token,
-        message
+        TextSendMessage(
+          text=select_list
         )
-    elif receive[:3] == "dif":
-      select_list = select_difficulty(receive[3])
+      )
+    else:
       all_bubbles = []
       for _ in select_list:
         bubble = {
@@ -427,90 +499,23 @@ def handle_post_message(event):
         event.reply_token,
         message
         )
-
-    elif receive[:3] == "tim":
-      select_list = select_time(receive[3])
-      if select_list == "很抱歉，沒有符合的資料":
-        line_bot_api.reply_message(
-          event.reply_token,
-          TextSendMessage(
-            text=select_list
-          )
-        )
-      else:
-        all_bubbles = []
-        for _ in select_list:
-          bubble = {
-            "type": "bubble",
-            "size": "micro",
-            "hero": {
-              "type": "image",
-              "url": "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip10.jpg",
-              "size": "full",
-              "aspectMode": "cover",
-              "aspectRatio": "320:213"
-            },
-            "body": {
-              "type": "box",
-              "layout": "vertical",
-              "contents": [
-                {
-                  "type": "text",
-                  "text": "Brown Cafe",
-                  "weight": "bold",
-                  "size": "lg",
-                  "wrap": True,
-                  "contents": []
-                },
-                {
-                  "type": "button",
-                  "action": {
-                    "type": "postback",
-                    "label": "更多資訊",
-                    "data": "山的名稱",
-                    "displayText": "即將顯示更多資訊"
-                  }
-                }
-              ],
-              "spacing": "sm",
-              "paddingAll": "13px"
-            }
-          }
-          bubble["hero"]["url"] = get_mountain_picture(_)
-          get_name = get_mountain_name(_)
-          bubble["body"]["contents"][0]["text"] = get_name
-          bubble["body"]["contents"][1]["action"]["data"] = get_name
-          bubble["body"]["contents"][1]["action"]["displayText"] = get_name
-          all_bubbles.append(bubble)
-          print(get_name)
-        bubble_string = {
-          "type": "carousel",
-            "contents": all_bubbles
-        }
-        message = FlexSendMessage(
-          alt_text="難度篩選", contents=bubble_string
-          )
-        line_bot_api.reply_message(
-          event.reply_token,
-          message
-          )
-    elif receive == "很抱歉，沒有符合的資料":
-      line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(
-          text=receive
-        )
+  elif receive == "很抱歉，沒有符合的資料":
+    line_bot_api.reply_message(
+      event.reply_token,
+      TextSendMessage(
+        text=receive
       )
-    else:
-      print("enter_pic")
-      cmd, seq = event.postback.data[:3], event.postback.data[3:]
-      if cmd == "pic":
-          print("picture show")
-          line_bot_api.reply_message(
-              event.reply_token,
-              ImageSendMessage(
-                  original_content_url=seq, preview_image_url=seq)
-          )
+    )
+  else:
+    print("enter_pic")
+    cmd, seq = event.postback.data[:3], event.postback.data[3:]
+    if cmd == "pic":
+        print("picture show")
+        line_bot_api.reply_message(
+            event.reply_token,
+            ImageSendMessage(
+                original_content_url=seq, preview_image_url=seq)
+        )
 
 
 @handler.add(MessageEvent, message=TextMessage)
