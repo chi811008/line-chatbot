@@ -163,6 +163,7 @@ def callback():
 page = 0
 @handler.add(PostbackEvent)
 def handle_post_message(event):
+  global page
   print("event =", event)
   receive = event.postback.data
   if get_mountain_name(receive):
