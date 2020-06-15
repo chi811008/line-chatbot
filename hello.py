@@ -325,7 +325,7 @@ def handle_post_message(event):
       print("area_north_east_west_south")
       global page
       select_list = select_area(seq[:2], page)
-      page += 10
+      page += 9
     elif cmd == "dif":
       select_list = select_difficulty(seq)
     elif cmd == "tim":
@@ -417,7 +417,7 @@ def handle_post_message(event):
                 "action": {
                   "type": "postback",
                   "label": "下10筆資料",
-                  "data": "are10",
+                  "data": "are" + seq,
                   "displayText": "are10"
                 }
               }
