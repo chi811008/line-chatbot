@@ -323,7 +323,7 @@ def handle_post_message(event):
       line_bot_api.reply_message(
           event.reply_token,
           TextSendMessage(
-              text=seq
+              text=select_list
           )
       )
     else:
