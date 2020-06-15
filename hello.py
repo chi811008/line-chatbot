@@ -406,7 +406,7 @@ def handle_post_message(event):
             "contents": [
               {
                 "type": "text",
-                "text": "Brown Cafe",
+                "text": "更多資訊",
                 "weight": "bold",
                 "size": "lg",
                 "wrap": True,
