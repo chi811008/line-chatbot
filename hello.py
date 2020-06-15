@@ -391,29 +391,39 @@ def handle_post_message(event):
         all_bubbles.append(bubble)
         print(get_name)
       next_page_bubble = {
-        "type": "bubble",
-        "size": "micro",
-        "hero": {
-          "type": "image",
-          "url": "https://imagizer.imageshack.com/img923/8576/INnfT8.jpg",
-          "size": "full",
-          "aspectRatio": "20:13",
-          "aspectMode": "cover"
-        },
-        "body": {
-          "type": "box",
-          "layout": "vertical",
-          "contents": [
-            {
-              "type": "button",
-              "action": {
-                "type": "postback",
-                "label": "下10筆結果",
-                "data": "10"
+          "type": "bubble",
+          "size": "micro",
+          "hero": {
+            "type": "image",
+            "url": "https://imagizer.imageshack.com/img923/8576/INnfT8.jpg",
+            "size": "full",
+            "aspectMode": "cover",
+            "aspectRatio": "320:213"
+          },
+          "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Brown Cafe",
+                "weight": "bold",
+                "size": "lg",
+                "wrap": True,
+              },
+              {
+                "type": "button",
+                "action": {
+                  "type": "postback",
+                  "label": "下10筆資料",
+                  "data": "are10",
+                  "displayText": "are10"
+                }
               }
-            }
-          ]
-        }
+            ],
+            "spacing": "sm",
+            "paddingAll": "13px"
+          }
       }
       all_bubbles.append(next_page_bubble)
       bubble_string = {
