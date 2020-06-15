@@ -318,7 +318,16 @@ def handle_post_message(event):
     elif cmd == "tim":
       select_list = select_time(seq)
 
-    if select_list:
+    if select_list == "很抱歉，沒有符合的資料":
+      print("no_information")
+      line_bot_api.reply_message(
+          event.reply_token,
+          TextSendMessage(
+              text=seq
+          )
+      )
+    else:
+      print("select_list_has_mountain")
       all_bubbles = []
       for _ in select_list:
         bubble = {
@@ -369,19 +378,13 @@ def handle_post_message(event):
           "contents": all_bubbles
       }
       message = FlexSendMessage(
-        alt_text="地區篩選", contents=bubble_string
+        alt_text="篩選", contents=bubble_string
         )
       line_bot_api.reply_message(
         event.reply_token,
         message
         )
-    else:
-      line_bot_api.reply_message(
-          event.reply_token,
-          TextSendMessage(
-              text=seq
-          )
-      )
+
 
   # elif receive[:3] == "dif":
   #   select_list = select_difficulty(receive[3])
