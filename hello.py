@@ -778,6 +778,7 @@ def search_info(event):
                       {
                         "type": "text",
                         "text": "時間",
+                        "flex": 1,
                         "size": "sm",
                         "color": "#aaaaaa"
                       },
