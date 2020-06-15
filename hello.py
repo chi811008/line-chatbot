@@ -399,7 +399,7 @@ def search_info(event):
             "type": "bubble",
             "hero": {
               "type": "image",
-              "url": "https://ithelp.ithome.com.tw/images/ironman/11th/event/kv_event/kv-bg-addfly.png",
+              "url": "url",
               "size": "full",
               "aspectRatio": "20:13",
               "aspectMode": "cover",
@@ -481,7 +481,7 @@ def search_info(event):
             "type": "bubble",
             "hero": {
               "type": "image",
-              "url": "https://ithelp.ithome.com.tw/images/ironman/11th/event/kv_event/kv-bg-addfly.png",
+              "url": "url",
               "size": "full",
               "aspectRatio": "20:13",
               "aspectMode": "cover",
@@ -563,7 +563,7 @@ def search_info(event):
             "type": "bubble",
             "hero": {
               "type": "image",
-              "url": "https://imagizer.imageshack.com/img923/7386/5tG2SO.jpg",
+              "url": "url",
               "size": "full",
               "aspectRatio": "20:13",
               "aspectMode": "cover",
@@ -643,8 +643,12 @@ def search_info(event):
           }
         ]
       }
-      time_pic = "https://imagizer.imageshack.com/img923/7386/5tG2SO.jpg"
-      bubble_string["contents"][0]["hero"]["url"] = time_pic
+      area_pic_url = ""
+      difficulity_pic_url = ""
+      time_pic_url = "https://imagizer.imageshack.com/img923/7386/5tG2SO.jpg"
+      bubble_string["contents"][0]["hero"]["url"] = area_pic_url
+      bubble_string["contents"][1]["hero"]["url"] = difficulity_pic_url
+      bubble_string["contents"][2]["hero"]["url"] = time_pic_url
 
       message = FlexSendMessage(
           alt_text="篩選", contents=bubble_string
