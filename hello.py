@@ -324,18 +324,11 @@ def handle_post_message(event):
     print(cmd)
     print(seq)
     if cmd == "are":
-      if seq[-1].isdigit():
-        global page
-        print("before", page)
-        select_list = select_area(seq[:2], page)
-        page += 9
-        print("after", page)
-      else:
-        page = 0
-        print("area_north_east_west_south")
-        select_list = select_area(seq[:2])
-        page += 9
-        print(page)
+      page = 0
+      print("area_north_east_west_south")
+      select_list = select_area(seq[:2])
+      page += 9
+      print(page)
     elif cmd == "dif":
       select_list = select_difficulty(seq)
     elif cmd == "tim":
@@ -426,9 +419,9 @@ def handle_post_message(event):
                 "type": "button",
                 "action": {
                   "type": "postback",
-                  "label": "下10筆資料",
-                  "data": cmd + seq + str(page),
-                  "displayText": "are10"
+                  "label": "下9筆資料",
+                  "data": "next10",
+                  "displayText": "下一頁"
                 }
               }
             ],
