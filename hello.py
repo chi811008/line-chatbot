@@ -328,7 +328,6 @@ def handle_post_message(event):
       page = 0
       select_list = select_area(seq[:2])
     elif cmd == "are":
-      global page
       print("before", page)
       print("area_north_east_west_south")
       select_list = select_area(seq[:2], page)
