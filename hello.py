@@ -334,6 +334,7 @@ def handle_post_message(event):
         print("area_north_east_west_south")
         select_list = select_area(seq[:2])
         page += 9
+        print(page)
     elif cmd == "dif":
       select_list = select_difficulty(seq)
     elif cmd == "tim":
