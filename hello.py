@@ -325,7 +325,7 @@ def handle_post_message(event):
     print(seq)
     if cmd == "re0":
       page = 0
-    if cmd == "are":
+    elif cmd == "are":
       global page
       print("before", page)
       print("area_north_east_west_south")
