@@ -74,7 +74,7 @@ def get_mountain_picture(mountain):
 
     return cursor.fetchall()[0][0]
 
-def select_area(input_area, page):
+def select_area(input_area, page = 0):
   cursor = get_database_connection()
 
   postgres_select_query = f"""SELECT mountain_name FROM mountain WHERE area = '{input_area}' LIMIT 9 OFFSET {page}"""
@@ -160,6 +160,7 @@ def callback():
 
     return 'OK'
 
+page = 0
 @handler.add(PostbackEvent)
 def handle_post_message(event):
   print("event =", event)
@@ -319,12 +320,17 @@ def handle_post_message(event):
         message
     )
   else:
-    page = 0
     cmd, seq = receive[:3], receive[3:]
     if cmd == "are":
-      print("area_north_east_west_south")
-      select_list = select_area(seq[:2], page)
-      page += 9
+      if seq[2] == "9":
+        global page
+        select_list = select_area(seq[:2], page)
+        page += 9
+      else:
+        page = 0
+        print("area_north_east_west_south")
+        select_list = select_area(seq[:2])
+        page += 9
     elif cmd == "dif":
       select_list = select_difficulty(seq)
     elif cmd == "tim":
@@ -416,7 +422,7 @@ def handle_post_message(event):
                 "action": {
                   "type": "postback",
                   "label": "下10筆資料",
-                  "data": "are" + seq,
+                  "data": cmd + seq + "9",
                   "displayText": "are10"
                 }
               }
@@ -446,7 +452,6 @@ def search_info(event):
       pass
 
     elif search == "篩選":
-      global page
       bubble_string = {
         "type": "carousel",
         "contents": [
