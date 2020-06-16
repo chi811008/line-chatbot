@@ -435,6 +435,7 @@ def handle_post_message(event):
             "paddingAll": "13px"
           }
       }
+      print(cmd + seq + str(page))
       all_bubbles.append(next_page_bubble)
       bubble_string = {
         "type": "carousel",
