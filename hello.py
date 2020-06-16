@@ -324,6 +324,7 @@ def handle_post_message(event):
     print(cmd)
     print(seq)
     if cmd == "re0":
+      global page
       page = 0
       select_list = select_area(seq[:2])
     elif cmd == "are":
