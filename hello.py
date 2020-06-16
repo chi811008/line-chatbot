@@ -321,6 +321,8 @@ def handle_post_message(event):
     )
   else:
     cmd, seq = receive[:3], receive[3:]
+    print(cmd)
+    print(seq)
     if cmd == "are":
       if seq[2] == "9":
         global page
