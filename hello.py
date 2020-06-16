@@ -324,7 +324,7 @@ def handle_post_message(event):
     print(cmd)
     print(seq)
     if cmd == "are":
-      if seq[2] == "9":
+      if seq[-1] == "9":
         global page
         select_list = select_area(seq[:2], page)
         page += 9
