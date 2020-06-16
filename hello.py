@@ -421,7 +421,7 @@ def handle_post_message(event):
                 "action": {
                   "type": "postback",
                   "label": "下9筆資料",
-                  "data": "nex9",
+                  "data": cmd + seq,
                   "displayText": "下9筆資料"
                 }
               }
