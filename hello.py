@@ -325,7 +325,7 @@ def handle_post_message(event):
     print(seq)
     if cmd == "re0":
       page = 0
-      break
+      pass
     elif cmd == "are":
       global page
       print("before", page)
