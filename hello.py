@@ -160,7 +160,6 @@ def callback():
 
     return 'OK'
 
-page = 0
 @handler.add(PostbackEvent)
 def handle_post_message(event):
   print("event =", event)
@@ -320,12 +319,12 @@ def handle_post_message(event):
         message
     )
   else:
+    page = 0
     cmd, seq = receive[:3], receive[3:]
     if cmd == "are":
-      global page
-      page += 9
       print("area_north_east_west_south")
       select_list = select_area(seq[:2], page)
+      page += 9
     elif cmd == "dif":
       select_list = select_difficulty(seq)
     elif cmd == "tim":
@@ -447,6 +446,7 @@ def search_info(event):
       pass
 
     elif search == "篩選":
+      global page
       bubble_string = {
         "type": "carousel",
         "contents": [
