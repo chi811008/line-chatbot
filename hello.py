@@ -324,7 +324,7 @@ def handle_post_message(event):
     print(cmd)
     print(seq)
     if cmd == "are":
-      if seq[-1] == "9":
+      if seq[-1].isdigit():
         global page
         print("before", page)
         select_list = select_area(seq[:2], page)
