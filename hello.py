@@ -326,8 +326,10 @@ def handle_post_message(event):
     if cmd == "are":
       if seq[-1] == "9":
         global page
+        print("before", page)
         select_list = select_area(seq[:2], page)
         page += 9
+        print("after", page)
       else:
         page = 0
         print("area_north_east_west_south")
@@ -424,7 +426,7 @@ def handle_post_message(event):
                 "action": {
                   "type": "postback",
                   "label": "下10筆資料",
-                  "data": cmd + seq + "9",
+                  "data": cmd + seq + page,
                   "displayText": "are10"
                 }
               }
