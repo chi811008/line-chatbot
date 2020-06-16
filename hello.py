@@ -324,9 +324,10 @@ def handle_post_message(event):
     print(cmd)
     print(seq)
     if cmd == "are":
-      page = 0
+      global page
+      print("before", page)
       print("area_north_east_west_south")
-      select_list = select_area(seq[:2])
+      select_list = select_area(seq[:2], page)
       page += 9
       print(page)
     elif cmd == "dif":
@@ -420,8 +421,8 @@ def handle_post_message(event):
                 "action": {
                   "type": "postback",
                   "label": "下9筆資料",
-                  "data": "next10",
-                  "displayText": "下一頁"
+                  "data": "nex9",
+                  "displayText": "下9筆資料"
                 }
               }
             ],
