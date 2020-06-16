@@ -323,6 +323,8 @@ def handle_post_message(event):
     cmd, seq = receive[:3], receive[3:]
     print(cmd)
     print(seq)
+    if cmd == "re0":
+      page = 0
     if cmd == "are":
       global page
       print("before", page)
