@@ -325,7 +325,7 @@ def handle_post_message(event):
     print(seq)
     if cmd == "re0":
       page = 0
-      select_list = select_area(seq[:2])
+      select_list = select_area(seq[:2], page)
     elif cmd == "are":
       global page
       print("before", page)
@@ -433,7 +433,7 @@ def handle_post_message(event):
                 "action": {
                   "type": "postback",
                   "label": "重新選擇",
-                  "data": "re0" + cmd + seq,
+                  "data": "篩選",
                   "displayText": "重新選擇"
                 }
               }
