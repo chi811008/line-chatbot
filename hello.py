@@ -424,6 +424,15 @@ def handle_post_message(event):
                   "data": cmd + seq,
                   "displayText": "下9筆資料"
                 }
+              },
+              {
+                "type": "button",
+                "action": {
+                  "type": "postback",
+                  "label": "重新選擇",
+                  "data": "re0",
+                  "displayText": "重新選擇"
+                }
               }
             ],
             "spacing": "sm",
