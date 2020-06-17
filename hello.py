@@ -324,8 +324,10 @@ def handle_post_message(event):
     print(cmd)
     print(seq)
     if cmd == "re0":
+      print("re0000000")
       global page
       page = 0
+      print(page)
       bubble_string = {
         "type": "carousel",
         "contents": [
@@ -591,7 +593,7 @@ def handle_post_message(event):
           event.reply_token,
           message
       )
-      pass
+    
     elif cmd == "are":
       print("before", page)
       print("area_north_east_west_south")
