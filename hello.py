@@ -621,7 +621,7 @@ def handle_post_message(event):
               text=select_list
           )
       )
-    elif:
+    elif select_list:
       print("select_list_has_mountain")
       all_bubbles = []
       for _ in select_list:
