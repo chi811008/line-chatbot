@@ -593,7 +593,7 @@ def handle_post_message(event):
           event.reply_token,
           message
       )
-      select_list = "很抱歉，沒有符合的資料"
+      select_list = 0
       print("select_list=", select_list)
     
     elif cmd == "are":
@@ -693,7 +693,7 @@ def handle_post_message(event):
                 "action": {
                   "type": "postback",
                   "label": "下9筆資料",
-                  "data": cmd + seq,
+                  "data": "re0",
                   "displayText": "下9筆資料"
                 }
               },
