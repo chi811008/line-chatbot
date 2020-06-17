@@ -163,6 +163,7 @@ def callback():
 page = 0
 @handler.add(PostbackEvent)
 def handle_post_message(event):
+  global page
   print("event =", event)
   receive = event.postback.data
   if get_mountain_name(receive):
@@ -325,7 +326,6 @@ def handle_post_message(event):
     print(seq)
     if cmd == "re0":
       print("re0000000")
-      global page
       page = 0
       print(page)
       bubble_string = {
