@@ -593,6 +593,8 @@ def handle_post_message(event):
           event.reply_token,
           message
       )
+      select_list = 0
+      print("select_list=", select_list)
     
     elif cmd == "are":
       print("before", page)
@@ -619,7 +621,7 @@ def handle_post_message(event):
               text=select_list
           )
       )
-    else:
+    elif:
       print("select_list_has_mountain")
       all_bubbles = []
       for _ in select_list:
