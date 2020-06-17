@@ -90,10 +90,10 @@ def select_area(input_area, page = 0):
       return "很抱歉，沒有符合的資料"
       
 
-def select_difficulty(input_difficulty):
+def select_difficulty(input_difficulty, page = 0):
   cursor = get_database_connection()
 
-  postgres_select_query = f"""SELECT mountain_name FROM mountain WHERE difficulty_int = '{input_difficulty}' LIMIT 9 """
+  postgres_select_query = f"""SELECT mountain_name FROM mountain WHERE difficulty_int = '{input_difficulty}' LIMIT 9 OFFSET {page}"""
 
   cursor.execute(postgres_select_query)
   ans = cursor.fetchall()
@@ -106,19 +106,19 @@ def select_difficulty(input_difficulty):
       return "很抱歉，沒有符合的資料"
       
 
-def select_time(input_time):
+def select_time(input_time, page = 0):
   cursor = get_database_connection()
 
   if input_time == "0":
-    postgres_select_query = f"""SELECT mountain_name FROM mountain WHERE time_int < 180 LIMIT 9 """
+    postgres_select_query = f"""SELECT mountain_name FROM mountain WHERE time_int < 180 LIMIT 9 OFFSET {page}"""
   elif input_time == "1":
-    postgres_select_query = f"""SELECT mountain_name FROM mountain WHERE time_int < 360 and time_int >= 180 LIMIT 9 """
+    postgres_select_query = f"""SELECT mountain_name FROM mountain WHERE time_int < 360 and time_int >= 180 LIMIT 9 OFFSET {page}"""
   elif input_time == "2":
-    postgres_select_query = f"""SELECT mountain_name FROM mountain WHERE time_int < 720 and time_int >= 360 LIMIT 9 """
+    postgres_select_query = f"""SELECT mountain_name FROM mountain WHERE time_int < 720 and time_int >= 360 LIMIT 9 OFFSET {page}"""
   elif input_time == "3":
-    postgres_select_query = f"""SELECT mountain_name FROM mountain WHERE time_int < 2880 and time_int >= 720 LIMIT 9 """
+    postgres_select_query = f"""SELECT mountain_name FROM mountain WHERE time_int < 2880 and time_int >= 720 LIMIT 9 OFFSET {page}"""
   elif input_time == "4":
-    postgres_select_query = f"""SELECT mountain_name FROM mountain WHERE time_int >= 2880 LIMIT 9 """
+    postgres_select_query = f"""SELECT mountain_name FROM mountain WHERE time_int >= 2880 LIMIT 9 OFFSET {page}"""
 
   cursor.execute(postgres_select_query)
   ans = cursor.fetchall()
@@ -597,15 +597,23 @@ def handle_post_message(event):
       print("select_list=", select_list)
     
     elif cmd == "are":
-      print("before", page)
       print("area_north_east_west_south")
+      print("before", page)
       select_list = select_area(seq[:2], page)
       page += 9
-      print(page)
+      print("after", page)
     elif cmd == "dif":
-      select_list = select_difficulty(seq)
+      print("difficulty")
+      print("before", page)
+      select_list = select_difficulty(seq, page)
+      page += 9
+      print("after", page)
     elif cmd == "tim":
-      select_list = select_time(seq)
+      print("time_select")
+      print("before", page)
+      select_list = select_time(seq, page)
+      page += 9
+      print("after", page)
     elif cmd == "pic":
       line_bot_api.reply_message(
         event.reply_token,
