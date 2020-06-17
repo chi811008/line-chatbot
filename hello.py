@@ -702,7 +702,7 @@ def handle_post_message(event):
                 "action": {
                   "type": "postback",
                   "label": "重新選擇",
-                  "data": "篩選",
+                  "data": "re0",
                   "displayText": "重新選擇"
                 }
               }
