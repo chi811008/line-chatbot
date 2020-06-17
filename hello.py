@@ -593,7 +593,7 @@ def handle_post_message(event):
           event.reply_token,
           message
       )
-      select_list = "很抱歉，沒有符合的資料"
+      select_list = False
       print("select_list=", select_list)
     
     elif cmd == "are":
