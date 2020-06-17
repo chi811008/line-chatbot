@@ -318,6 +318,13 @@ def handle_post_message(event):
         event.reply_token,
         message
     )
+  elif receive[:3] == "pic":
+    line_bot_api.reply_message(
+      event.reply_token,
+      ImageSendMessage(
+        original_content_url= receive[3:], preview_image_url= receive[3:]
+      )
+    )
   else:
     cmd, seq, page = receive.split()
     page = int(page)
@@ -336,13 +343,7 @@ def handle_post_message(event):
       print("before", page)
       select_list = select_time(seq, page)
       print("after", page)
-    elif cmd == "pic":
-      line_bot_api.reply_message(
-        event.reply_token,
-        ImageSendMessage(
-          original_content_url= seq, preview_image_url= seq
-        )
-      )
+
     if select_list == "很抱歉，沒有符合的資料":
       print("no_information")
       line_bot_api.reply_message(
