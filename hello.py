@@ -741,6 +741,8 @@ def search_info(event):
       pass
 
     elif search == "篩選":
+      global page
+      page = 0
       bubble_string = {
         "type": "carousel",
         "contents": [
