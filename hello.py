@@ -695,7 +695,7 @@ def handle_post_message(event):
                 "action": {
                   "type": "postback",
                   "label": "下9筆資料",
-                  "data": cmd + seq + str(page + 9),
+                  "data": cmd + " " + seq + " " + str(page + 9),
                   "displayText": "下9筆資料"
                 }
               },
