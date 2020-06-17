@@ -160,10 +160,8 @@ def callback():
 
     return 'OK'
 
-page = 0
 @handler.add(PostbackEvent)
 def handle_post_message(event):
-  global page
   print("event =", event)
   receive = event.postback.data
   if get_mountain_name(receive):
@@ -321,13 +319,10 @@ def handle_post_message(event):
         message
     )
   else:
-    cmd, seq = receive[:3], receive[3:]
-    print(cmd)
-    print(seq)
+    cmd, seq, page = receive.split()
+    page = int(page)
     if cmd == "re0":
       print("re0000000")
-      page = 0
-      print(page)
       bubble_string = {
         "type": "carousel",
         "contents": [
@@ -599,8 +594,7 @@ def handle_post_message(event):
     elif cmd == "are":
       print("area_north_east_west_south")
       print("before", page)
-      select_list = select_area(seq[:2], page)
-      page += 9
+      select_list = select_area(seq, page)
       print("after", page)
     elif cmd == "dif":
       print("difficulty")
@@ -701,7 +695,7 @@ def handle_post_message(event):
                 "action": {
                   "type": "postback",
                   "label": "下9筆資料",
-                  "data": cmd + seq,
+                  "data": cmd + seq + str(page + 9),
                   "displayText": "下9筆資料"
                 }
               },
@@ -779,7 +773,7 @@ def search_info(event):
                   "action": {
                     "type": "postback",
                     "label": "北部",
-                    "data": "are北部"
+                    "data": "are 北部 0"
                   },
                   "height": "sm"
                 },
