@@ -321,277 +321,7 @@ def handle_post_message(event):
   else:
     cmd, seq, page = receive.split()
     page = int(page)
-    if cmd == "re0":
-      print("re0000000")
-      bubble_string = {
-        "type": "carousel",
-        "contents": [
-          {
-            "type": "bubble",
-            "hero": {
-              "type": "image",
-              "url": "url",
-              "size": "full",
-              "aspectRatio": "20:13",
-              "aspectMode": "cover",
-              "backgroundColor": "#FFFFFF"
-            },
-            "body": {
-              "type": "box",
-              "layout": "vertical",
-              "contents": [
-                {
-                  "type": "text",
-                  "text": "區域",
-                  "weight": "bold",
-                  "size": "xl",
-                  "margin": "md"
-                }
-              ]
-            },
-            "footer": {
-              "type": "box",
-              "layout": "vertical",
-              "spacing": "sm",
-              "contents": [
-                {
-                  "type": "button",
-                  "action": {
-                    "type": "postback",
-                    "label": "北部",
-                    "data": "are北部"
-                  },
-                  "height": "sm"
-                },
-                {
-                  "type": "button",
-                  "action": {
-                    "type": "postback",
-                    "label": "中部",
-                    "data": "are中部"
-                  },
-                  "height": "sm"
-                },
-                {
-                  "type": "button",
-                  "action": {
-                    "type": "postback",
-                    "label": "南部",
-                    "data": "are南部"
-                  },
-                  "height": "sm"
-                },
-                {
-                  "type": "button",
-                  "action": {
-                    "type": "postback",
-                    "label": "東部",
-                    "data": "are東部"
-                  },
-                  "height": "sm"
-                },
-                {
-                  "type": "button",
-                  "action": {
-                    "type": "postback",
-                    "label": "外島",
-                    "data": "are外島"
-                  },
-                  "height": "sm"
-                }
-              ],
-              "flex": 0
-            },
-            "styles": {
-              "footer": {
-                "separator": True
-              }
-            }
-          },
-          {
-            "type": "bubble",
-            "hero": {
-              "type": "image",
-              "url": "url",
-              "size": "full",
-              "aspectRatio": "20:13",
-              "aspectMode": "cover",
-              "backgroundColor": "#FFFFFF"
-            },
-            "body": {
-              "type": "box",
-              "layout": "vertical",
-              "contents": [
-                {
-                  "type": "text",
-                  "text": "難度",
-                  "weight": "bold",
-                  "size": "xl",
-                  "margin": "md"
-                }
-              ]
-            },
-            "footer": {
-              "type": "box",
-              "layout": "vertical",
-              "spacing": "sm",
-              "contents": [
-                {
-                  "type": "button",
-                  "action": {
-                    "type": "postback",
-                    "label": "低",
-                    "data": "dif0"
-                  },
-                  "height": "sm"
-                },
-                {
-                  "type": "button",
-                  "action": {
-                    "type": "postback",
-                    "label": "低-中",
-                    "data": "dif1"
-                  },
-                  "height": "sm"
-                },
-                {
-                  "type": "button",
-                  "action": {
-                    "type": "postback",
-                    "label": "中",
-                    "data": "dif2"
-                  },
-                  "height": "sm"
-                },
-                {
-                  "type": "button",
-                  "action": {
-                    "type": "postback",
-                    "label": "中-高",
-                    "data": "dif3"
-                  },
-                  "height": "md"
-                },
-                {
-                  "type": "button",
-                  "action": {
-                    "type": "postback",
-                    "label": "高",
-                    "data": "dif4"
-                  },
-                  "height": "md"
-                }
-              ],
-              "flex": 0
-            },
-            "styles": {
-              "footer": {
-                "separator": True
-              }
-            }
-          },
-          {
-            "type": "bubble",
-            "hero": {
-              "type": "image",
-              "url": "url",
-              "size": "full",
-              "aspectRatio": "20:13",
-              "aspectMode": "cover",
-              "backgroundColor": "#FFFFFF"
-            },
-            "body": {
-              "type": "box",
-              "layout": "vertical",
-              "contents": [
-                {
-                  "type": "text",
-                  "text": "時間",
-                  "weight": "bold",
-                  "size": "xl",
-                  "margin": "md"
-                }
-              ]
-            },
-            "footer": {
-              "type": "box",
-              "layout": "vertical",
-              "spacing": "sm",
-              "contents": [
-                {
-                  "type": "button",
-                  "action": {
-                    "type": "postback",
-                    "label": "3小時內",
-                    "data": "tim0"
-                  },
-                  "height": "sm"
-                },
-                {
-                  "type": "button",
-                  "action": {
-                    "type": "postback",
-                    "label": "3-6小時",
-                    "data": "tim1"
-                  },
-                  "height": "sm"
-                },
-                {
-                  "type": "button",
-                  "action": {
-                    "type": "postback",
-                    "label": "6小時-12小時",
-                    "data": "tim2"
-                  },
-                  "height": "sm"
-                },
-                {
-                  "type": "button",
-                  "action": {
-                    "type": "postback",
-                    "label": "12小時-兩天",
-                    "data": "tim3"
-                  },
-                  "height": "sm"
-                },
-                {
-                  "type": "button",
-                  "action": {
-                    "type": "postback",
-                    "label": "兩天以上",
-                    "data": "tim4"
-                  },
-                  "height": "sm"
-                }
-              ],
-              "flex": 0
-            },
-            "styles": {
-              "footer": {
-                "separator": True
-              }
-            }
-          }
-        ]
-      }
-      area_pic_url = "https://imagizer.imageshack.com/img922/3953/FFDfl6.jpg"
-      difficulity_pic_url = "https://imagizer.imageshack.com/img924/6579/iRTZcj.jpg"
-      time_pic_url = "https://imagizer.imageshack.com/img923/7386/5tG2SO.jpg"
-      bubble_string["contents"][0]["hero"]["url"] = area_pic_url
-      bubble_string["contents"][1]["hero"]["url"] = difficulity_pic_url
-      bubble_string["contents"][2]["hero"]["url"] = time_pic_url
-
-      message = FlexSendMessage(
-          alt_text="篩選", contents=bubble_string
-          )
-      line_bot_api.reply_message(
-          event.reply_token,
-          message
-      )
-      select_list = False
-      print("select_list=", select_list)
-    
-    elif cmd == "are":
+    if cmd == "are":
       print("area_north_east_west_south")
       print("before", page)
       select_list = select_area(seq, page)
@@ -600,13 +330,11 @@ def handle_post_message(event):
       print("difficulty")
       print("before", page)
       select_list = select_difficulty(seq, page)
-      page += 9
       print("after", page)
     elif cmd == "tim":
       print("time_select")
       print("before", page)
       select_list = select_time(seq, page)
-      page += 9
       print("after", page)
     elif cmd == "pic":
       line_bot_api.reply_message(
@@ -698,15 +426,6 @@ def handle_post_message(event):
                   "data": cmd + " " + seq + " " + str(page + 9),
                   "displayText": "下9筆資料"
                 }
-              },
-              {
-                "type": "button",
-                "action": {
-                  "type": "postback",
-                  "label": "重新選擇",
-                  "data": "re0",
-                  "displayText": "重新選擇"
-                }
               }
             ],
             "spacing": "sm",
@@ -735,8 +454,6 @@ def search_info(event):
       pass
 
     elif search == "篩選":
-      global page
-      page = 0
       bubble_string = {
         "type": "carousel",
         "contents": [
@@ -782,7 +499,7 @@ def search_info(event):
                   "action": {
                     "type": "postback",
                     "label": "中部",
-                    "data": "are中部"
+                    "data": "are 中部 0"
                   },
                   "height": "sm"
                 },
@@ -791,7 +508,7 @@ def search_info(event):
                   "action": {
                     "type": "postback",
                     "label": "南部",
-                    "data": "are南部"
+                    "data": "are 南部 0"
                   },
                   "height": "sm"
                 },
@@ -800,7 +517,7 @@ def search_info(event):
                   "action": {
                     "type": "postback",
                     "label": "東部",
-                    "data": "are東部"
+                    "data": "are 東部 0"
                   },
                   "height": "sm"
                 },
@@ -809,7 +526,7 @@ def search_info(event):
                   "action": {
                     "type": "postback",
                     "label": "外島",
-                    "data": "are外島"
+                    "data": "are 外島 0"
                   },
                   "height": "sm"
                 }
@@ -855,7 +572,7 @@ def search_info(event):
                   "action": {
                     "type": "postback",
                     "label": "低",
-                    "data": "dif0"
+                    "data": "dif 0 0"
                   },
                   "height": "sm"
                 },
@@ -864,7 +581,7 @@ def search_info(event):
                   "action": {
                     "type": "postback",
                     "label": "低-中",
-                    "data": "dif1"
+                    "data": "dif 1 0"
                   },
                   "height": "sm"
                 },
@@ -873,7 +590,7 @@ def search_info(event):
                   "action": {
                     "type": "postback",
                     "label": "中",
-                    "data": "dif2"
+                    "data": "dif 2 0"
                   },
                   "height": "sm"
                 },
@@ -882,7 +599,7 @@ def search_info(event):
                   "action": {
                     "type": "postback",
                     "label": "中-高",
-                    "data": "dif3"
+                    "data": "dif 3 0"
                   },
                   "height": "md"
                 },
@@ -891,7 +608,7 @@ def search_info(event):
                   "action": {
                     "type": "postback",
                     "label": "高",
-                    "data": "dif4"
+                    "data": "dif 4 0"
                   },
                   "height": "md"
                 }
@@ -937,7 +654,7 @@ def search_info(event):
                   "action": {
                     "type": "postback",
                     "label": "3小時內",
-                    "data": "tim0"
+                    "data": "tim 0 0"
                   },
                   "height": "sm"
                 },
@@ -946,7 +663,7 @@ def search_info(event):
                   "action": {
                     "type": "postback",
                     "label": "3-6小時",
-                    "data": "tim1"
+                    "data": "tim 1 0"
                   },
                   "height": "sm"
                 },
@@ -955,7 +672,7 @@ def search_info(event):
                   "action": {
                     "type": "postback",
                     "label": "6小時-12小時",
-                    "data": "tim2"
+                    "data": "tim 2 0"
                   },
                   "height": "sm"
                 },
@@ -964,7 +681,7 @@ def search_info(event):
                   "action": {
                     "type": "postback",
                     "label": "12小時-兩天",
-                    "data": "tim3"
+                    "data": "tim 3 0"
                   },
                   "height": "sm"
                 },
@@ -973,7 +690,7 @@ def search_info(event):
                   "action": {
                     "type": "postback",
                     "label": "兩天以上",
-                    "data": "tim4"
+                    "data": "tim 4 0"
                   },
                   "height": "sm"
                 }
