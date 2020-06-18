@@ -135,8 +135,11 @@ def get_ig_pic(input_location):
   from bs4 import BeautifulSoup
   import json
   insta_url = f"https://www.instagram.com/explore/tags/{input_location}/"
+  print(insta_url)
   res = requests.get(insta_url)
+  print(res)
   soup = BeautifulSoup(res.text, "lxml")
+  print("Soup=", soup)
   urls = []
   if soup.find_all("script", {"type": "text/javascript"})[3].text.startswith('window._sharedData'):
     json_part = soup.find_all("script", {"type": "text/javascript"})[3].text[21:-1]
