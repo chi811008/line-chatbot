@@ -892,9 +892,12 @@ def search_info(event):
                     "type": "button",
                     "action": {
                       "type": "postback",
-                      "label": "action",
-                      "data": "hello"
-                    }
+                      "label": "更多圖片",
+                      "data": "pic",
+                      "displayText": "更多圖片"
+                    },
+                    "position": "relative",
+                    "height": "sm"
                   }
                 ]
               }
