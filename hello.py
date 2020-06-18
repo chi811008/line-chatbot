@@ -130,6 +130,37 @@ def select_time(input_time, page = 0):
   else:
       return "很抱歉，沒有符合的資料"
       
+def get_ig_html(input_location):
+  import requests
+  url = f'https://www.instagram.com/explore/tags/{input_location}/'
+  headers = {
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  }
+  try:
+    response = requests.get(url, headers=headers)
+    if response.status_code == 200:
+        return response.text
+    else:
+        print('請求錯誤狀態碼：', response.status_code)
+  except Exception as e:
+    print(e)
+    return None
+
+html = get_ig_html(input_location_name)
+
+def get_ig_pic_url(html):
+  from pyquery import PyQuery as pq
+  urls = []
+  doc = pq(html)
+  items = doc('script[type="text/javascript"]').items()
+  for item in items:
+    if item.text().strip().startswith('window._sharedData'):
+      js_data = json.loads(item.text()[21:-1], encoding='utf-8')
+      edges = js_data["entry_data"]['TagPage'][0]["graphql"]['hashtag']['edge_hashtag_to_media']['edges']
+      for edge in edges[:9]:
+        url = edge['node']['display_url']
+        urls.append(url)
+    return urls
 
 
 
@@ -856,6 +887,14 @@ def search_info(event):
                         "flex": 5
                       }
                     ]
+                  },
+                  {
+                    "type": "button",
+                    "action": {
+                      "type": "postback",
+                      "label": "action",
+                      "data": "hello"
+                    }
                   }
                 ]
               }
@@ -874,34 +913,6 @@ def search_info(event):
         line_bot_api.reply_message(
             event.reply_token,
             message
-        )
-    elif search == "圖片輪播":
-      bubble = {
-        "type": "bubble",
-        "size": "kilo",
-        "hero": {
-          "type": "image",
-          "url": "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip10.jpg",
-          "size": "full",
-          "aspectMode": "cover",
-          "aspectRatio": "320:320"
-        }
-      }
-
-      bubble_string = {
-        "type": "carousel",
-        "contents": [
-          bubble, 
-          bubble, 
-          bubble
-        ]
-      }
-      message = FlexSendMessage(
-        alt_text="圖片輪播", contents=bubble_string
-        )
-      line_bot_api.reply_message(
-        event.reply_token,
-        message
         )
     
     else:
