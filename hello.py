@@ -130,38 +130,25 @@ def select_time(input_time, page = 0):
   else:
       return "很抱歉，沒有符合的資料"
       
-def get_ig_html(input_location):
+def get_ig_pic(input_location):
   import requests
-  url = f"""https://www.instagram.com/explore/tags/{input_location}/"""
-  headers = {
-      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
-  }
-  try:
-    response = requests.get(url, headers=headers)
-    if response.status_code == 200:
-        return response.text
-    else:
-        print('請求錯誤狀態碼：', response.status_code)
-  except Exception as e:
-    print(e)
-    return None
-
-
-def get_ig_pic_url(html):
+  from bs4 import BeautifulSoup
   import json
-  from pyquery import PyQuery as pq
+  insta_url = f"https://www.instagram.com/explore/tags/{input_location}/"
+  res = requests.get(insta_url)
+  soup = BeautifulSoup(res.text, "lxml")
   urls = []
-  doc = pq(html)
-  items = doc('script[type="text/javascript"]').items()
-  for item in items:
-    if item.text().strip().startswith('window._sharedData'):
-      js_data = json.loads(item.text()[21:-1], encoding='utf-8')
-      edges = js_data["entry_data"]['TagPage'][0]["graphql"]['hashtag']['edge_hashtag_to_media']['edges']
-      for edge in edges[:9]:
-        url = edge['node']['display_url']
-        print(url)
-        urls.append(url)
-    return urls
+  if soup.find_all("script", {"type": "text/javascript"})[3].text.startswith('window._sharedData'):
+    json_part = soup.find_all("script", {"type": "text/javascript"})[3].text[21:-1]
+    js_data = json.loads(json_part)
+    edges = js_data["entry_data"]['TagPage'][0]["graphql"]['hashtag']['edge_hashtag_to_media']['edges']
+    for edge in edges[:9]:
+      url = edge['node']['display_url']
+      print(url)
+      urls.append(url)
+  return urls
+
+
 
 @app.route('/')
 def hello_world():
@@ -359,10 +346,7 @@ def handle_post_message(event):
   elif receive[:2] == "ig":
     print("ig")
     mountain = "象山"
-    html = get_ig_html(mountain)
-    print(html)
-    urls = get_ig_pic_url(html)
-    #print(urls)
+    urls = get_ig_pic(mountain)
     all_bubbles_pic = []
     for url in urls:
       print(url)
