@@ -355,6 +355,7 @@ def handle_post_message(event):
     )
 
   elif receive[:2] == "ig":
+    print(receive[2:] + "*******************************************************")
     print("ig")
     print(receive[2:] + "*******************************************************")
     html = get_ig_html(receive[2:])
@@ -945,6 +946,7 @@ def search_info(event):
         bubble["body"]["contents"][2]["contents"][2]["contents"][1]["text"] = get_mountain(search)[4]
         bubble["body"]["contents"][2]["contents"][3]["contents"][1]["text"] = get_mountain(search)[5]
         bubble["body"]["contents"][2]["contents"][4]["action"]["data"] = "ig" + search
+        print(bubble["body"]["contents"][2]["contents"][4]["action"]["data"])
 
         message = FlexSendMessage(alt_text="山的資訊", contents=bubble)
         line_bot_api.reply_message(
