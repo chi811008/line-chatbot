@@ -358,26 +358,28 @@ def handle_post_message(event):
 
   elif receive[:2] == "ig":
     print("ig")
-    mountain = "象山"
-    html = get_ig_html(mountain)
-    print(html)
-    urls = get_ig_pic_url(html)
-    print(urls)
+    #mountain = "象山"
+    #html = get_ig_html(mountain)
+    #print(html)
+    #urls = get_ig_pic_url(html)
+    #print(urls)
     all_bubbles_pic = []
-    for url in urls:
-      print(url)
-      bubble_pic = {
-        "type": "bubble",
-        "size": "kilo",
-        "hero": {
-          "type": "image",
-          "url": "https://www.instagram.com/p/B-KCYDinw0k/",
-          "size": "full",
-          "aspectMode": "cover",
-          "aspectRatio": "320:320"
-        }
+    #for url in urls:
+      #print(url)
+    bubble_pic = {
+      "type": "bubble",
+      "size": "kilo",
+      "hero": {
+        "type": "image",
+        "url": "https://www.instagram.com/p/B-KCYDinw0k/",
+        "size": "full",
+        "aspectMode": "cover",
+        "aspectRatio": "320:320"
       }
-      all_bubbles_pic.append(bubble_pic)
+    }
+    all_bubbles_pic.append(bubble_pic)
+    all_bubbles_pic.append(bubble_pic)
+    all_bubbles_pic.append(bubble_pic)
 
     bubble_string = {
       "type": "carousel",
