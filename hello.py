@@ -356,10 +356,12 @@ def handle_post_message(event):
     )
 
   elif receive[:2] == "ig":
+    print("ig")
     html = get_ig_html(receive[2:])
     urls = get_ig_pic_url(html)
     all_bubbles_pic = []
     for url in urls:
+      print(url)
       bubble_pic = {
         "type": "bubble",
         "size": "kilo",
@@ -372,12 +374,13 @@ def handle_post_message(event):
         }
       }
       all_bubbles_pic.append(bubble_pic)
+
     bubble_string = {
       "type": "carousel",
-      "contents": all_bubbles_pic
+        "contents": all_bubbles_pic
     }
     message = FlexSendMessage(
-      alt_text="篩選", contents=bubble_string
+      alt_text="圖片輪播", contents=bubble_string
       )
     line_bot_api.reply_message(
       event.reply_token,
