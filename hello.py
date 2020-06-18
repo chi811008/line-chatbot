@@ -875,6 +875,35 @@ def search_info(event):
             event.reply_token,
             message
         )
+    elif search == "圖片輪播":
+      bubble = {
+        "type": "bubble",
+        "size": "kilo",
+        "hero": {
+          "type": "image",
+          "url": "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip10.jpg",
+          "size": "full",
+          "aspectMode": "cover",
+          "aspectRatio": "320:320"
+        }
+      }
+
+      bubble_string = {
+        "type": "carousel",
+        "contents": [
+          bubble, 
+          bubble, 
+          bubble
+        ]
+      }
+      message = FlexSendMessage(
+        alt_text="圖片輪播", contents=bubble_string
+        )
+      line_bot_api.reply_message(
+        event.reply_token,
+        message
+        )
+    
     else:
         print("exceptions")
         text = "抱歉，您搜尋的資料不存在，請重新輸入"
