@@ -148,6 +148,7 @@ def get_ig_html(input_location):
 
 
 def get_ig_pic_url(html):
+  import json
   from pyquery import PyQuery as pq
   urls = []
   doc = pq(html)
@@ -158,6 +159,7 @@ def get_ig_pic_url(html):
       edges = js_data["entry_data"]['TagPage'][0]["graphql"]['hashtag']['edge_hashtag_to_media']['edges']
       for edge in edges[:9]:
         url = edge['node']['display_url']
+        print(url)
         urls.append(url)
     return urls
 
@@ -928,7 +930,7 @@ def search_info(event):
                       "type": "postback",
                       "label": "更多圖片",
                       "data": "ig_pic",
-                      "displayText": "ig" + search
+                      "displayText": "更多圖片"
                     },
                     "position": "relative",
                     "height": "sm"
@@ -946,7 +948,6 @@ def search_info(event):
         bubble["body"]["contents"][2]["contents"][2]["contents"][1]["text"] = get_mountain(search)[4]
         bubble["body"]["contents"][2]["contents"][3]["contents"][1]["text"] = get_mountain(search)[5]
         bubble["body"]["contents"][2]["contents"][4]["action"]["data"] = "ig" + search
-        print(bubble["body"]["contents"][2]["contents"][4]["action"]["data"])
 
         message = FlexSendMessage(alt_text="山的資訊", contents=bubble)
         line_bot_api.reply_message(
