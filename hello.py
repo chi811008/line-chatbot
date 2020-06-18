@@ -358,14 +358,15 @@ def handle_post_message(event):
 
   elif receive[:2] == "ig":
     print("ig")
-    #mountain = "象山"
-    #html = get_ig_html(mountain)
-    #print(html)
-    #urls = get_ig_pic_url(html)
+    mountain = "象山"
+    html = get_ig_html(mountain)
+    print(html)
+    urls = get_ig_pic_url(html)
     #print(urls)
     all_bubbles_pic = []
-    #for url in urls:
-      #print(url)
+    for url in urls:
+      print(url)
+    
     bubble_pic = {
       "type": "bubble",
       "size": "kilo",
