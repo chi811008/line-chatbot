@@ -928,7 +928,7 @@ def search_info(event):
                       "type": "postback",
                       "label": "更多圖片",
                       "data": "ig_pic",
-                      "displayText": "更多圖片"
+                      "displayText": "ig" + search
                     },
                     "position": "relative",
                     "height": "sm"
