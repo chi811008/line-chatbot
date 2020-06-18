@@ -162,8 +162,6 @@ def get_ig_pic_url(html):
         urls.append(url)
     return urls
 
-
-
 @app.route('/')
 def hello_world():
     return 'Hello, World! My name is Seraphine. I am happy now'
@@ -356,6 +354,36 @@ def handle_post_message(event):
         original_content_url= receive[3:], preview_image_url= receive[3:]
       )
     )
+
+  elif receive[:2] == "ig":
+    html = get_ig_html(receive[2:])
+    urls = get_ig_pic_url(html)
+    all_bubbles_pic = []
+    for url in urls:
+      bubble_pic = {
+        "type": "bubble",
+        "size": "kilo",
+        "hero": {
+          "type": "image",
+          "url": url,
+          "size": "full",
+          "aspectMode": "cover",
+          "aspectRatio": "320:320"
+        }
+      }
+      all_bubbles_pic.append(bubble_pic)
+    bubble_string = {
+      "type": "carousel",
+      "contents": all_bubbles_pic
+    }
+    message = FlexSendMessage(
+      alt_text="篩選", contents=bubble_string
+      )
+    line_bot_api.reply_message(
+      event.reply_token,
+      message
+      )
+
   else:
     cmd, seq, page = receive.split()
     page = int(page)
@@ -893,7 +921,7 @@ def search_info(event):
                     "action": {
                       "type": "postback",
                       "label": "更多圖片",
-                      "data": "pic",
+                      "data": "ig_pic",
                       "displayText": "更多圖片"
                     },
                     "position": "relative",
@@ -911,7 +939,8 @@ def search_info(event):
         bubble["body"]["contents"][2]["contents"][1]["contents"][1]["text"] = get_mountain(search)[3][3:]
         bubble["body"]["contents"][2]["contents"][2]["contents"][1]["text"] = get_mountain(search)[4]
         bubble["body"]["contents"][2]["contents"][3]["contents"][1]["text"] = get_mountain(search)[5]
-       
+        bubble["body"]["contents"][2]["contents"][4]["action"]["data"] = "ig" + search
+
         message = FlexSendMessage(alt_text="山的資訊", contents=bubble)
         line_bot_api.reply_message(
             event.reply_token,
