@@ -146,7 +146,6 @@ def get_ig_html(input_location):
     print(e)
     return None
 
-#html = get_ig_html(input_location_name)
 
 def get_ig_pic_url(html):
   from pyquery import PyQuery as pq
@@ -357,8 +356,11 @@ def handle_post_message(event):
 
   elif receive[:2] == "ig":
     print("ig")
+    print(receive[2:])
     html = get_ig_html(receive[2:])
+    print(html)
     urls = get_ig_pic_url(html)
+    print(urls)
     all_bubbles_pic = []
     for url in urls:
       print(url)
@@ -367,7 +369,7 @@ def handle_post_message(event):
         "size": "kilo",
         "hero": {
           "type": "image",
-          "url": url,
+          "url": "https://www.instagram.com/p/B-KCYDinw0k/",
           "size": "full",
           "aspectMode": "cover",
           "aspectRatio": "320:320"
