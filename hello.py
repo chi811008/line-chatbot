@@ -146,7 +146,7 @@ def get_ig_html(input_location):
     print(e)
     return None
 
-html = get_ig_html(input_location_name)
+#html = get_ig_html(input_location_name)
 
 def get_ig_pic_url(html):
   from pyquery import PyQuery as pq
