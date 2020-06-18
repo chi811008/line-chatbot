@@ -357,10 +357,9 @@ def handle_post_message(event):
     )
 
   elif receive[:2] == "ig":
-    print(receive[2:] + "*******************************************************")
     print("ig")
-    print(receive[2:] + "*******************************************************")
-    html = get_ig_html(receive[2:])
+    mountain = "象山"
+    html = get_ig_html(mountain)
     print(html)
     urls = get_ig_pic_url(html)
     print(urls)
