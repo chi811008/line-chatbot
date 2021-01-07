@@ -355,7 +355,7 @@ def handle_post_message(event):
     line_bot_api.reply_message(
       event.reply_token,
       TextSendMessage(
-          text=urls
+          text=urls[0]
         )
     )
     # for url in urls:
