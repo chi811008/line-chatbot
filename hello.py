@@ -189,7 +189,7 @@ def handle_post_message(event):
   receive = event.postback.data
   if get_mountain_name(receive):
     print("get_mountain")
-    picture_url = get_mountain_picture(search)
+    picture_url = get_mountain_picture(receive)
     bubble = {
       "type": "bubble",
       "hero": {
@@ -341,11 +341,11 @@ def handle_post_message(event):
     }
     bubble["hero"]["url"] = picture_url
     bubble["hero"]["action"]["data"] = "pic" + picture_url
-    bubble["body"]["contents"][0]["text"] = get_mountain_name(search)
-    bubble["body"]["contents"][2]["contents"][0]["contents"][1]["text"] = get_mountain(search)[2]
-    bubble["body"]["contents"][2]["contents"][1]["contents"][1]["text"] = get_mountain(search)[3][3:]
-    bubble["body"]["contents"][2]["contents"][2]["contents"][1]["text"] = get_mountain(search)[4]
-    bubble["body"]["contents"][2]["contents"][3]["contents"][1]["text"] = get_mountain(search)[5]
+    bubble["body"]["contents"][0]["text"] = get_mountain_name(receive)
+    bubble["body"]["contents"][2]["contents"][0]["contents"][1]["text"] = get_mountain(receive)[2]
+    bubble["body"]["contents"][2]["contents"][1]["contents"][1]["text"] = get_mountain(receive)[3][3:]
+    bubble["body"]["contents"][2]["contents"][2]["contents"][1]["text"] = get_mountain(receive)[4]
+    bubble["body"]["contents"][2]["contents"][3]["contents"][1]["text"] = get_mountain(receive)[5]
     bubble["body"]["contents"][2]["contents"][4]["action"]["data"] = "pic" + picture_url
 
     message = FlexSendMessage(alt_text="山的資訊", contents=bubble)
@@ -353,7 +353,7 @@ def handle_post_message(event):
         event.reply_token,
         message
     ) 
-    
+
   elif receive[:3] == "pic":
     line_bot_api.reply_message(
       event.reply_token,
