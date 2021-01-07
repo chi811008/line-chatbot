@@ -350,8 +350,8 @@ def handle_post_message(event):
     )
 
   elif receive[:2] == "ig":
-    # search = "合歡山"
-    # urls = get_ig_pic(search)
+    search = "合歡山"
+    urls = get_ig_pic(search)
     # print(urls)
     # all_bubbles_pic = []
     # for url in urls:
