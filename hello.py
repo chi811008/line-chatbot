@@ -943,7 +943,7 @@ def search_info(event):
         bubble["body"]["contents"][2]["contents"][1]["contents"][1]["text"] = get_mountain(search)[3][3:]
         bubble["body"]["contents"][2]["contents"][2]["contents"][1]["text"] = get_mountain(search)[4]
         bubble["body"]["contents"][2]["contents"][3]["contents"][1]["text"] = get_mountain(search)[5]
-        bubble["body"]["contents"][2]["contents"][4]["action"]["data"] = "ig" + search
+        bubble["body"]["contents"][2]["contents"][4]["action"]["data"] = "pic" + picture_url
 
         message = FlexSendMessage(alt_text="山的資訊", contents=bubble)
         line_bot_api.reply_message(
