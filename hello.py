@@ -134,14 +134,13 @@ def get_ig_pic(input_location):
   import requests
   from bs4 import BeautifulSoup
   import json
-  search = "合歡山"
 
   headers = {
   'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
   'cookie': 'mid=W4VyZwALAAHeINz8GOIBiG_jFK5l; mcd=3; csrftoken=KFLY0ovWwChYoayK3OBZLvSuD1MUL04e; ds_user_id=8492674110; sessionid=IGSCee8a4ca969a6825088e207468e4cd6a8ca3941c48d10d4ac59713f257114e74b%3Acwt7nSRdUWOh00B4kIEo4ZVb4ddaZDgs%3A%7B%22_auth_user_id%22%3A8492674110%2C%22_auth_user_backend%22%3A%22accounts.backends.CaseInsensitiveModelBackend%22%2C%22_auth_user_hash%22%3A%22%22%2C%22_platform%22%3A4%2C%22_token_ver%22%3A2%2C%22_token%22%3A%228492674110%3Avsy7NZ3ZPcKWXfPz356F6eXuSUYAePW8%3Ae8135a385c423477f4cc8642107dec4ecf3211270bb63eec0a99da5b47d7a5b7%22%2C%22last_refreshed%22%3A1535472763.3352122307%7D; csrftoken=KFLY0ovWwChYoayK3OBZLvSuD1MUL04e; rur=FRC; urlgen="{"103.102.7.202": 57695}:1furLR:EZ6OcQaIegf5GSdIydkTdaml6QU"'
   }
 
-  insta_url = f"https://www.instagram.com/explore/tags/{search}/"
+  insta_url = f"https://www.instagram.com/explore/tags/{input_location}/"
   res = requests.get(insta_url, headers=headers)
 
   soup = BeautifulSoup(res.text, "lxml")
@@ -351,10 +350,8 @@ def handle_post_message(event):
     )
 
   elif receive[:2] == "ig":
-    print("ig")
-    mountain = "象山"
-    print(mountain)
-    urls = get_ig_pic(mountain)
+    search = "合歡山"
+    urls = get_ig_pic(search)
     print(urls)
     all_bubbles_pic = []
     for url in urls:
@@ -365,7 +362,7 @@ def handle_post_message(event):
       "size": "kilo",
       "hero": {
         "type": "image",
-        "url": "https://instagram.ftpe10-1.fna.fbcdn.net/v/t51.2885-15/e35/s1080x1080/104362192_257564118907761_1494295569872282918_n.jpg?_nc_ht=instagram.ftpe10-1.fna.fbcdn.net&_nc_cat=109&_nc_ohc=8Pj8RnPNoZEAX8Lv7W8&oh=f1e3373b08ce94f6803e9c9f54544d54&oe=5F16696D",
+        "url": "https://instagram.frmq3-2.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/c0.180.1440.1440a/s640x640/135778407_1304360396589206_6416325874617909960_n.jpg?_nc_ht=instagram.frmq3-2.fna.fbcdn.net&_nc_cat=102&_nc_ohc=Erz9W0tqNVwAX8yx7hC&tp=1&oh=9b4099cd06b1ed2a7fc95b9815223d61&oe=60221A37",
         "size": "full",
         "aspectMode": "cover",
         "aspectRatio": "320:320"
