@@ -356,7 +356,7 @@ def handle_post_message(event):
     # all_bubbles_pic = []
     # for url in urls:
     #   print(url)
-    
+    all_bubbles_pic = []
     bubble_pic = {
       "type": "bubble",
       "size": "kilo",
