@@ -130,10 +130,10 @@ def select_time(input_time, page = 0):
   else:
       return "很抱歉，沒有符合的資料"
       
+import requests
+from bs4 import BeautifulSoup
+import json
 def get_ig_pic(input_location):
-  import requests
-  from bs4 import BeautifulSoup
-  import json
 
   headers = {
   'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
@@ -352,37 +352,41 @@ def handle_post_message(event):
   elif receive[:2] == "ig":
     search = "合歡山"
     urls = get_ig_pic(search)
-    # print(urls)
-    # all_bubbles_pic = []
-    # for url in urls:
-    #   print(url)
-    all_bubbles_pic = []
-    bubble_pic = {
-      "type": "bubble",
-      "size": "kilo",
-      "hero": {
-        "type": "image",
-        "url": "https://instagram.frmq3-2.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/c0.180.1440.1440a/s640x640/135778407_1304360396589206_6416325874617909960_n.jpg?_nc_ht=instagram.frmq3-2.fna.fbcdn.net&_nc_cat=102&_nc_ohc=Erz9W0tqNVwAX8yx7hC&tp=1&oh=9b4099cd06b1ed2a7fc95b9815223d61&oe=60221A37",
-        "size": "full",
-        "aspectMode": "cover",
-        "aspectRatio": "320:320"
-      }
-    }
-    all_bubbles_pic.append(bubble_pic)
-    all_bubbles_pic.append(bubble_pic)
-    all_bubbles_pic.append(bubble_pic)
-
-    bubble_string = {
-      "type": "carousel",
-        "contents": all_bubbles_pic
-    }
-    message = FlexSendMessage(
-      alt_text="圖片輪播", contents=bubble_string
-      )
     line_bot_api.reply_message(
       event.reply_token,
-      message
-      )
+      TextSendMessage(
+          text=urls
+        )
+    )
+    # for url in urls:
+    #   print(url)
+    # all_bubbles_pic = []
+    # bubble_pic = {
+    #   "type": "bubble",
+    #   "size": "kilo",
+    #   "hero": {
+    #     "type": "image",
+    #     "url": "https://instagram.frmq3-2.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/c0.180.1440.1440a/s640x640/135778407_1304360396589206_6416325874617909960_n.jpg?_nc_ht=instagram.frmq3-2.fna.fbcdn.net&_nc_cat=102&_nc_ohc=Erz9W0tqNVwAX8yx7hC&tp=1&oh=9b4099cd06b1ed2a7fc95b9815223d61&oe=60221A37",
+    #     "size": "full",
+    #     "aspectMode": "cover",
+    #     "aspectRatio": "320:320"
+    #   }
+    # }
+    # all_bubbles_pic.append(bubble_pic)
+    # all_bubbles_pic.append(bubble_pic)
+    # all_bubbles_pic.append(bubble_pic)
+
+    # bubble_string = {
+    #   "type": "carousel",
+    #     "contents": all_bubbles_pic
+    # }
+    # message = FlexSendMessage(
+    #   alt_text="圖片輪播", contents=bubble_string
+    #   )
+    # line_bot_api.reply_message(
+    #   event.reply_token,
+    #   message
+    #   )
 
   else:
     cmd, seq, page = receive.split()
