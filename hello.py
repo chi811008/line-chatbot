@@ -130,29 +130,29 @@ def select_time(input_time, page = 0):
   else:
       return "很抱歉，沒有符合的資料"
       
-import requests
-from bs4 import BeautifulSoup
-import json
-def get_ig_pic(input_location):
+# import requests
+# from bs4 import BeautifulSoup
+# import json
+# def get_ig_pic(input_location):
 
-  headers = {
-  'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
-  'cookie': 'mid=W4VyZwALAAHeINz8GOIBiG_jFK5l; mcd=3; csrftoken=KFLY0ovWwChYoayK3OBZLvSuD1MUL04e; ds_user_id=8492674110; sessionid=IGSCee8a4ca969a6825088e207468e4cd6a8ca3941c48d10d4ac59713f257114e74b%3Acwt7nSRdUWOh00B4kIEo4ZVb4ddaZDgs%3A%7B%22_auth_user_id%22%3A8492674110%2C%22_auth_user_backend%22%3A%22accounts.backends.CaseInsensitiveModelBackend%22%2C%22_auth_user_hash%22%3A%22%22%2C%22_platform%22%3A4%2C%22_token_ver%22%3A2%2C%22_token%22%3A%228492674110%3Avsy7NZ3ZPcKWXfPz356F6eXuSUYAePW8%3Ae8135a385c423477f4cc8642107dec4ecf3211270bb63eec0a99da5b47d7a5b7%22%2C%22last_refreshed%22%3A1535472763.3352122307%7D; csrftoken=KFLY0ovWwChYoayK3OBZLvSuD1MUL04e; rur=FRC; urlgen="{"103.102.7.202": 57695}:1furLR:EZ6OcQaIegf5GSdIydkTdaml6QU"'
-  }
+#   headers = {
+#   'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+#   'cookie': 'mid=W4VyZwALAAHeINz8GOIBiG_jFK5l; mcd=3; csrftoken=KFLY0ovWwChYoayK3OBZLvSuD1MUL04e; ds_user_id=8492674110; sessionid=IGSCee8a4ca969a6825088e207468e4cd6a8ca3941c48d10d4ac59713f257114e74b%3Acwt7nSRdUWOh00B4kIEo4ZVb4ddaZDgs%3A%7B%22_auth_user_id%22%3A8492674110%2C%22_auth_user_backend%22%3A%22accounts.backends.CaseInsensitiveModelBackend%22%2C%22_auth_user_hash%22%3A%22%22%2C%22_platform%22%3A4%2C%22_token_ver%22%3A2%2C%22_token%22%3A%228492674110%3Avsy7NZ3ZPcKWXfPz356F6eXuSUYAePW8%3Ae8135a385c423477f4cc8642107dec4ecf3211270bb63eec0a99da5b47d7a5b7%22%2C%22last_refreshed%22%3A1535472763.3352122307%7D; csrftoken=KFLY0ovWwChYoayK3OBZLvSuD1MUL04e; rur=FRC; urlgen="{"103.102.7.202": 57695}:1furLR:EZ6OcQaIegf5GSdIydkTdaml6QU"'
+#   }
 
-  insta_url = f"https://www.instagram.com/explore/tags/{input_location}/"
-  res = requests.get(insta_url, headers=headers)
+#   insta_url = f"https://www.instagram.com/explore/tags/{input_location}/"
+#   res = requests.get(insta_url, headers=headers)
 
-  soup = BeautifulSoup(res.text, "lxml")
-  json_part = soup.find_all("script", {"type": "text/javascript"})[3].text[21:-1]
+#   soup = BeautifulSoup(res.text, "lxml")
+#   json_part = soup.find_all("script", {"type": "text/javascript"})[3].text[21:-1]
 
-  js_data = json.loads(json_part)
-  edges = js_data["entry_data"]['TagPage'][0]["graphql"]['hashtag']['edge_hashtag_to_top_posts']['edges'][0:9]
-  urls = []
-  for _ in edges:
-      url = _['node']['thumbnail_src']
-      urls.append(url)
-  return urls
+#   js_data = json.loads(json_part)
+#   edges = js_data["entry_data"]['TagPage'][0]["graphql"]['hashtag']['edge_hashtag_to_top_posts']['edges'][0:9]
+#   urls = []
+#   for _ in edges:
+#       url = _['node']['thumbnail_src']
+#       urls.append(url)
+#   return urls
 
 
 
@@ -349,15 +349,15 @@ def handle_post_message(event):
       )
     )
 
-  elif receive[:2] == "ig":
-    search = "合歡山"
-    urls = get_ig_pic(search)
-    line_bot_api.reply_message(
-      event.reply_token,
-      TextSendMessage(
-          text=urls[0]
-        )
-    )
+  # elif receive[:2] == "ig":
+  #   search = "合歡山"
+  #   urls = get_ig_pic(search)
+  #   line_bot_api.reply_message(
+  #     event.reply_token,
+  #     TextSendMessage(
+  #         text=urls[0]
+  #       )
+  #   )
     # for url in urls:
     #   print(url)
     # all_bubbles_pic = []
@@ -924,9 +924,9 @@ def search_info(event):
                     "type": "button",
                     "action": {
                       "type": "postback",
-                      "label": "更多圖片",
-                      "data": "ig_pic",
-                      "displayText": "更多圖片"
+                      "label": "圖片",
+                      "data": "pic",
+                      "displayText": "圖片"
                     },
                     "position": "relative",
                     "height": "sm"
